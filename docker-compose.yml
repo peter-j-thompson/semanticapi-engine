@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  engine:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - AI_PROVIDER=${AI_PROVIDER:-anthropic}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-}
+      - DEBUG=${DEBUG:-false}
+      - PROVIDERS_DIR=/app/providers
+    volumes:
+      # Mount custom providers (optional)
+      - ./providers:/app/providers:ro
+    restart: unless-stopped

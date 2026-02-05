@@ -1,0 +1,100 @@
+{
+  "provider": "openai",
+  "name": "OpenAI",
+  "description": "AI and machine learning APIs for language, vision, and audio",
+  "base_url": "https://api.openai.com/v1",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "chat_completion",
+      "name": "Chat Completion",
+      "description": "Generate conversational responses using GPT models. Create AI chatbots, assistants, or generate text based on prompts.",
+      "semantic_tags": ["chat", "conversation", "AI response", "GPT", "language model", "text generation", "ask AI", "generate", "write", "create", "explain", "summarize", "list", "step by step", "how to", "help me", "what is", "describe", "translate", "outline", "guide", "essay", "article", "story", "code", "script"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/chat/completions",
+        "params": {
+          "model": {"type": "string", "required": true, "description": "Model ID (gpt-4, gpt-3.5-turbo)"},
+          "messages": {"type": "array", "required": true, "description": "Conversation messages"},
+          "temperature": {"type": "number", "required": false, "description": "Randomness (0-2)"}
+        }
+      }
+    },
+    {
+      "id": "create_embedding",
+      "name": "Create Embedding",
+      "description": "Convert text into numerical vectors for semantic search and similarity matching.",
+      "semantic_tags": ["embedding", "vector", "semantic search", "similarity", "text encoding", "vectorize"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/embeddings",
+        "params": {
+          "model": {"type": "string", "required": true, "description": "Embedding model (text-embedding-3-small)"},
+          "input": {"type": "string", "required": true, "description": "Text to embed"}
+        }
+      }
+    },
+    {
+      "id": "generate_image",
+      "name": "Generate Image",
+      "description": "Create images from text descriptions using DALL-E. Generate AI art, illustrations, or photos from prompts.",
+      "semantic_tags": ["image generation", "AI art", "DALL-E", "create picture", "text to image", "generate art"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/images/generations",
+        "params": {
+          "model": {"type": "string", "required": true, "description": "Model (dall-e-3, dall-e-2)"},
+          "prompt": {"type": "string", "required": true, "description": "Image description"},
+          "size": {"type": "string", "required": false, "description": "Image size (1024x1024, etc)"}
+        }
+      }
+    },
+    {
+      "id": "transcribe_audio",
+      "name": "Transcribe Audio",
+      "description": "Convert speech to text using Whisper. Transcribe audio files, recordings, or voice memos.",
+      "semantic_tags": ["transcription", "speech to text", "audio to text", "whisper", "voice recognition", "transcribe"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/audio/transcriptions",
+        "params": {
+          "model": {"type": "string", "required": true, "description": "Model (whisper-1)"},
+          "file": {"type": "file", "required": true, "description": "Audio file to transcribe"}
+        }
+      }
+    },
+    {
+      "id": "text_to_speech",
+      "name": "Text to Speech",
+      "description": "Convert text into natural-sounding speech audio. Generate voiceovers, narration, or audio content.",
+      "semantic_tags": ["text to speech", "TTS", "voice synthesis", "audio generation", "speak text", "narration"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/audio/speech",
+        "params": {
+          "model": {"type": "string", "required": true, "description": "TTS model (tts-1, tts-1-hd)"},
+          "input": {"type": "string", "required": true, "description": "Text to convert to speech"},
+          "voice": {"type": "string", "required": true, "description": "Voice (alloy, echo, fable, onyx, nova, shimmer)"}
+        }
+      }
+    },
+    {
+      "id": "analyze_image",
+      "name": "Analyze Image",
+      "description": "Use GPT-4 Vision to understand and describe images. Extract information, answer questions about pictures.",
+      "semantic_tags": ["vision", "image analysis", "describe image", "OCR", "image understanding", "visual AI"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/chat/completions",
+        "params": {
+          "model": {"type": "string", "required": true, "description": "Vision model (gpt-4-vision-preview)"},
+          "messages": {"type": "array", "required": true, "description": "Messages with image content"}
+        }
+      }
+    }
+  ]
+}

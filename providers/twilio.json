@@ -1,0 +1,86 @@
+{
+  "provider": "twilio",
+  "name": "Twilio",
+  "description": "Communication APIs for SMS, voice, and messaging",
+  "base_url": "https://api.twilio.com/2010-04-01",
+  "auth": {
+    "type": "basic",
+    "username_env": "TWILIO_ACCOUNT_SID",
+    "password_env": "TWILIO_AUTH_TOKEN"
+  },
+  "capabilities": [
+    {
+      "id": "send_sms",
+      "name": "Send SMS",
+      "description": "Send a text message to a phone number. Deliver SMS messages to mobile phones worldwide.",
+      "semantic_tags": ["sms", "text message", "send text", "mobile message", "phone notification"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/Accounts/{account_sid}/Messages.json",
+        "params": {
+          "To": {"type": "string", "required": true, "description": "Recipient phone number in E.164 format"},
+          "From": {"type": "string", "required": true, "description": "Sender phone number or messaging service SID"},
+          "Body": {"type": "string", "required": true, "description": "Message content (up to 1600 characters)"}
+        }
+      }
+    },
+    {
+      "id": "make_call",
+      "name": "Make Phone Call",
+      "description": "Initiate an outbound phone call. Make voice calls programmatically with TwiML instructions.",
+      "semantic_tags": ["phone call", "voice call", "dial", "ring", "outbound call", "telephone"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/Accounts/{account_sid}/Calls.json",
+        "params": {
+          "To": {"type": "string", "required": true, "description": "Phone number to call"},
+          "From": {"type": "string", "required": true, "description": "Caller ID phone number"},
+          "Url": {"type": "string", "required": true, "description": "TwiML URL for call instructions"}
+        }
+      }
+    },
+    {
+      "id": "send_whatsapp",
+      "name": "Send WhatsApp Message",
+      "description": "Send a message via WhatsApp. Reach users on the WhatsApp messaging platform.",
+      "semantic_tags": ["whatsapp", "messaging", "chat", "instant message", "whatsapp notification"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/Accounts/{account_sid}/Messages.json",
+        "params": {
+          "To": {"type": "string", "required": true, "description": "WhatsApp number (whatsapp:+1234567890)"},
+          "From": {"type": "string", "required": true, "description": "Your WhatsApp sender number"},
+          "Body": {"type": "string", "required": true, "description": "Message content"}
+        }
+      }
+    },
+    {
+      "id": "lookup_phone",
+      "name": "Phone Number Lookup",
+      "description": "Look up information about a phone number. Validate and get carrier info for phone numbers.",
+      "semantic_tags": ["phone lookup", "validate number", "carrier info", "phone verification", "number info"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/PhoneNumbers/{phone_number}",
+        "params": {
+          "phone_number": {"type": "string", "required": true, "description": "Phone number to look up"},
+          "Type": {"type": "string", "required": false, "description": "Type of lookup (carrier, caller-name)"}
+        }
+      }
+    },
+    {
+      "id": "verify_start",
+      "name": "Start Phone Verification",
+      "description": "Send a verification code to a phone number. Start 2FA or phone verification flow.",
+      "semantic_tags": ["verify", "2fa", "otp", "verification code", "authenticate phone", "confirm number"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/Services/{service_sid}/Verifications",
+        "params": {
+          "To": {"type": "string", "required": true, "description": "Phone number to verify"},
+          "Channel": {"type": "string", "required": true, "description": "Verification channel (sms, call, whatsapp)"}
+        }
+      }
+    }
+  ]
+}

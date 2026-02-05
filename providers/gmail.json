@@ -1,0 +1,86 @@
+{
+  "provider": "gmail",
+  "name": "Gmail",
+  "description": "Send and read emails via Gmail API. NOTE: list_messages only returns IDs - to get subjects/content, call get_message for each ID with format=metadata.",
+  "base_url": "https://gmail.googleapis.com/gmail/v1",
+  "auth": {
+    "type": "oauth2",
+    "auth_url": "https://accounts.google.com/o/oauth2/v2/auth",
+    "token_url": "https://oauth2.googleapis.com/token",
+    "scopes": [
+      "https://www.googleapis.com/auth/gmail.send",
+      "https://www.googleapis.com/auth/gmail.readonly"
+    ],
+    "client_id_env": "GOOGLE_CLIENT_ID",
+    "client_secret_env": "GOOGLE_CLIENT_SECRET",
+    "extra_auth_params": {
+      "access_type": "offline",
+      "prompt": "consent"
+    }
+  },
+  "capabilities": [
+    {
+      "id": "send_email",
+      "name": "Send Email",
+      "description": "Send an email to one or more recipients. Compose and deliver email messages.",
+      "semantic_tags": ["email", "send email", "mail", "message", "compose", "write email", "send message"],
+      "scopes_required": ["https://www.googleapis.com/auth/gmail.send"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/users/me/messages/send",
+        "content_type": "application/json",
+        "params": {
+          "to": {"type": "string", "required": true, "description": "Recipient email address"},
+          "subject": {"type": "string", "required": true, "description": "Email subject line"},
+          "body": {"type": "string", "required": true, "description": "Email body content"}
+        },
+        "request_transform": "gmail_send"
+      }
+    },
+    {
+      "id": "list_messages",
+      "name": "List Messages",
+      "description": "List email IDs in inbox. IMPORTANT: This only returns message IDs, not content. To get subjects/senders, you must call get_message for each ID.",
+      "semantic_tags": ["inbox", "emails", "messages", "list emails", "check email", "read email", "my emails", "email titles", "email subjects", "recent emails"],
+      "scopes_required": ["https://www.googleapis.com/auth/gmail.readonly"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/users/me/messages",
+        "params": {
+          "maxResults": {"type": "integer", "required": false, "description": "Maximum number of messages to return"},
+          "q": {"type": "string", "required": false, "description": "Search query (same as Gmail search)"}
+        }
+      }
+    },
+    {
+      "id": "get_message",
+      "name": "Get Message",
+      "description": "Get details of a specific email by ID. Use format=metadata to get Subject, From, Date headers. The response includes payload.headers array with name/value pairs.",
+      "semantic_tags": ["read email", "view email", "email content", "message details"],
+      "scopes_required": ["https://www.googleapis.com/auth/gmail.readonly"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/users/me/messages/{message_id}",
+        "params": {
+          "message_id": {"type": "string", "required": true, "description": "The ID of the message to retrieve"},
+          "format": {"type": "string", "required": false, "description": "Use 'metadata' for headers only, 'full' for complete message"}
+        }
+      }
+    },
+    {
+      "id": "search_messages",
+      "name": "Search Messages",
+      "description": "Search emails using Gmail search syntax. Find specific emails by sender, subject, date, etc.",
+      "semantic_tags": ["search email", "find email", "look for email", "email from", "email about"],
+      "scopes_required": ["https://www.googleapis.com/auth/gmail.readonly"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/users/me/messages",
+        "params": {
+          "q": {"type": "string", "required": true, "description": "Search query (e.g., 'from:john subject:meeting')"},
+          "maxResults": {"type": "integer", "required": false, "description": "Maximum results to return"}
+        }
+      }
+    }
+  ]
+}

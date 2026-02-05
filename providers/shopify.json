@@ -1,0 +1,169 @@
+{
+  "provider": "shopify",
+  "name": "Shopify",
+  "description": "E-commerce platform for online stores",
+  "base_url": "https://{shop_name}.myshopify.com/admin/api/2024-01",
+  "auth": {
+    "type": "header",
+    "header": "X-Shopify-Access-Token"
+  },
+  "capabilities": [
+    {
+      "id": "list_products",
+      "name": "List Products",
+      "description": "Get all products in the store",
+      "semantic_tags": ["products", "inventory", "items", "catalog", "merchandise"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/products.json",
+        "params": {
+          "limit": {"type": "integer", "required": false, "description": "Number of products to retrieve"},
+          "status": {"type": "string", "required": false, "description": "Filter by status (active, archived, draft)"}
+        }
+      }
+    },
+    {
+      "id": "get_product",
+      "name": "Get Product",
+      "description": "Get a single product by ID",
+      "semantic_tags": ["product", "item", "details"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/products/{product_id}.json",
+        "params": {
+          "product_id": {"type": "string", "required": true, "description": "Product ID"}
+        }
+      }
+    },
+    {
+      "id": "create_product",
+      "name": "Create Product",
+      "description": "Create a new product",
+      "semantic_tags": ["create", "new", "product", "add", "item"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/products.json",
+        "params": {
+          "product": {"type": "object", "required": true, "description": "Product data with title, body_html, vendor, etc."}
+        }
+      }
+    },
+    {
+      "id": "list_orders",
+      "name": "List Orders",
+      "description": "Get all orders",
+      "semantic_tags": ["orders", "sales", "purchases", "transactions"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/orders.json",
+        "params": {
+          "status": {"type": "string", "required": false, "description": "Filter by status (open, closed, any)"},
+          "limit": {"type": "integer", "required": false, "description": "Number of orders"}
+        }
+      }
+    },
+    {
+      "id": "get_order",
+      "name": "Get Order",
+      "description": "Get a single order by ID",
+      "semantic_tags": ["order", "sale", "purchase", "details"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/orders/{order_id}.json",
+        "params": {
+          "order_id": {"type": "string", "required": true, "description": "Order ID"}
+        }
+      }
+    },
+    {
+      "id": "list_customers",
+      "name": "List Customers",
+      "description": "Get all customers",
+      "semantic_tags": ["customers", "buyers", "users", "clients"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/customers.json",
+        "params": {
+          "limit": {"type": "integer", "required": false, "description": "Number of customers"}
+        }
+      }
+    },
+    {
+      "id": "get_customer",
+      "name": "Get Customer",
+      "description": "Get a single customer by ID",
+      "semantic_tags": ["customer", "buyer", "user", "details"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/customers/{customer_id}.json",
+        "params": {
+          "customer_id": {"type": "string", "required": true, "description": "Customer ID"}
+        }
+      }
+    },
+    {
+      "id": "list_inventory",
+      "name": "List Inventory",
+      "description": "Get inventory levels",
+      "semantic_tags": ["inventory", "stock", "levels", "quantity"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/inventory_levels.json",
+        "params": {
+          "inventory_item_ids": {"type": "string", "required": false, "description": "Comma-separated inventory item IDs"},
+          "location_ids": {"type": "string", "required": false, "description": "Comma-separated location IDs"}
+        }
+      }
+    },
+    {
+      "id": "get_shop",
+      "name": "Get Shop Info",
+      "description": "Get information about the shop",
+      "semantic_tags": ["shop", "store", "info", "settings"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/shop.json",
+        "params": {}
+      }
+    },
+    {
+      "id": "count_orders",
+      "name": "Count Orders",
+      "description": "Get the count of orders",
+      "semantic_tags": ["count", "orders", "total", "number"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/orders/count.json",
+        "params": {
+          "status": {"type": "string", "required": false, "description": "Filter by status"}
+        }
+      }
+    }
+  ],
+  "response_transforms": {
+    "list_products": {
+      "data_field": "products"
+    },
+    "get_product": {
+      "data_field": "product"
+    },
+    "list_orders": {
+      "data_field": "orders"
+    },
+    "get_order": {
+      "data_field": "order"
+    },
+    "list_customers": {
+      "data_field": "customers"
+    },
+    "get_customer": {
+      "data_field": "customer"
+    },
+    "list_inventory": {
+      "data_field": "inventory_levels"
+    },
+    "get_shop": {
+      "data_field": "shop"
+    }
+  }
+}

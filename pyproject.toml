@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "semanticapi"
+version = "0.1.0"
+description = "Natural language interface to any API"
+readme = "README.md"
+license = {text = "AGPL-3.0"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Semantic API Contributors"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "httpx>=0.26.0",
+    "python-dotenv>=1.0.0",
+    "python-multipart>=0.0.9",
+    "pydantic>=2.5.0",
+]
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=0.40.0"]
+openai = ["openai>=1.0.0"]
+all = ["anthropic>=0.40.0", "openai>=1.0.0"]
+dev = ["pytest>=7.0.0", "pytest-cov>=4.0.0"]
+
+[project.urls]
+Homepage = "https://semanticapi.dev"
+Repository = "https://github.com/petermtj/semanticapi-engine"
+Documentation = "https://github.com/petermtj/semanticapi-engine#readme"
+Issues = "https://github.com/petermtj/semanticapi-engine/issues"
+
+[project.scripts]
+semanticapi = "semanticapi.server:main"
+
+[tool.setuptools.packages.find]
+include = ["semanticapi*"]
+
+[tool.setuptools.package-data]
+"*" = ["providers/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
