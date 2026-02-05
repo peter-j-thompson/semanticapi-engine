@@ -45,7 +45,7 @@ class TestIntentParser:
         assert "+15551234567" in result.entities.get("to", "")
 
     def test_send_text_message(self, parser):
-        result = parser.parse("send a text message to +15551234567")
+        result = parser.parse("send text to +15551234567")
         assert result.provider == "twilio"
         assert result.action == "send_sms"
 
