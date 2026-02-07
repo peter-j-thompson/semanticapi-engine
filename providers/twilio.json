@@ -3,6 +3,7 @@
   "name": "Twilio",
   "description": "Communication APIs for SMS, voice, and messaging",
   "base_url": "https://api.twilio.com/2010-04-01",
+  "request_content_type": "form",
   "auth": {
     "type": "basic",
     "username_env": "TWILIO_ACCOUNT_SID",
@@ -14,12 +15,17 @@
       "name": "Send SMS",
       "description": "Send a text message to a phone number. Deliver SMS messages to mobile phones worldwide.",
       "semantic_tags": ["sms", "text message", "send text", "mobile message", "phone notification"],
+      "request_transform": {
+        "type": "default_from_creds",
+        "defaults": {
+          "From": "from_number"
+        }
+      },
       "endpoint": {
         "method": "POST",
         "path": "/Accounts/{account_sid}/Messages.json",
         "params": {
           "To": {"type": "string", "required": true, "description": "Recipient phone number in E.164 format"},
-          "From": {"type": "string", "required": true, "description": "Sender phone number or messaging service SID"},
           "Body": {"type": "string", "required": true, "description": "Message content (up to 1600 characters)"}
         }
       }
@@ -29,12 +35,17 @@
       "name": "Make Phone Call",
       "description": "Initiate an outbound phone call. Make voice calls programmatically with TwiML instructions.",
       "semantic_tags": ["phone call", "voice call", "dial", "ring", "outbound call", "telephone"],
+      "request_transform": {
+        "type": "default_from_creds",
+        "defaults": {
+          "From": "from_number"
+        }
+      },
       "endpoint": {
         "method": "POST",
         "path": "/Accounts/{account_sid}/Calls.json",
         "params": {
           "To": {"type": "string", "required": true, "description": "Phone number to call"},
-          "From": {"type": "string", "required": true, "description": "Caller ID phone number"},
           "Url": {"type": "string", "required": true, "description": "TwiML URL for call instructions"}
         }
       }
@@ -44,12 +55,17 @@
       "name": "Send WhatsApp Message",
       "description": "Send a message via WhatsApp. Reach users on the WhatsApp messaging platform.",
       "semantic_tags": ["whatsapp", "messaging", "chat", "instant message", "whatsapp notification"],
+      "request_transform": {
+        "type": "default_from_creds",
+        "defaults": {
+          "From": "whatsapp_number"
+        }
+      },
       "endpoint": {
         "method": "POST",
         "path": "/Accounts/{account_sid}/Messages.json",
         "params": {
           "To": {"type": "string", "required": true, "description": "WhatsApp number (whatsapp:+1234567890)"},
-          "From": {"type": "string", "required": true, "description": "Your WhatsApp sender number"},
           "Body": {"type": "string", "required": true, "description": "Message content"}
         }
       }

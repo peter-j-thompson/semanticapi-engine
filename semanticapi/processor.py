@@ -29,6 +29,65 @@ import httpx
 import os
 
 
+def apply_request_transform(
+    params: dict,
+    capability: dict,
+    credentials: dict,
+) -> dict:
+    """
+    Apply request transforms based on capability config.
+    
+    This replaces hardcoded provider-specific logic with config-driven transforms.
+    The capability's request_transform field defines what transforms to apply.
+    
+    Supported transform types:
+    - mime_encode: Encode fields into MIME format (for email APIs like Gmail)
+    - default_from_creds: Set default param values from credentials
+    
+    Returns the transformed params dict.
+    """
+    transform = capability.get("request_transform")
+    if not transform:
+        return params
+    
+    # Handle legacy string format (deprecated)
+    if isinstance(transform, str):
+        return params
+    
+    transform_type = transform.get("type")
+    
+    if transform_type == "mime_encode":
+        # MIME encoding for email APIs (e.g., Gmail)
+        input_fields = transform.get("input_fields", {})
+        output_field = transform.get("output_field", "raw")
+        
+        def get_field(aliases):
+            for alias in aliases:
+                if alias in params:
+                    return params.pop(alias)
+            return ""
+        
+        to = get_field(input_fields.get("to", ["to"]))
+        subject = get_field(input_fields.get("subject", ["subject"]))
+        body = get_field(input_fields.get("body", ["body"]))
+        
+        message = MIMEText(body)
+        message["to"] = to
+        message["subject"] = subject
+        
+        raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
+        params = {output_field: raw}
+        
+    elif transform_type == "default_from_creds":
+        # Default param values from credentials (e.g., Twilio from_number)
+        defaults = transform.get("defaults", {})
+        for param_name, cred_key in defaults.items():
+            if param_name not in params and credentials.get(cred_key):
+                params[param_name] = credentials[cred_key]
+    
+    return params
+
+
 @dataclass
 class AgentResult:
     """Result of agentic query processing."""
@@ -687,28 +746,17 @@ Be helpful, concise, and proactive. ALWAYS prefer asking over guessing."""
         # Copy arguments to avoid mutation
         params = dict(arguments)
 
-        # Gmail send requires MIME encoding
-        if provider_name == "gmail" and capability_id == "send_email":
-            to = params.pop("to", params.pop("To", ""))
-            subject = params.pop("subject", params.pop("Subject", ""))
-            body = params.pop(
-                "body", params.pop("Body", params.pop("message", ""))
-            )
-
-            message = MIMEText(body)
-            message["to"] = to
-            message["subject"] = subject
-            raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
-            params = {"raw": raw}
-
-        # Twilio needs from_number
-        if provider_name == "twilio":
-            if "From" not in params and creds.get("from_number"):
-                params["From"] = creds["from_number"]
+        # Apply config-driven request transforms (no hardcoded provider logic!)
+        # Transforms are defined in the capability's request_transform field
+        params = apply_request_transform(params, capability, creds)
 
         if self.debug:
             print(f"[AgenticProcessor] {method} {url}")
             print(f"[AgenticProcessor] Params: {params}")
+
+        # Determine content type from provider config (default to JSON)
+        content_type = provider_def.get("request_content_type", "json")
+        use_form_data = content_type == "form"
 
         # Make the HTTP request
         try:
@@ -718,7 +766,8 @@ Be helpful, concise, and proactive. ALWAYS prefer asking over guessing."""
                         url, headers=headers, params=params, auth=auth
                     )
                 elif method == "POST":
-                    if provider_name == "twilio":
+                    if use_form_data:
+                        # Form-urlencoded (Stripe, Twilio, etc.)
                         response = client.post(
                             url, headers=headers, data=params, auth=auth
                         )
