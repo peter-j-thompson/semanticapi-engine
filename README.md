@@ -282,6 +282,29 @@ Configure via environment variables:
 - `X402_NETWORK` — `eip155:8453` (mainnet) or `eip155:84532` (testnet)
 - `X402_REQUIRE_PAYMENT` — set to `true` to enforce payments
 
+## MCP Server (Claude Desktop / ChatGPT)
+
+Use Semantic API as a native tool in Claude, ChatGPT, and any MCP-compatible agent:
+
+```bash
+pip install semanticapi-mcp
+```
+
+Add to Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
+```json
+{
+  "mcpServers": {
+    "semanticapi": {
+      "command": "uvx",
+      "args": ["semanticapi-mcp"],
+      "env": { "SEMANTIC_API_KEY": "your-key" }
+    }
+  }
+}
+```
+
+**[semanticapi-mcp on PyPI](https://pypi.org/project/semanticapi-mcp/)** | **[GitHub](https://github.com/peter-j-thompson/semanticapi-mcp)**
+
 ## Agent Skill
 
 Drop Semantic API into any agent framework as a tool:
