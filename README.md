@@ -282,6 +282,11 @@ Configure via environment variables:
 - `X402_NETWORK` — `eip155:8453` (mainnet) or `eip155:84532` (testnet)
 - `X402_REQUIRE_PAYMENT` — set to `true` to enforce payments
 
+## Agent Skill
+
+Drop Semantic API into any agent framework as a tool:
+**[semantic-api-skill](https://github.com/peter-j-thompson/semantic-api-skill)** — ready-to-use skill package for agent frameworks.
+
 ## Hosted Version
 
 Don't want to self-host? Use the managed version at **[semanticapi.dev](https://semanticapi.dev)** — includes auto-discovery of any API, OAuth flows, x402 payments, and a dashboard.
