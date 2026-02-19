@@ -263,6 +263,15 @@ class AgenticProcessor:
         """Set user context for a provider (username, repos, etc.)."""
         self.user_context[provider] = context
 
+    @staticmethod
+    def _sanitize_param_name(name: str) -> str:
+        """Sanitize parameter names to match ^[a-zA-Z0-9_.-]{1,64}$."""
+        import re
+        sanitized = re.sub(r'[\[\]${}]', '_', name)
+        sanitized = re.sub(r'_+', '_', sanitized)  # collapse multiple underscores
+        sanitized = sanitized.strip('_')
+        return sanitized[:64]
+
     def _build_tools(self) -> list:
         """Convert capabilities to OpenAI tool format."""
         tools = []
@@ -356,13 +365,14 @@ class AgenticProcessor:
                         "boolean": "boolean",
                     }.get(param_type, "string")
 
-                    params_schema["properties"][param_name] = {
+                    safe_name = self._sanitize_param_name(param_name)
+                    params_schema["properties"][safe_name] = {
                         "type": json_type,
                         "description": param_def.get("description", ""),
                     }
 
                     if param_def.get("required"):
-                        params_schema["required"].append(param_name)
+                        params_schema["required"].append(safe_name)
 
                 tool = {
                     "type": "function",
@@ -466,13 +476,14 @@ class AgenticProcessor:
                         "boolean": "boolean",
                     }.get(param_type, "string")
 
-                    params_schema["properties"][param_name] = {
+                    safe_name = self._sanitize_param_name(param_name)
+                    params_schema["properties"][safe_name] = {
                         "type": json_type,
                         "description": param_def.get("description", ""),
                     }
 
                     if param_def.get("required"):
-                        params_schema["required"].append(param_name)
+                        params_schema["required"].append(safe_name)
 
                 tools.append(
                     {

@@ -47,7 +47,7 @@
                 "method": "GET",
                 "path": "/incidents",
                 "params": {
-                    "statuses[]": {
+                    "statuses": {
                         "type": "string",
                         "required": false,
                         "description": "triggered, acknowledged, resolved"
@@ -75,7 +75,7 @@
                 "method": "GET",
                 "path": "/oncalls",
                 "params": {
-                    "schedule_ids[]": {
+                    "schedule_ids": {
                         "type": "string",
                         "required": false,
                         "description": "Schedule ID filter"

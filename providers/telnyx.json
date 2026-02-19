@@ -48,7 +48,7 @@
         "method": "GET",
         "path": "/phone_numbers",
         "params": {
-          "page[size]": { "type": "integer", "required": false, "description": "Page size" }
+          "page_size": { "type": "integer", "required": false, "description": "Page size" }
         }
       }
     },
@@ -61,8 +61,8 @@
         "method": "GET",
         "path": "/available_phone_numbers",
         "params": {
-          "filter[country_code]": { "type": "string", "required": false, "description": "Country code (e.g., US)" },
-          "filter[city]": { "type": "string", "required": false, "description": "City name" }
+          "filter_country_code": { "type": "string", "required": false, "description": "Country code (e.g., US)" },
+          "filter_city": { "type": "string", "required": false, "description": "City name" }
         }
       }
     },

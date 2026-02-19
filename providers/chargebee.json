@@ -52,7 +52,7 @@
                 "method": "GET",
                 "path": "/subscriptions",
                 "params": {
-                    "status[is]": {
+                    "status_is": {
                         "type": "string",
                         "required": false,
                         "description": "Status filter"
@@ -103,7 +103,7 @@
                 "method": "GET",
                 "path": "/customers",
                 "params": {
-                    "email[is]": {
+                    "email_is": {
                         "type": "string",
                         "required": false,
                         "description": "Email filter"

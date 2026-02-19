@@ -52,12 +52,12 @@
                 "method": "POST",
                 "path": "/engage",
                 "params": {
-                    "$distinct_id": {
+                    "distinct_id": {
                         "type": "string",
                         "required": true,
                         "description": "User ID"
                     },
-                    "$set": {
+                    "set_properties": {
                         "type": "object",
                         "required": false,
                         "description": "Properties to set"

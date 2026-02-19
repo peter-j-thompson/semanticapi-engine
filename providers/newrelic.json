@@ -74,7 +74,7 @@
                         "required": true,
                         "description": "Application ID"
                     },
-                    "names[]": {
+                    "names": {
                         "type": "string",
                         "required": true,
                         "description": "Metric name"
