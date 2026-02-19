@@ -1,0 +1,114 @@
+{
+    "provider": "neon",
+    "name": "Neon",
+    "description": "Serverless Postgres with branching, autoscaling, and instant provisioning",
+    "base_url": "https://console.neon.tech/api/v2",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_projects",
+            "name": "List Projects",
+            "description": "List all Neon Postgres projects in the account",
+            "semantic_tags": [
+                "list",
+                "projects",
+                "inventory",
+                "manage",
+                "postgres"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/projects",
+                "params": {}
+            }
+        },
+        {
+            "id": "create_project",
+            "name": "Create Project",
+            "description": "Create a new serverless Postgres project",
+            "semantic_tags": [
+                "create",
+                "project",
+                "postgres",
+                "database",
+                "new"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/projects",
+                "params": {
+                    "project": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Project config {name, region_id}"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_branch",
+            "name": "Create Branch",
+            "description": "Create a database branch for development or testing",
+            "semantic_tags": [
+                "branch",
+                "create",
+                "development",
+                "testing",
+                "fork"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/projects/{projectId}/branches",
+                "params": {
+                    "projectId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Project ID"
+                    },
+                    "branch": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Branch config"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_connection_uri",
+            "name": "Get Connection URI",
+            "description": "Get the connection string for a branch",
+            "semantic_tags": [
+                "connection",
+                "uri",
+                "connect",
+                "string",
+                "access"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/projects/{projectId}/connection_uri",
+                "params": {
+                    "projectId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Project ID"
+                    },
+                    "branch_id": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Branch ID"
+                    },
+                    "database_name": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Database name"
+                    }
+                }
+            }
+        }
+    ]
+}

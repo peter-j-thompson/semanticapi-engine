@@ -1,0 +1,213 @@
+{
+    "provider": "mongodb-atlas",
+    "name": "MongoDB Atlas",
+    "description": "Cloud-hosted MongoDB database with Data API for CRUD operations",
+    "base_url": "https://data.mongodb-api.com/app",
+    "auth": {
+        "type": "api_key",
+        "header": "api-key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "find_one",
+            "name": "Find One Document",
+            "description": "Find a single document matching a filter in a collection",
+            "semantic_tags": [
+                "find",
+                "document",
+                "query",
+                "mongodb",
+                "database"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{appId}/endpoint/data/v1/action/findOne",
+                "params": {
+                    "dataSource": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cluster name"
+                    },
+                    "database": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    },
+                    "collection": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Collection name"
+                    },
+                    "filter": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Query filter"
+                    }
+                }
+            }
+        },
+        {
+            "id": "find",
+            "name": "Find Documents",
+            "description": "Find multiple documents matching a filter",
+            "semantic_tags": [
+                "find",
+                "documents",
+                "query",
+                "list",
+                "search"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{appId}/endpoint/data/v1/action/find",
+                "params": {
+                    "dataSource": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cluster name"
+                    },
+                    "database": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    },
+                    "collection": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Collection name"
+                    },
+                    "filter": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Query filter"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max docs to return"
+                    }
+                }
+            }
+        },
+        {
+            "id": "insert_one",
+            "name": "Insert Document",
+            "description": "Insert a single document into a collection",
+            "semantic_tags": [
+                "insert",
+                "create",
+                "document",
+                "add",
+                "write"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{appId}/endpoint/data/v1/action/insertOne",
+                "params": {
+                    "dataSource": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cluster name"
+                    },
+                    "database": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    },
+                    "collection": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Collection name"
+                    },
+                    "document": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Document to insert"
+                    }
+                }
+            }
+        },
+        {
+            "id": "update_one",
+            "name": "Update Document",
+            "description": "Update a single document matching a filter",
+            "semantic_tags": [
+                "update",
+                "modify",
+                "document",
+                "edit",
+                "patch"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{appId}/endpoint/data/v1/action/updateOne",
+                "params": {
+                    "dataSource": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cluster name"
+                    },
+                    "database": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    },
+                    "collection": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Collection name"
+                    },
+                    "filter": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Query filter"
+                    },
+                    "update": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Update operations"
+                    }
+                }
+            }
+        },
+        {
+            "id": "delete_one",
+            "name": "Delete Document",
+            "description": "Delete a single document matching a filter",
+            "semantic_tags": [
+                "delete",
+                "remove",
+                "document",
+                "destroy",
+                "clean"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{appId}/endpoint/data/v1/action/deleteOne",
+                "params": {
+                    "dataSource": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cluster name"
+                    },
+                    "database": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    },
+                    "collection": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Collection name"
+                    },
+                    "filter": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Query filter"
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,145 @@
+{
+    "provider": "reddit",
+    "name": "Reddit",
+    "description": "Reddit API for reading posts, comments, and subreddit content",
+    "base_url": "https://oauth.reddit.com",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "search",
+            "name": "Search Posts",
+            "description": "Search Reddit for posts matching a query",
+            "semantic_tags": [
+                "search",
+                "posts",
+                "reddit",
+                "find",
+                "content"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "sort": {
+                        "type": "string",
+                        "required": false,
+                        "description": "relevance, hot, top, new"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results limit"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_subreddit",
+            "name": "Get Subreddit Posts",
+            "description": "Get hot/new/top posts from a subreddit",
+            "semantic_tags": [
+                "subreddit",
+                "posts",
+                "browse",
+                "community",
+                "feed"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/r/{subreddit}/{sort}",
+                "params": {
+                    "subreddit": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Subreddit name"
+                    },
+                    "sort": {
+                        "type": "string",
+                        "required": true,
+                        "description": "hot, new, top, rising"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results limit"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_comments",
+            "name": "Get Comments",
+            "description": "Get comments for a specific Reddit post",
+            "semantic_tags": [
+                "comments",
+                "post",
+                "discussion",
+                "thread",
+                "read"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/r/{subreddit}/comments/{postId}",
+                "params": {
+                    "subreddit": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Subreddit name"
+                    },
+                    "postId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Post ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "submit",
+            "name": "Submit Post",
+            "description": "Submit a new post to a subreddit",
+            "semantic_tags": [
+                "submit",
+                "post",
+                "create",
+                "publish",
+                "subreddit"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/api/submit",
+                "params": {
+                    "sr": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Subreddit name"
+                    },
+                    "title": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Post title"
+                    },
+                    "kind": {
+                        "type": "string",
+                        "required": true,
+                        "description": "self, link, image"
+                    },
+                    "text": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Post text for self posts"
+                    }
+                }
+            }
+        }
+    ]
+}

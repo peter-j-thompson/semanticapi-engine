@@ -1,0 +1,160 @@
+{
+  "provider": "trello",
+  "name": "Trello",
+  "description": "Visual project management with boards, lists, and cards",
+  "base_url": "https://api.trello.com/1",
+  "auth": {
+    "type": "api_key",
+    "config": {
+      "key_param": "key",
+      "token_param": "token"
+    }
+  },
+  "capabilities": [
+    {
+      "id": "list_boards",
+      "name": "List Boards",
+      "description": "List all boards for the authenticated user.",
+      "semantic_tags": [
+        "boards",
+        "list boards",
+        "my boards",
+        "projects"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/members/me/boards",
+        "params": {}
+      }
+    },
+    {
+      "id": "get_board_lists",
+      "name": "Get Board Lists",
+      "description": "Get all lists on a board.",
+      "semantic_tags": [
+        "lists",
+        "columns",
+        "board lists",
+        "board columns"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/boards/{id}/lists",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Board ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_list_cards",
+      "name": "Get Cards in List",
+      "description": "Get all cards in a list.",
+      "semantic_tags": [
+        "cards",
+        "tasks",
+        "list cards",
+        "items"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/lists/{id}/cards",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "List ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_card",
+      "name": "Create Card",
+      "description": "Create a new card on a list.",
+      "semantic_tags": [
+        "create card",
+        "new card",
+        "add task",
+        "new task"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/cards",
+        "params": {
+          "idList": {
+            "type": "string",
+            "required": true,
+            "description": "List ID to add card to"
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Card title"
+          },
+          "desc": {
+            "type": "string",
+            "required": false,
+            "description": "Card description"
+          }
+        }
+      }
+    },
+    {
+      "id": "update_card",
+      "name": "Update Card",
+      "description": "Update a card (move, rename, etc.).",
+      "semantic_tags": [
+        "update card",
+        "move card",
+        "edit card"
+      ],
+      "endpoint": {
+        "method": "PUT",
+        "path": "/cards/{id}",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Card ID"
+          },
+          "idList": {
+            "type": "string",
+            "required": false,
+            "description": "Move to list"
+          },
+          "name": {
+            "type": "string",
+            "required": false,
+            "description": "New name"
+          }
+        }
+      }
+    },
+    {
+      "id": "search",
+      "name": "Search",
+      "description": "Search for boards, cards, and members.",
+      "semantic_tags": [
+        "search",
+        "find",
+        "search cards",
+        "search boards"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/search",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "Search query"
+          }
+        }
+      }
+    }
+  ]
+}

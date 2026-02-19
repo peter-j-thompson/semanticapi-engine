@@ -1,0 +1,125 @@
+{
+    "provider": "turso",
+    "name": "Turso",
+    "description": "Edge-hosted distributed SQLite database powered by libSQL",
+    "base_url": "https://api.turso.tech/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_databases",
+            "name": "List Databases",
+            "description": "List all databases in an organization",
+            "semantic_tags": [
+                "list",
+                "databases",
+                "inventory",
+                "manage",
+                "sqlite"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/organizations/{orgName}/databases",
+                "params": {
+                    "orgName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Organization name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_database",
+            "name": "Create Database",
+            "description": "Create a new edge SQLite database",
+            "semantic_tags": [
+                "create",
+                "database",
+                "new",
+                "provision",
+                "setup"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/organizations/{orgName}/databases",
+                "params": {
+                    "orgName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Organization name"
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    },
+                    "group": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Group name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_token",
+            "name": "Create Auth Token",
+            "description": "Create an authentication token for database access",
+            "semantic_tags": [
+                "token",
+                "auth",
+                "create",
+                "access",
+                "security"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/organizations/{orgName}/databases/{dbName}/auth/tokens",
+                "params": {
+                    "orgName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Organization name"
+                    },
+                    "dbName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_database",
+            "name": "Get Database",
+            "description": "Get details and connection info for a database",
+            "semantic_tags": [
+                "database",
+                "details",
+                "info",
+                "connection",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/organizations/{orgName}/databases/{dbName}",
+                "params": {
+                    "orgName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Organization name"
+                    },
+                    "dbName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    }
+                }
+            }
+        }
+    ]
+}

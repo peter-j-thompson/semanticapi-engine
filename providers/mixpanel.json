@@ -1,0 +1,120 @@
+{
+    "provider": "mixpanel",
+    "name": "Mixpanel",
+    "description": "Product analytics platform for tracking user events and behaviors",
+    "base_url": "https://api.mixpanel.com",
+    "auth": {
+        "type": "basic",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "track",
+            "name": "Track Event",
+            "description": "Track a user event with properties",
+            "semantic_tags": [
+                "track",
+                "event",
+                "analytics",
+                "user",
+                "behavior"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/track",
+                "params": {
+                    "event": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Event name"
+                    },
+                    "properties": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Event properties including distinct_id"
+                    }
+                }
+            }
+        },
+        {
+            "id": "engage",
+            "name": "Update Profile",
+            "description": "Create or update a user profile with properties",
+            "semantic_tags": [
+                "profile",
+                "user",
+                "update",
+                "engage",
+                "properties"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/engage",
+                "params": {
+                    "$distinct_id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User ID"
+                    },
+                    "$set": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Properties to set"
+                    }
+                }
+            }
+        },
+        {
+            "id": "export",
+            "name": "Export Events",
+            "description": "Export raw event data for a date range",
+            "semantic_tags": [
+                "export",
+                "events",
+                "data",
+                "raw",
+                "download"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/api/2.0/export",
+                "params": {
+                    "from_date": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Start date YYYY-MM-DD"
+                    },
+                    "to_date": {
+                        "type": "string",
+                        "required": true,
+                        "description": "End date YYYY-MM-DD"
+                    }
+                }
+            }
+        },
+        {
+            "id": "query",
+            "name": "JQL Query",
+            "description": "Run a JQL query against your analytics data",
+            "semantic_tags": [
+                "query",
+                "jql",
+                "analytics",
+                "data",
+                "analysis"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/api/2.0/jql",
+                "params": {
+                    "script": {
+                        "type": "string",
+                        "required": true,
+                        "description": "JQL script to execute"
+                    }
+                }
+            }
+        }
+    ]
+}

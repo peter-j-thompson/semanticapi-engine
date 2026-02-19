@@ -1,0 +1,114 @@
+{
+    "provider": "importio",
+    "name": "Import.io",
+    "description": "Web data extraction and integration platform for structured data collection",
+    "base_url": "https://extraction.import.io",
+    "auth": {
+        "type": "api_key",
+        "header": "_apikey",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "extract",
+            "name": "Extract Data",
+            "description": "Extract structured data from a URL using a trained extractor",
+            "semantic_tags": [
+                "extract",
+                "data",
+                "structured",
+                "scrape",
+                "parse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/query/extractor/{extractorId}",
+                "params": {
+                    "extractorId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Extractor ID"
+                    },
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to extract from"
+                    },
+                    "_apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "start_crawl",
+            "name": "Start Crawl Run",
+            "description": "Start a bulk crawl run for an extractor",
+            "semantic_tags": [
+                "crawl",
+                "run",
+                "start",
+                "batch",
+                "extract"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/extractor/{extractorId}/start",
+                "params": {
+                    "extractorId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Extractor ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_crawl",
+            "name": "Get Crawl Status",
+            "description": "Check the progress and status of a crawl run",
+            "semantic_tags": [
+                "status",
+                "crawl",
+                "check",
+                "progress",
+                "monitor"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/extractor/{extractorId}/crawlRun/{crawlRunId}",
+                "params": {
+                    "extractorId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Extractor ID"
+                    },
+                    "crawlRunId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Crawl run ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_extractors",
+            "name": "List Extractors",
+            "description": "List all configured extractors in the account",
+            "semantic_tags": [
+                "list",
+                "extractors",
+                "account",
+                "manage",
+                "inventory"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/extractor",
+                "params": {}
+            }
+        }
+    ]
+}

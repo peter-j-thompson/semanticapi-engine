@@ -1,0 +1,167 @@
+{
+  "provider": "paypal",
+  "name": "PayPal",
+  "description": "Online payment processing for businesses and individuals worldwide",
+  "base_url": "https://api-m.paypal.com/v2",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "create_order",
+      "name": "Create Order",
+      "description": "Create a PayPal order to collect payment from a buyer.",
+      "semantic_tags": [
+        "order",
+        "payment",
+        "checkout",
+        "create order",
+        "collect payment",
+        "buy"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/checkout/orders",
+        "params": {
+          "intent": {
+            "type": "string",
+            "required": true,
+            "description": "CAPTURE or AUTHORIZE"
+          },
+          "purchase_units": {
+            "type": "array",
+            "required": true,
+            "description": "Purchase unit details with amount"
+          }
+        }
+      }
+    },
+    {
+      "id": "capture_order",
+      "name": "Capture Order",
+      "description": "Capture payment for an approved order.",
+      "semantic_tags": [
+        "capture",
+        "complete payment",
+        "finalize order"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/checkout/orders/{order_id}/capture",
+        "params": {
+          "order_id": {
+            "type": "string",
+            "required": true,
+            "description": "Order ID to capture"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_order",
+      "name": "Get Order Details",
+      "description": "Get details of a PayPal order.",
+      "semantic_tags": [
+        "order details",
+        "order status",
+        "check order",
+        "order info"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/checkout/orders/{order_id}",
+        "params": {
+          "order_id": {
+            "type": "string",
+            "required": true,
+            "description": "Order ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_payout",
+      "name": "Create Payout",
+      "description": "Send batch payouts to multiple recipients.",
+      "semantic_tags": [
+        "payout",
+        "send money",
+        "pay out",
+        "batch payment",
+        "transfer"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/payments/payouts",
+        "params": {
+          "sender_batch_header": {
+            "type": "object",
+            "required": true,
+            "description": "Batch header with ID and email subject"
+          },
+          "items": {
+            "type": "array",
+            "required": true,
+            "description": "Payout items with recipients and amounts"
+          }
+        }
+      }
+    },
+    {
+      "id": "refund_capture",
+      "name": "Refund Payment",
+      "description": "Refund a captured payment.",
+      "semantic_tags": [
+        "refund",
+        "return money",
+        "reverse payment"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/payments/captures/{capture_id}/refund",
+        "params": {
+          "capture_id": {
+            "type": "string",
+            "required": true,
+            "description": "Capture ID to refund"
+          },
+          "amount": {
+            "type": "object",
+            "required": false,
+            "description": "Amount to refund (partial refund)"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_transactions",
+      "name": "List Transactions",
+      "description": "List transaction events for your account.",
+      "semantic_tags": [
+        "transactions",
+        "history",
+        "payment history",
+        "transaction list"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/reporting/transactions",
+        "params": {
+          "start_date": {
+            "type": "string",
+            "required": true,
+            "description": "Start date (ISO 8601)"
+          },
+          "end_date": {
+            "type": "string",
+            "required": true,
+            "description": "End date (ISO 8601)"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://developer.paypal.com/dashboard/applications"
+}

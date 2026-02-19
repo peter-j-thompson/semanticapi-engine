@@ -1,0 +1,136 @@
+{
+  "provider": "braintree",
+  "name": "Braintree",
+  "description": "Full-stack payment platform for online and mobile commerce",
+  "base_url": "https://payments.braintree-api.com/graphql",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "charge_payment",
+      "name": "Charge Payment Method",
+      "description": "Create a transaction by charging a payment method.",
+      "semantic_tags": [
+        "charge",
+        "payment",
+        "transaction",
+        "process payment"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/graphql",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL mutation for chargePaymentMethod"
+          },
+          "variables": {
+            "type": "object",
+            "required": true,
+            "description": "Payment method ID and transaction details"
+          }
+        }
+      }
+    },
+    {
+      "id": "search_transactions",
+      "name": "Search Transactions",
+      "description": "Search for transactions by various criteria.",
+      "semantic_tags": [
+        "search transactions",
+        "find payment",
+        "transaction history"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/graphql",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL query for transaction search"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_client_token",
+      "name": "Create Client Token",
+      "description": "Generate a client token for Drop-in UI or SDK.",
+      "semantic_tags": [
+        "client token",
+        "setup",
+        "initialize",
+        "payment form"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/graphql",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL mutation for createClientToken"
+          }
+        }
+      }
+    },
+    {
+      "id": "vault_payment",
+      "name": "Vault Payment Method",
+      "description": "Store a payment method for future use.",
+      "semantic_tags": [
+        "save card",
+        "vault",
+        "store payment",
+        "remember card"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/graphql",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL mutation for vaultPaymentMethod"
+          },
+          "variables": {
+            "type": "object",
+            "required": true,
+            "description": "Payment method input"
+          }
+        }
+      }
+    },
+    {
+      "id": "refund_transaction",
+      "name": "Refund Transaction",
+      "description": "Refund a settled transaction.",
+      "semantic_tags": [
+        "refund",
+        "return money",
+        "reverse charge"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/graphql",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL mutation for refundTransaction"
+          },
+          "variables": {
+            "type": "object",
+            "required": true,
+            "description": "Transaction ID and refund amount"
+          }
+        }
+      }
+    }
+  ]
+}

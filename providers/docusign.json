@@ -1,0 +1,140 @@
+{
+    "provider": "docusign",
+    "name": "DocuSign",
+    "description": "Electronic signature and digital agreement management API",
+    "base_url": "https://www.docusign.net/restapi/v2.1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "create_envelope",
+            "name": "Create Envelope",
+            "description": "Create and send a document envelope for electronic signature",
+            "semantic_tags": [
+                "envelope",
+                "create",
+                "signature",
+                "send",
+                "document"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/accounts/{accountId}/envelopes",
+                "params": {
+                    "accountId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Account ID"
+                    },
+                    "documents": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Documents to sign"
+                    },
+                    "recipients": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Signing recipients"
+                    },
+                    "status": {
+                        "type": "string",
+                        "required": true,
+                        "description": "sent to send immediately"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_envelope",
+            "name": "Get Envelope",
+            "description": "Check the signing status of an envelope",
+            "semantic_tags": [
+                "envelope",
+                "status",
+                "check",
+                "signature",
+                "progress"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/accounts/{accountId}/envelopes/{envelopeId}",
+                "params": {
+                    "accountId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Account ID"
+                    },
+                    "envelopeId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Envelope ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_envelopes",
+            "name": "List Envelopes",
+            "description": "List all envelopes with optional date filtering",
+            "semantic_tags": [
+                "list",
+                "envelopes",
+                "signatures",
+                "documents",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/accounts/{accountId}/envelopes",
+                "params": {
+                    "accountId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Account ID"
+                    },
+                    "from_date": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Start date filter"
+                    }
+                }
+            }
+        },
+        {
+            "id": "download_document",
+            "name": "Download Document",
+            "description": "Download a signed document from a completed envelope",
+            "semantic_tags": [
+                "download",
+                "document",
+                "signed",
+                "pdf",
+                "retrieve"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/accounts/{accountId}/envelopes/{envelopeId}/documents/{documentId}",
+                "params": {
+                    "accountId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Account ID"
+                    },
+                    "envelopeId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Envelope ID"
+                    },
+                    "documentId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Document ID"
+                    }
+                }
+            }
+        }
+    ]
+}

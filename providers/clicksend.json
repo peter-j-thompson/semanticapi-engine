@@ -1,0 +1,80 @@
+{
+  "provider": "clicksend",
+  "name": "ClickSend",
+  "description": "Multi-channel communication platform for SMS, email, voice, fax, and postal",
+  "base_url": "https://rest.clicksend.com/v3",
+  "auth": {
+    "type": "basic",
+    "header": "Authorization",
+    "prefix": "Basic"
+  },
+  "capabilities": [
+    {
+      "id": "send_sms",
+      "name": "Send SMS",
+      "description": "Send one or more SMS messages.",
+      "semantic_tags": ["send sms", "text message", "sms"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/sms/send",
+        "params": {
+          "messages": { "type": "array", "required": true, "description": "Array of message objects with to, body, source" }
+        }
+      }
+    },
+    {
+      "id": "send_voice",
+      "name": "Send Voice Message",
+      "description": "Send a text-to-speech voice call.",
+      "semantic_tags": ["voice message", "tts call", "voice call"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/voice/send",
+        "params": {
+          "messages": { "type": "array", "required": true, "description": "Array of voice message objects with to, body, voice" }
+        }
+      }
+    },
+    {
+      "id": "send_email",
+      "name": "Send Email",
+      "description": "Send a transactional email.",
+      "semantic_tags": ["send email", "email"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/email/send",
+        "params": {
+          "to": { "type": "array", "required": true, "description": "Recipient objects with email and name" },
+          "from": { "type": "object", "required": true, "description": "Sender with email and name" },
+          "subject": { "type": "string", "required": true, "description": "Email subject" },
+          "body": { "type": "string", "required": true, "description": "Email body (HTML)" }
+        }
+      }
+    },
+    {
+      "id": "get_sms_history",
+      "name": "Get SMS History",
+      "description": "Get history of sent SMS messages.",
+      "semantic_tags": ["sms history", "message log", "sent messages"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/sms/history",
+        "params": {
+          "page": { "type": "integer", "required": false, "description": "Page number" },
+          "limit": { "type": "integer", "required": false, "description": "Results per page" }
+        }
+      }
+    },
+    {
+      "id": "get_account",
+      "name": "Get Account",
+      "description": "Get account details and balance.",
+      "semantic_tags": ["account", "balance"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/account",
+        "params": {}
+      }
+    }
+  ]
+}

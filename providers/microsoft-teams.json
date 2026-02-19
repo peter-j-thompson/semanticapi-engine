@@ -1,0 +1,130 @@
+{
+    "provider": "microsoft-teams",
+    "name": "Microsoft Teams",
+    "description": "Microsoft Teams API for messaging, channels, and team collaboration",
+    "base_url": "https://graph.microsoft.com/v1.0",
+    "auth": {
+        "type": "oauth2",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "send_channel_message",
+            "name": "Send Channel Message",
+            "description": "Post a message to a Teams channel",
+            "semantic_tags": [
+                "send",
+                "message",
+                "channel",
+                "teams",
+                "chat"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/teams/{teamId}/channels/{channelId}/messages",
+                "params": {
+                    "teamId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Team ID"
+                    },
+                    "channelId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Channel ID"
+                    },
+                    "body": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Message body with content"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_channels",
+            "name": "List Channels",
+            "description": "List all channels in a team",
+            "semantic_tags": [
+                "list",
+                "channels",
+                "team",
+                "inventory",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/teams/{teamId}/channels",
+                "params": {
+                    "teamId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Team ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_channel",
+            "name": "Create Channel",
+            "description": "Create a new channel in a team",
+            "semantic_tags": [
+                "create",
+                "channel",
+                "team",
+                "new",
+                "organize"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/teams/{teamId}/channels",
+                "params": {
+                    "teamId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Team ID"
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Channel name"
+                    },
+                    "description": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Description"
+                    }
+                }
+            }
+        },
+        {
+            "id": "send_chat",
+            "name": "Send Chat Message",
+            "description": "Send a direct message in a one-on-one or group chat",
+            "semantic_tags": [
+                "chat",
+                "direct",
+                "message",
+                "send",
+                "private"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/chats/{chatId}/messages",
+                "params": {
+                    "chatId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Chat ID"
+                    },
+                    "body": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Message body"
+                    }
+                }
+            }
+        }
+    ]
+}

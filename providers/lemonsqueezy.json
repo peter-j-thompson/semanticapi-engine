@@ -1,0 +1,118 @@
+{
+  "provider": "lemonsqueezy",
+  "name": "Lemon Squeezy",
+  "description": "Payment platform for selling digital products and SaaS subscriptions",
+  "base_url": "https://api.lemonsqueezy.com/v1",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_products",
+      "name": "List Products",
+      "description": "List all your digital products.",
+      "semantic_tags": [
+        "products",
+        "digital products",
+        "list products",
+        "catalog"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/products",
+        "params": {}
+      }
+    },
+    {
+      "id": "list_orders",
+      "name": "List Orders",
+      "description": "List all orders/purchases.",
+      "semantic_tags": [
+        "orders",
+        "purchases",
+        "sales",
+        "order history"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/orders",
+        "params": {}
+      }
+    },
+    {
+      "id": "list_subscriptions",
+      "name": "List Subscriptions",
+      "description": "List all active subscriptions.",
+      "semantic_tags": [
+        "subscriptions",
+        "recurring",
+        "active subscriptions",
+        "subscribers"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/subscriptions",
+        "params": {}
+      }
+    },
+    {
+      "id": "get_subscription",
+      "name": "Get Subscription",
+      "description": "Get details of a specific subscription.",
+      "semantic_tags": [
+        "subscription details",
+        "subscription info",
+        "subscriber"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/subscriptions/{id}",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Subscription ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "cancel_subscription",
+      "name": "Cancel Subscription",
+      "description": "Cancel a subscription.",
+      "semantic_tags": [
+        "cancel",
+        "unsubscribe",
+        "cancel subscription"
+      ],
+      "endpoint": {
+        "method": "DELETE",
+        "path": "/subscriptions/{id}",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Subscription ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_customers",
+      "name": "List Customers",
+      "description": "List all customers.",
+      "semantic_tags": [
+        "customers",
+        "buyers",
+        "list customers"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/customers",
+        "params": {}
+      }
+    }
+  ]
+}

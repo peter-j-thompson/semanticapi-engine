@@ -1,0 +1,115 @@
+{
+    "provider": "recurly",
+    "name": "Recurly",
+    "description": "Subscription management and recurring billing platform",
+    "base_url": "https://v3.recurly.com",
+    "auth": {
+        "type": "basic",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_accounts",
+            "name": "List Accounts",
+            "description": "List all customer accounts",
+            "semantic_tags": [
+                "accounts",
+                "list",
+                "customers",
+                "manage",
+                "billing"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/accounts",
+                "params": {
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max results"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_subscription",
+            "name": "Create Subscription",
+            "description": "Create a new subscription for an account",
+            "semantic_tags": [
+                "subscription",
+                "create",
+                "recurring",
+                "billing",
+                "plan"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/subscriptions",
+                "params": {
+                    "plan_code": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Plan code"
+                    },
+                    "account": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Account details"
+                    },
+                    "currency": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Currency code"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_invoices",
+            "name": "List Invoices",
+            "description": "List invoices with status filtering",
+            "semantic_tags": [
+                "invoices",
+                "list",
+                "billing",
+                "payments",
+                "history"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/invoices",
+                "params": {
+                    "state": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Invoice state filter"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_subscription",
+            "name": "Get Subscription",
+            "description": "Get details of a specific subscription",
+            "semantic_tags": [
+                "subscription",
+                "details",
+                "info",
+                "billing",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/subscriptions/{subscriptionId}",
+                "params": {
+                    "subscriptionId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Subscription ID"
+                    }
+                }
+            }
+        }
+    ]
+}

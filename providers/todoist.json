@@ -1,0 +1,149 @@
+{
+  "provider": "todoist",
+  "name": "Todoist",
+  "description": "Personal task management and to-do list application",
+  "base_url": "https://api.todoist.com/rest/v2",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_tasks",
+      "name": "List Tasks",
+      "description": "Get all active tasks.",
+      "semantic_tags": [
+        "tasks",
+        "to-dos",
+        "list tasks",
+        "my tasks",
+        "what to do"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/tasks",
+        "params": {
+          "project_id": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by project"
+          },
+          "filter": {
+            "type": "string",
+            "required": false,
+            "description": "Natural language filter (e.g. 'today', 'overdue')"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_task",
+      "name": "Create Task",
+      "description": "Create a new task/to-do.",
+      "semantic_tags": [
+        "create task",
+        "new task",
+        "add to-do",
+        "remind me",
+        "add task"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/tasks",
+        "params": {
+          "content": {
+            "type": "string",
+            "required": true,
+            "description": "Task content/title"
+          },
+          "due_string": {
+            "type": "string",
+            "required": false,
+            "description": "Due date in natural language (e.g. 'tomorrow', 'every monday')"
+          },
+          "priority": {
+            "type": "integer",
+            "required": false,
+            "description": "Priority (1=normal, 4=urgent)"
+          },
+          "project_id": {
+            "type": "string",
+            "required": false,
+            "description": "Project to add to"
+          }
+        }
+      }
+    },
+    {
+      "id": "complete_task",
+      "name": "Complete Task",
+      "description": "Mark a task as complete.",
+      "semantic_tags": [
+        "complete",
+        "done",
+        "finish task",
+        "mark done",
+        "check off"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/tasks/{id}/close",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Task ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_projects",
+      "name": "List Projects",
+      "description": "Get all projects.",
+      "semantic_tags": [
+        "projects",
+        "list projects",
+        "all projects"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/projects",
+        "params": {}
+      }
+    },
+    {
+      "id": "update_task",
+      "name": "Update Task",
+      "description": "Update task details.",
+      "semantic_tags": [
+        "update task",
+        "edit task",
+        "change task",
+        "reschedule"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/tasks/{id}",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Task ID"
+          },
+          "content": {
+            "type": "string",
+            "required": false,
+            "description": "New content"
+          },
+          "due_string": {
+            "type": "string",
+            "required": false,
+            "description": "New due date"
+          }
+        }
+      }
+    }
+  ]
+}

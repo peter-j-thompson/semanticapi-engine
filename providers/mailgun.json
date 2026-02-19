@@ -1,0 +1,152 @@
+{
+  "provider": "mailgun",
+  "name": "Mailgun",
+  "description": "Transactional email API for developers",
+  "base_url": "https://api.mailgun.net/v3",
+  "auth": {
+    "type": "api_key",
+    "header": "Authorization",
+    "prefix": "Basic"
+  },
+  "capabilities": [
+    {
+      "id": "send_message",
+      "name": "Send Email",
+      "description": "Send an email message via Mailgun.",
+      "semantic_tags": [
+        "send email",
+        "email",
+        "mail",
+        "send message"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/{domain}/messages",
+        "params": {
+          "domain": {
+            "type": "string",
+            "required": true,
+            "description": "Your Mailgun domain"
+          },
+          "from": {
+            "type": "string",
+            "required": true,
+            "description": "Sender email"
+          },
+          "to": {
+            "type": "string",
+            "required": true,
+            "description": "Recipient email(s)"
+          },
+          "subject": {
+            "type": "string",
+            "required": true,
+            "description": "Email subject"
+          },
+          "text": {
+            "type": "string",
+            "required": false,
+            "description": "Plain text body"
+          },
+          "html": {
+            "type": "string",
+            "required": false,
+            "description": "HTML body"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_events",
+      "name": "Get Events",
+      "description": "Query email event logs (delivered, opened, clicked, bounced).",
+      "semantic_tags": [
+        "events",
+        "email logs",
+        "delivery status",
+        "bounces",
+        "opens"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/{domain}/events",
+        "params": {
+          "domain": {
+            "type": "string",
+            "required": true,
+            "description": "Your domain"
+          },
+          "event": {
+            "type": "string",
+            "required": false,
+            "description": "Event type filter"
+          }
+        }
+      }
+    },
+    {
+      "id": "validate_email",
+      "name": "Validate Email",
+      "description": "Validate an email address for deliverability.",
+      "semantic_tags": [
+        "validate email",
+        "verify",
+        "check email"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/address/validate",
+        "params": {
+          "address": {
+            "type": "string",
+            "required": true,
+            "description": "Email to validate"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_domains",
+      "name": "List Domains",
+      "description": "List all configured sending domains.",
+      "semantic_tags": [
+        "domains",
+        "sending domains",
+        "list domains"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/domains",
+        "params": {}
+      }
+    },
+    {
+      "id": "get_stats",
+      "name": "Get Domain Stats",
+      "description": "Get sending statistics for a domain.",
+      "semantic_tags": [
+        "stats",
+        "analytics",
+        "email stats",
+        "domain stats"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/{domain}/stats/total",
+        "params": {
+          "domain": {
+            "type": "string",
+            "required": true,
+            "description": "Your domain"
+          },
+          "event": {
+            "type": "string",
+            "required": true,
+            "description": "Event type (accepted, delivered, etc.)"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://app.mailgun.com/settings/api_security"
+}

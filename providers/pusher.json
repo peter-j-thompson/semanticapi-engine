@@ -1,0 +1,81 @@
+{
+  "provider": "pusher",
+  "name": "Pusher",
+  "description": "Real-time communication APIs for web and mobile apps",
+  "base_url": "https://api-{cluster}.pusher.com/apps/{app_id}",
+  "auth": {
+    "type": "api_key",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "trigger_event",
+      "name": "Trigger Event",
+      "description": "Trigger an event on one or more channels.",
+      "semantic_tags": ["trigger event", "push event", "realtime", "publish", "broadcast"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/events",
+        "params": {
+          "name": { "type": "string", "required": true, "description": "Event name" },
+          "channels": { "type": "array", "required": true, "description": "Channel names to publish to" },
+          "data": { "type": "string", "required": true, "description": "Event data (JSON string)" }
+        }
+      }
+    },
+    {
+      "id": "trigger_batch",
+      "name": "Trigger Batch Events",
+      "description": "Trigger multiple events in a single request.",
+      "semantic_tags": ["batch events", "bulk trigger", "multiple events"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/batch_events",
+        "params": {
+          "batch": { "type": "array", "required": true, "description": "Array of event objects" }
+        }
+      }
+    },
+    {
+      "id": "get_channels",
+      "name": "Get Channels",
+      "description": "Get list of occupied channels.",
+      "semantic_tags": ["channels", "active channels", "list channels"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/channels",
+        "params": {
+          "filter_by_prefix": { "type": "string", "required": false, "description": "Filter by channel name prefix" }
+        }
+      }
+    },
+    {
+      "id": "get_channel_info",
+      "name": "Get Channel Info",
+      "description": "Get info about a specific channel.",
+      "semantic_tags": ["channel info", "channel details", "subscribers count"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/channels/{channel_name}",
+        "params": {
+          "channel_name": { "type": "string", "required": true, "description": "Channel name" },
+          "info": { "type": "string", "required": false, "description": "Comma-separated attributes (user_count, subscription_count)" }
+        }
+      }
+    },
+    {
+      "id": "get_users",
+      "name": "Get Channel Users",
+      "description": "Get users in a presence channel.",
+      "semantic_tags": ["channel users", "presence", "online users"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/channels/{channel_name}/users",
+        "params": {
+          "channel_name": { "type": "string", "required": true, "description": "Presence channel name" }
+        }
+      }
+    }
+  ]
+}

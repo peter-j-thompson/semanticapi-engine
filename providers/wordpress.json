@@ -1,0 +1,140 @@
+{
+    "provider": "wordpress",
+    "name": "WordPress",
+    "description": "WordPress REST API for managing posts, pages, and site content",
+    "base_url": "https://your-site.com/wp-json/wp/v2",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_posts",
+            "name": "List Posts",
+            "description": "List all published blog posts with filtering",
+            "semantic_tags": [
+                "posts",
+                "list",
+                "blog",
+                "content",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/posts",
+                "params": {
+                    "per_page": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results per page"
+                    },
+                    "search": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Search query"
+                    },
+                    "status": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Post status"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_post",
+            "name": "Create Post",
+            "description": "Create and publish a new blog post",
+            "semantic_tags": [
+                "post",
+                "create",
+                "publish",
+                "blog",
+                "write"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/posts",
+                "params": {
+                    "title": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Post title"
+                    },
+                    "content": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Post HTML content"
+                    },
+                    "status": {
+                        "type": "string",
+                        "required": false,
+                        "description": "draft or publish"
+                    }
+                }
+            }
+        },
+        {
+            "id": "update_post",
+            "name": "Update Post",
+            "description": "Update an existing blog post",
+            "semantic_tags": [
+                "post",
+                "update",
+                "edit",
+                "modify",
+                "blog"
+            ],
+            "endpoint": {
+                "method": "PUT",
+                "path": "/posts/{postId}",
+                "params": {
+                    "postId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Post ID"
+                    },
+                    "title": {
+                        "type": "string",
+                        "required": false,
+                        "description": "New title"
+                    },
+                    "content": {
+                        "type": "string",
+                        "required": false,
+                        "description": "New content"
+                    }
+                }
+            }
+        },
+        {
+            "id": "upload_media",
+            "name": "Upload Media",
+            "description": "Upload an image or file to the media library",
+            "semantic_tags": [
+                "upload",
+                "media",
+                "image",
+                "file",
+                "library"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/media",
+                "params": {
+                    "file": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File to upload"
+                    },
+                    "title": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Media title"
+                    }
+                }
+            }
+        }
+    ]
+}

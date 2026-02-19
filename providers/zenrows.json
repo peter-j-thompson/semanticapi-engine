@@ -1,0 +1,150 @@
+{
+    "provider": "zenrows",
+    "name": "ZenRows",
+    "description": "Web scraping API with anti-bot bypass, rotating proxies, and headless browser",
+    "base_url": "https://api.zenrows.com/v1",
+    "auth": {
+        "type": "api_key",
+        "header": "apikey",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "scrape",
+            "name": "Scrape URL",
+            "description": "Scrape any URL with automatic anti-bot bypass and proxy rotation",
+            "semantic_tags": [
+                "scrape",
+                "antibot",
+                "proxy",
+                "bypass",
+                "extract"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to scrape"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "js_render": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Enable JavaScript rendering"
+                    },
+                    "premium_proxy": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Use premium proxies"
+                    }
+                }
+            }
+        },
+        {
+            "id": "autoparse",
+            "name": "Auto Parse",
+            "description": "Automatically extract structured data from supported page types",
+            "semantic_tags": [
+                "parse",
+                "auto",
+                "structured",
+                "extract",
+                "data"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to parse"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "autoparse": {
+                        "type": "boolean",
+                        "required": true,
+                        "description": "Enable auto-parsing"
+                    }
+                }
+            }
+        },
+        {
+            "id": "css_extract",
+            "name": "CSS Selector Extract",
+            "description": "Extract specific data using CSS selectors from any page",
+            "semantic_tags": [
+                "css",
+                "selector",
+                "extract",
+                "targeted",
+                "scrape"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to scrape"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "css_extractor": {
+                        "type": "string",
+                        "required": true,
+                        "description": "JSON CSS extraction rules"
+                    }
+                }
+            }
+        },
+        {
+            "id": "screenshot",
+            "name": "Screenshot",
+            "description": "Capture a rendered screenshot of a web page",
+            "semantic_tags": [
+                "screenshot",
+                "capture",
+                "image",
+                "visual",
+                "render"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to screenshot"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "return_screenshot": {
+                        "type": "boolean",
+                        "required": true,
+                        "description": "Return screenshot instead of HTML"
+                    }
+                }
+            }
+        }
+    ]
+}

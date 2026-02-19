@@ -13,7 +13,15 @@
       "id": "get_balance",
       "name": "Get Balance",
       "description": "Retrieve your Stripe account balance. Check available funds, pending amounts, and currency breakdown.",
-      "semantic_tags": ["balance", "funds", "money", "available", "account balance", "how much", "check balance"],
+      "semantic_tags": [
+        "balance",
+        "funds",
+        "money",
+        "available",
+        "account balance",
+        "how much",
+        "check balance"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/balance",
@@ -24,13 +32,28 @@
       "id": "list_payments",
       "name": "List Payments",
       "description": "List recent payment intents. View transaction history, payment status, and amounts.",
-      "semantic_tags": ["payments", "transactions", "charges", "payment history", "recent payments", "list payments"],
+      "semantic_tags": [
+        "payments",
+        "transactions",
+        "charges",
+        "payment history",
+        "recent payments",
+        "list payments"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/payment_intents",
         "params": {
-          "limit": {"type": "integer", "required": false, "description": "Number of payments to return (1-100)"},
-          "customer": {"type": "string", "required": false, "description": "Filter by customer ID"}
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of payments to return (1-100)"
+          },
+          "customer": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by customer ID"
+          }
         }
       }
     },
@@ -38,13 +61,28 @@
       "id": "list_customers",
       "name": "List Customers",
       "description": "List all customers in your Stripe account. View customer details and metadata.",
-      "semantic_tags": ["customers", "users", "buyers", "list customers", "all customers", "customer list"],
+      "semantic_tags": [
+        "customers",
+        "users",
+        "buyers",
+        "list customers",
+        "all customers",
+        "customer list"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/customers",
         "params": {
-          "limit": {"type": "integer", "required": false, "description": "Number of customers to return (1-100)"},
-          "email": {"type": "string", "required": false, "description": "Filter by email address"}
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of customers to return (1-100)"
+          },
+          "email": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by email address"
+          }
         }
       }
     },
@@ -52,14 +90,34 @@
       "id": "create_payment_intent",
       "name": "Create Payment Intent",
       "description": "Create a payment intent to collect money from a customer. Initiates a payment flow for credit cards, bank transfers, or other payment methods.",
-      "semantic_tags": ["payment", "charge", "collect money", "credit card", "transaction", "checkout", "pay"],
+      "semantic_tags": [
+        "payment",
+        "charge",
+        "collect money",
+        "credit card",
+        "transaction",
+        "checkout",
+        "pay"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/payment_intents",
         "params": {
-          "amount": {"type": "integer", "required": true, "description": "Amount in cents"},
-          "currency": {"type": "string", "required": true, "description": "Three-letter ISO currency code"},
-          "payment_method_types": {"type": "array", "required": false, "description": "Payment method types to accept"}
+          "amount": {
+            "type": "integer",
+            "required": true,
+            "description": "Amount in cents"
+          },
+          "currency": {
+            "type": "string",
+            "required": true,
+            "description": "Three-letter ISO currency code"
+          },
+          "payment_method_types": {
+            "type": "array",
+            "required": false,
+            "description": "Payment method types to accept"
+          }
         }
       }
     },
@@ -67,14 +125,34 @@
       "id": "create_customer",
       "name": "Create Customer",
       "description": "Create a new customer record to store payment methods and track purchases over time.",
-      "semantic_tags": ["customer", "user", "account", "profile", "buyer", "new customer", "add customer"],
+      "semantic_tags": [
+        "customer",
+        "user",
+        "account",
+        "profile",
+        "buyer",
+        "new customer",
+        "add customer"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/customers",
         "params": {
-          "email": {"type": "string", "required": false, "description": "Customer email address"},
-          "name": {"type": "string", "required": false, "description": "Customer full name"},
-          "metadata": {"type": "object", "required": false, "description": "Custom metadata"}
+          "email": {
+            "type": "string",
+            "required": false,
+            "description": "Customer email address"
+          },
+          "name": {
+            "type": "string",
+            "required": false,
+            "description": "Customer full name"
+          },
+          "metadata": {
+            "type": "object",
+            "required": false,
+            "description": "Custom metadata"
+          }
         }
       }
     },
@@ -82,13 +160,29 @@
       "id": "create_subscription",
       "name": "Create Subscription",
       "description": "Subscribe a customer to a recurring billing plan. Set up recurring payments for SaaS, memberships, or any subscription service.",
-      "semantic_tags": ["subscription", "recurring", "billing", "membership", "plan", "SaaS", "subscribe"],
+      "semantic_tags": [
+        "subscription",
+        "recurring",
+        "billing",
+        "membership",
+        "plan",
+        "SaaS",
+        "subscribe"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/subscriptions",
         "params": {
-          "customer": {"type": "string", "required": true, "description": "Customer ID"},
-          "items": {"type": "array", "required": true, "description": "Subscription items with price IDs"}
+          "customer": {
+            "type": "string",
+            "required": true,
+            "description": "Customer ID"
+          },
+          "items": {
+            "type": "array",
+            "required": true,
+            "description": "Subscription items with price IDs"
+          }
         }
       }
     },
@@ -96,13 +190,27 @@
       "id": "create_refund",
       "name": "Create Refund",
       "description": "Refund a payment back to the customer. Return money for a previous charge or payment.",
-      "semantic_tags": ["refund", "return money", "chargeback", "reverse payment", "give back"],
+      "semantic_tags": [
+        "refund",
+        "return money",
+        "chargeback",
+        "reverse payment",
+        "give back"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/refunds",
         "params": {
-          "payment_intent": {"type": "string", "required": true, "description": "Payment intent to refund"},
-          "amount": {"type": "integer", "required": false, "description": "Amount to refund in cents (default: full amount)"}
+          "payment_intent": {
+            "type": "string",
+            "required": true,
+            "description": "Payment intent to refund"
+          },
+          "amount": {
+            "type": "integer",
+            "required": false,
+            "description": "Amount to refund in cents (default: full amount)"
+          }
         }
       }
     },
@@ -110,15 +218,31 @@
       "id": "list_invoices",
       "name": "List Invoices",
       "description": "Retrieve a list of invoices for billing and accounting purposes.",
-      "semantic_tags": ["invoice", "bill", "receipt", "accounting", "billing history", "invoices"],
+      "semantic_tags": [
+        "invoice",
+        "bill",
+        "receipt",
+        "accounting",
+        "billing history",
+        "invoices"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/invoices",
         "params": {
-          "customer": {"type": "string", "required": false, "description": "Filter by customer"},
-          "limit": {"type": "integer", "required": false, "description": "Number of invoices to return"}
+          "customer": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by customer"
+          },
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of invoices to return"
+          }
         }
       }
     }
-  ]
+  ],
+  "auth_setup_url": "https://dashboard.stripe.com/apikeys"
 }

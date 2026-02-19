@@ -1,0 +1,119 @@
+{
+    "provider": "polygon",
+    "name": "Polygon.io",
+    "description": "Real-time and historical financial market data API",
+    "base_url": "https://api.polygon.io",
+    "auth": {
+        "type": "api_key",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "stock_quote",
+            "name": "Stock Quote",
+            "description": "Get the latest stock trade and quote data",
+            "semantic_tags": [
+                "stock",
+                "quote",
+                "price",
+                "realtime",
+                "latest"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v2/last/trade/{ticker}",
+                "params": {
+                    "ticker": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Stock ticker symbol"
+                    }
+                }
+            }
+        },
+        {
+            "id": "aggregates",
+            "name": "Get Aggregates",
+            "description": "Get OHLCV aggregate bars for a stock over a date range",
+            "semantic_tags": [
+                "aggregates",
+                "bars",
+                "ohlcv",
+                "historical",
+                "candles"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v2/aggs/ticker/{ticker}/range/{multiplier}/{timespan}/{from}/{to}",
+                "params": {
+                    "ticker": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Stock ticker"
+                    },
+                    "multiplier": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Bar size multiplier"
+                    },
+                    "timespan": {
+                        "type": "string",
+                        "required": true,
+                        "description": "minute, hour, day, week"
+                    },
+                    "from": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Start date YYYY-MM-DD"
+                    },
+                    "to": {
+                        "type": "string",
+                        "required": true,
+                        "description": "End date"
+                    }
+                }
+            }
+        },
+        {
+            "id": "ticker_details",
+            "name": "Ticker Details",
+            "description": "Get company details and metadata for a ticker",
+            "semantic_tags": [
+                "ticker",
+                "company",
+                "details",
+                "info",
+                "fundamentals"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v3/reference/tickers/{ticker}",
+                "params": {
+                    "ticker": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Stock ticker"
+                    }
+                }
+            }
+        },
+        {
+            "id": "market_status",
+            "name": "Market Status",
+            "description": "Get the current status of US stock exchanges",
+            "semantic_tags": [
+                "market",
+                "status",
+                "open",
+                "closed",
+                "exchanges"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v1/marketstatus/now",
+                "params": {}
+            }
+        }
+    ]
+}

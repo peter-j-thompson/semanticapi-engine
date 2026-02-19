@@ -1,0 +1,130 @@
+{
+    "provider": "google-drive",
+    "name": "Google Drive",
+    "description": "Google Drive API for file storage, sharing, and collaboration",
+    "base_url": "https://www.googleapis.com/drive/v3",
+    "auth": {
+        "type": "oauth2",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_files",
+            "name": "List Files",
+            "description": "List and search files in Google Drive",
+            "semantic_tags": [
+                "list",
+                "files",
+                "drive",
+                "browse",
+                "search"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/files",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Search query"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max results"
+                    }
+                }
+            }
+        },
+        {
+            "id": "upload",
+            "name": "Upload File",
+            "description": "Upload a file to Google Drive",
+            "semantic_tags": [
+                "upload",
+                "file",
+                "create",
+                "store",
+                "drive"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "https://www.googleapis.com/upload/drive/v3/files",
+                "params": {
+                    "uploadType": {
+                        "type": "string",
+                        "required": true,
+                        "description": "media, multipart, or resumable"
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": false,
+                        "description": "File name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "download",
+            "name": "Download File",
+            "description": "Download a file from Google Drive",
+            "semantic_tags": [
+                "download",
+                "file",
+                "get",
+                "retrieve",
+                "export"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/files/{fileId}",
+                "params": {
+                    "fileId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File ID"
+                    },
+                    "alt": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to media"
+                    }
+                }
+            }
+        },
+        {
+            "id": "share",
+            "name": "Share File",
+            "description": "Set sharing permissions on a file or folder",
+            "semantic_tags": [
+                "share",
+                "permissions",
+                "access",
+                "collaborate",
+                "grant"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/files/{fileId}/permissions",
+                "params": {
+                    "fileId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File ID"
+                    },
+                    "role": {
+                        "type": "string",
+                        "required": true,
+                        "description": "reader, writer, or owner"
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": true,
+                        "description": "user, group, domain, or anyone"
+                    }
+                }
+            }
+        }
+    ]
+}

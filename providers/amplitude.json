@@ -1,0 +1,109 @@
+{
+    "provider": "amplitude",
+    "name": "Amplitude",
+    "description": "Digital analytics platform for product intelligence and user behavior",
+    "base_url": "https://api2.amplitude.com",
+    "auth": {
+        "type": "api_key",
+        "header": "Authorization",
+        "prefix": "Basic"
+    },
+    "capabilities": [
+        {
+            "id": "track",
+            "name": "Track Events",
+            "description": "Send one or more events to Amplitude",
+            "semantic_tags": [
+                "track",
+                "events",
+                "analytics",
+                "user",
+                "behavior"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/2/httpapi",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "events": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Array of event objects"
+                    }
+                }
+            }
+        },
+        {
+            "id": "identify",
+            "name": "Identify User",
+            "description": "Set user properties for user profiles",
+            "semantic_tags": [
+                "identify",
+                "user",
+                "profile",
+                "properties",
+                "update"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/identify",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "identification": {
+                        "type": "array",
+                        "required": true,
+                        "description": "User identification objects"
+                    }
+                }
+            }
+        },
+        {
+            "id": "query",
+            "name": "Dashboard Query",
+            "description": "Query analytics data from Amplitude dashboards",
+            "semantic_tags": [
+                "query",
+                "analytics",
+                "data",
+                "dashboard",
+                "metrics"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/3/chart/{chartId}/query",
+                "params": {
+                    "chartId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Chart/dashboard ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "cohorts",
+            "name": "List Cohorts",
+            "description": "List all defined user cohorts",
+            "semantic_tags": [
+                "cohorts",
+                "list",
+                "segments",
+                "users",
+                "groups"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/3/cohorts",
+                "params": {}
+            }
+        }
+    ]
+}

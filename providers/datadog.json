@@ -1,0 +1,163 @@
+{
+  "provider": "datadog",
+  "name": "Datadog",
+  "description": "Cloud monitoring, security, and analytics platform",
+  "base_url": "https://api.datadoghq.com/api",
+  "auth": {
+    "type": "api_key",
+    "header": "DD-API-KEY"
+  },
+  "capabilities": [
+    {
+      "id": "query_metrics",
+      "name": "Query Metrics",
+      "description": "Query time-series metric data.",
+      "semantic_tags": [
+        "metrics",
+        "monitoring",
+        "time series",
+        "query metrics",
+        "performance"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/v1/query",
+        "params": {
+          "from": {
+            "type": "integer",
+            "required": true,
+            "description": "Start time (POSIX timestamp)"
+          },
+          "to": {
+            "type": "integer",
+            "required": true,
+            "description": "End time (POSIX timestamp)"
+          },
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "Metric query string"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_monitors",
+      "name": "List Monitors",
+      "description": "List all monitors (alerts).",
+      "semantic_tags": [
+        "monitors",
+        "alerts",
+        "alarms",
+        "list monitors"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/v1/monitor",
+        "params": {}
+      }
+    },
+    {
+      "id": "create_monitor",
+      "name": "Create Monitor",
+      "description": "Create a new monitor/alert.",
+      "semantic_tags": [
+        "create alert",
+        "new monitor",
+        "set alarm",
+        "create monitor"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/v1/monitor",
+        "params": {
+          "type": {
+            "type": "string",
+            "required": true,
+            "description": "Monitor type (metric alert, service check, etc.)"
+          },
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "Monitor query"
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Monitor name"
+          },
+          "message": {
+            "type": "string",
+            "required": false,
+            "description": "Alert message"
+          }
+        }
+      }
+    },
+    {
+      "id": "search_events",
+      "name": "Search Events",
+      "description": "Search for events in the event stream.",
+      "semantic_tags": [
+        "events",
+        "event stream",
+        "search events",
+        "logs"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/v1/events",
+        "params": {
+          "start": {
+            "type": "integer",
+            "required": true,
+            "description": "Start time (POSIX)"
+          },
+          "end": {
+            "type": "integer",
+            "required": true,
+            "description": "End time (POSIX)"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_dashboards",
+      "name": "List Dashboards",
+      "description": "List all dashboards.",
+      "semantic_tags": [
+        "dashboards",
+        "list dashboards",
+        "monitoring dashboards"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/v1/dashboard",
+        "params": {}
+      }
+    },
+    {
+      "id": "get_hosts",
+      "name": "Get Hosts",
+      "description": "List infrastructure hosts.",
+      "semantic_tags": [
+        "hosts",
+        "servers",
+        "infrastructure",
+        "machines"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/v1/hosts",
+        "params": {
+          "filter": {
+            "type": "string",
+            "required": false,
+            "description": "Filter string for hosts"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://app.datadoghq.com/organization-settings/api-keys"
+}

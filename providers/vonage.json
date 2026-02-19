@@ -1,0 +1,148 @@
+{
+  "provider": "vonage",
+  "name": "Vonage",
+  "description": "Communication APIs for SMS, voice, and messaging",
+  "base_url": "https://api.nexmo.com",
+  "auth": {
+    "type": "api_key",
+    "config": {
+      "api_key_field": "api_key",
+      "api_secret_field": "api_secret"
+    }
+  },
+  "capabilities": [
+    {
+      "id": "send_sms",
+      "name": "Send SMS",
+      "description": "Send an SMS text message.",
+      "semantic_tags": [
+        "send sms",
+        "text message",
+        "SMS",
+        "send text"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/sms/json",
+        "params": {
+          "from": {
+            "type": "string",
+            "required": true,
+            "description": "Sender phone number or name"
+          },
+          "to": {
+            "type": "string",
+            "required": true,
+            "description": "Recipient phone number"
+          },
+          "text": {
+            "type": "string",
+            "required": true,
+            "description": "Message text"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_call",
+      "name": "Create Voice Call",
+      "description": "Make an outbound voice call.",
+      "semantic_tags": [
+        "call",
+        "voice call",
+        "phone call",
+        "make call"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/v1/calls",
+        "params": {
+          "to": {
+            "type": "array",
+            "required": true,
+            "description": "Call recipients"
+          },
+          "from": {
+            "type": "object",
+            "required": true,
+            "description": "Caller ID"
+          },
+          "ncco": {
+            "type": "array",
+            "required": true,
+            "description": "Call control objects"
+          }
+        }
+      }
+    },
+    {
+      "id": "send_verification",
+      "name": "Send Verification",
+      "description": "Send a verification code via SMS or voice.",
+      "semantic_tags": [
+        "verify",
+        "OTP",
+        "verification code",
+        "2FA",
+        "phone verify"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/verify/json",
+        "params": {
+          "number": {
+            "type": "string",
+            "required": true,
+            "description": "Phone number to verify"
+          },
+          "brand": {
+            "type": "string",
+            "required": true,
+            "description": "Brand name shown in message"
+          }
+        }
+      }
+    },
+    {
+      "id": "check_verification",
+      "name": "Check Verification",
+      "description": "Check a verification code submitted by user.",
+      "semantic_tags": [
+        "check code",
+        "verify code",
+        "validate OTP"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/verify/check/json",
+        "params": {
+          "request_id": {
+            "type": "string",
+            "required": true,
+            "description": "Verification request ID"
+          },
+          "code": {
+            "type": "string",
+            "required": true,
+            "description": "Code entered by user"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_balance",
+      "name": "Get Account Balance",
+      "description": "Check your Vonage account balance.",
+      "semantic_tags": [
+        "balance",
+        "account balance",
+        "credits"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/account/get-balance",
+        "params": {}
+      }
+    }
+  ]
+}

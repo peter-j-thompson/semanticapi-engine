@@ -1,0 +1,125 @@
+{
+    "provider": "linkedin",
+    "name": "LinkedIn",
+    "description": "LinkedIn API for profiles, posts, and company page management",
+    "base_url": "https://api.linkedin.com/v2",
+    "auth": {
+        "type": "oauth2",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "get_profile",
+            "name": "Get Profile",
+            "description": "Get the authenticated user's LinkedIn profile",
+            "semantic_tags": [
+                "profile",
+                "user",
+                "info",
+                "linkedin",
+                "identity"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/me",
+                "params": {
+                    "fields": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Profile fields to return"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_post",
+            "name": "Create Post",
+            "description": "Share a post on the LinkedIn feed",
+            "semantic_tags": [
+                "post",
+                "share",
+                "publish",
+                "content",
+                "linkedin"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/ugcPosts",
+                "params": {
+                    "author": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Author URN"
+                    },
+                    "lifecycleState": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to PUBLISHED"
+                    },
+                    "specificContent": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Post content"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_connections",
+            "name": "Get Connections",
+            "description": "Get the user's first-degree connections",
+            "semantic_tags": [
+                "connections",
+                "network",
+                "contacts",
+                "linkedin",
+                "people"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/connections",
+                "params": {
+                    "start": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Pagination start"
+                    },
+                    "count": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results per page"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search_people",
+            "name": "Search People",
+            "description": "Search for people on LinkedIn by keywords",
+            "semantic_tags": [
+                "search",
+                "people",
+                "find",
+                "professionals",
+                "linkedin"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search/people",
+                "params": {
+                    "keywords": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search keywords"
+                    },
+                    "start": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Offset"
+                    }
+                }
+            }
+        }
+    ]
+}

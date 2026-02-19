@@ -1,0 +1,102 @@
+{
+  "provider": "plivo",
+  "name": "Plivo",
+  "description": "Cloud communication platform for SMS and voice",
+  "base_url": "https://api.plivo.com/v1",
+  "auth": {
+    "type": "basic",
+    "header": "Authorization",
+    "prefix": "Basic"
+  },
+  "capabilities": [
+    {
+      "id": "send_sms",
+      "name": "Send SMS",
+      "description": "Send an SMS message.",
+      "semantic_tags": ["send sms", "text message", "sms"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/Account/{authId}/Message/",
+        "params": {
+          "authId": { "type": "string", "required": true, "description": "Auth ID" },
+          "src": { "type": "string", "required": true, "description": "Sender number or ID" },
+          "dst": { "type": "string", "required": true, "description": "Destination number" },
+          "text": { "type": "string", "required": true, "description": "Message text" }
+        }
+      }
+    },
+    {
+      "id": "make_call",
+      "name": "Make Call",
+      "description": "Make an outbound call.",
+      "semantic_tags": ["make call", "voice call", "phone call"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/Account/{authId}/Call/",
+        "params": {
+          "authId": { "type": "string", "required": true, "description": "Auth ID" },
+          "from": { "type": "string", "required": true, "description": "Caller ID" },
+          "to": { "type": "string", "required": true, "description": "Destination number" },
+          "answer_url": { "type": "string", "required": true, "description": "URL for call instructions" }
+        }
+      }
+    },
+    {
+      "id": "list_messages",
+      "name": "List Messages",
+      "description": "List sent messages.",
+      "semantic_tags": ["messages", "message log", "sms history"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/Account/{authId}/Message/",
+        "params": {
+          "authId": { "type": "string", "required": true, "description": "Auth ID" },
+          "limit": { "type": "integer", "required": false, "description": "Results per page" },
+          "offset": { "type": "integer", "required": false, "description": "Pagination offset" }
+        }
+      }
+    },
+    {
+      "id": "get_account",
+      "name": "Get Account Details",
+      "description": "Get account information and balance.",
+      "semantic_tags": ["account", "balance", "account info"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/Account/{authId}/",
+        "params": {
+          "authId": { "type": "string", "required": true, "description": "Auth ID" }
+        }
+      }
+    },
+    {
+      "id": "rent_number",
+      "name": "Rent Phone Number",
+      "description": "Rent a phone number.",
+      "semantic_tags": ["rent number", "buy number", "phone number"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/Account/{authId}/PhoneNumber/{number}/",
+        "params": {
+          "authId": { "type": "string", "required": true, "description": "Auth ID" },
+          "number": { "type": "string", "required": true, "description": "Phone number to rent" }
+        }
+      }
+    },
+    {
+      "id": "search_numbers",
+      "name": "Search Phone Numbers",
+      "description": "Search available phone numbers.",
+      "semantic_tags": ["search numbers", "available numbers", "find number"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/Account/{authId}/PhoneNumber/",
+        "params": {
+          "authId": { "type": "string", "required": true, "description": "Auth ID" },
+          "country_iso": { "type": "string", "required": true, "description": "ISO country code" },
+          "type": { "type": "string", "required": false, "description": "Number type (local, tollfree)" }
+        }
+      }
+    }
+  ]
+}

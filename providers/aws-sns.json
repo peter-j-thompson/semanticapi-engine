@@ -1,0 +1,85 @@
+{
+  "provider": "aws-sns",
+  "name": "Amazon SNS",
+  "description": "AWS Simple Notification Service for pub/sub messaging and push notifications",
+  "base_url": "https://sns.{region}.amazonaws.com",
+  "auth": {
+    "type": "aws_signature",
+    "header": "Authorization",
+    "prefix": "AWS4-HMAC-SHA256"
+  },
+  "capabilities": [
+    {
+      "id": "publish",
+      "name": "Publish Message",
+      "description": "Publish a message to a topic or phone number.",
+      "semantic_tags": ["publish", "send notification", "push notification", "sms", "sns"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/",
+        "params": {
+          "Action": { "type": "string", "required": true, "description": "Set to Publish" },
+          "Message": { "type": "string", "required": true, "description": "Message text" },
+          "TopicArn": { "type": "string", "required": false, "description": "Topic ARN to publish to" },
+          "PhoneNumber": { "type": "string", "required": false, "description": "Phone number for SMS" }
+        }
+      }
+    },
+    {
+      "id": "create_topic",
+      "name": "Create Topic",
+      "description": "Create a new SNS topic.",
+      "semantic_tags": ["create topic", "new topic", "sns topic"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/",
+        "params": {
+          "Action": { "type": "string", "required": true, "description": "Set to CreateTopic" },
+          "Name": { "type": "string", "required": true, "description": "Topic name" }
+        }
+      }
+    },
+    {
+      "id": "subscribe",
+      "name": "Subscribe",
+      "description": "Subscribe an endpoint to a topic.",
+      "semantic_tags": ["subscribe", "add subscriber", "topic subscription"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/",
+        "params": {
+          "Action": { "type": "string", "required": true, "description": "Set to Subscribe" },
+          "TopicArn": { "type": "string", "required": true, "description": "Topic ARN" },
+          "Protocol": { "type": "string", "required": true, "description": "Protocol (email, sms, https, lambda, sqs)" },
+          "Endpoint": { "type": "string", "required": true, "description": "Endpoint (email, phone, URL)" }
+        }
+      }
+    },
+    {
+      "id": "list_topics",
+      "name": "List Topics",
+      "description": "List all SNS topics.",
+      "semantic_tags": ["list topics", "topics"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/",
+        "params": {
+          "Action": { "type": "string", "required": true, "description": "Set to ListTopics" }
+        }
+      }
+    },
+    {
+      "id": "list_subscriptions",
+      "name": "List Subscriptions",
+      "description": "List all subscriptions.",
+      "semantic_tags": ["subscriptions", "subscribers"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/",
+        "params": {
+          "Action": { "type": "string", "required": true, "description": "Set to ListSubscriptions" }
+        }
+      }
+    }
+  ]
+}

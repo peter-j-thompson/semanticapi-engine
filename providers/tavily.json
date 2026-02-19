@@ -1,0 +1,155 @@
+{
+    "provider": "tavily",
+    "name": "Tavily",
+    "description": "AI-optimized search API designed specifically for LLMs and AI agents",
+    "base_url": "https://api.tavily.com",
+    "auth": {
+        "type": "api_key",
+        "header": "api_key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "search",
+            "name": "Search",
+            "description": "Perform an AI-optimized web search returning clean, relevant results",
+            "semantic_tags": [
+                "search",
+                "web",
+                "ai",
+                "query",
+                "results"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/search",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "search_depth": {
+                        "type": "string",
+                        "required": false,
+                        "description": "basic or advanced"
+                    },
+                    "include_answer": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Include AI-generated answer"
+                    }
+                }
+            }
+        },
+        {
+            "id": "extract",
+            "name": "Extract Content",
+            "description": "Extract and clean content from specific URLs for LLM consumption",
+            "semantic_tags": [
+                "extract",
+                "content",
+                "clean",
+                "url",
+                "read"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/extract",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "urls": {
+                        "type": "array",
+                        "required": true,
+                        "description": "URLs to extract content from"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search_context",
+            "name": "Search Context",
+            "description": "Search and return results optimized for RAG context windows",
+            "semantic_tags": [
+                "search",
+                "context",
+                "rag",
+                "retrieval",
+                "augmented"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/search",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "search_depth": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Set to advanced"
+                    },
+                    "include_raw_content": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Include raw page content"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search_news",
+            "name": "Search News",
+            "description": "Search for recent news articles on any topic",
+            "semantic_tags": [
+                "news",
+                "search",
+                "recent",
+                "articles",
+                "current"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/search",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "News search query"
+                    },
+                    "topic": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to news"
+                    },
+                    "days": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Number of days back"
+                    }
+                }
+            }
+        }
+    ]
+}

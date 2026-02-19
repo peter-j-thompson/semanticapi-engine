@@ -1,0 +1,163 @@
+{
+  "provider": "sendgrid",
+  "name": "SendGrid",
+  "description": "Email delivery and marketing platform",
+  "base_url": "https://api.sendgrid.com/v3",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "send_email",
+      "name": "Send Email",
+      "description": "Send a transactional or marketing email.",
+      "semantic_tags": [
+        "send email",
+        "email",
+        "mail",
+        "send message",
+        "transactional email"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/mail/send",
+        "params": {
+          "personalizations": {
+            "type": "array",
+            "required": true,
+            "description": "Recipients and personalization data"
+          },
+          "from": {
+            "type": "object",
+            "required": true,
+            "description": "Sender email and name"
+          },
+          "subject": {
+            "type": "string",
+            "required": true,
+            "description": "Email subject"
+          },
+          "content": {
+            "type": "array",
+            "required": true,
+            "description": "Email content (text/html)"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_contacts",
+      "name": "List Contacts",
+      "description": "List marketing contacts.",
+      "semantic_tags": [
+        "contacts",
+        "mailing list",
+        "subscribers",
+        "email list"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/marketing/contacts/search",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": false,
+            "description": "SGQL query to filter contacts"
+          }
+        }
+      }
+    },
+    {
+      "id": "add_contacts",
+      "name": "Add Contacts",
+      "description": "Add or update contacts in your marketing list.",
+      "semantic_tags": [
+        "add contact",
+        "subscribe",
+        "add to list",
+        "new subscriber"
+      ],
+      "endpoint": {
+        "method": "PUT",
+        "path": "/marketing/contacts",
+        "params": {
+          "contacts": {
+            "type": "array",
+            "required": true,
+            "description": "Contact objects with email and fields"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_stats",
+      "name": "Get Email Stats",
+      "description": "Retrieve email sending statistics.",
+      "semantic_tags": [
+        "stats",
+        "analytics",
+        "email stats",
+        "delivery stats",
+        "open rate",
+        "click rate"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/stats",
+        "params": {
+          "start_date": {
+            "type": "string",
+            "required": true,
+            "description": "Start date (YYYY-MM-DD)"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_templates",
+      "name": "List Templates",
+      "description": "List email templates.",
+      "semantic_tags": [
+        "templates",
+        "email templates",
+        "designs"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/templates",
+        "params": {
+          "generations": {
+            "type": "string",
+            "required": false,
+            "description": "Template generation (legacy or dynamic)"
+          }
+        }
+      }
+    },
+    {
+      "id": "validate_email",
+      "name": "Validate Email",
+      "description": "Validate an email address.",
+      "semantic_tags": [
+        "validate",
+        "verify email",
+        "check email",
+        "email validation"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/validations/email",
+        "params": {
+          "email": {
+            "type": "string",
+            "required": true,
+            "description": "Email address to validate"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://app.sendgrid.com/settings/api_keys"
+}

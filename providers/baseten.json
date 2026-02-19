@@ -1,0 +1,114 @@
+{
+    "provider": "baseten",
+    "name": "Baseten",
+    "description": "ML model deployment platform for serving models as API endpoints",
+    "base_url": "https://api.baseten.co",
+    "auth": {
+        "type": "api_key",
+        "header": "Authorization",
+        "prefix": "Api-Key"
+    },
+    "capabilities": [
+        {
+            "id": "predict",
+            "name": "Run Prediction",
+            "description": "Run inference on a deployed model",
+            "semantic_tags": [
+                "predict",
+                "inference",
+                "model",
+                "run",
+                "ml"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/models/{modelId}/predict",
+                "params": {
+                    "modelId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Model ID"
+                    },
+                    "input": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Model input data"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_models",
+            "name": "List Models",
+            "description": "List all deployed models",
+            "semantic_tags": [
+                "models",
+                "list",
+                "deployed",
+                "inventory",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v1/models",
+                "params": {}
+            }
+        },
+        {
+            "id": "get_model",
+            "name": "Get Model",
+            "description": "Get details and status of a deployed model",
+            "semantic_tags": [
+                "model",
+                "details",
+                "status",
+                "info",
+                "deployment"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v1/models/{modelId}",
+                "params": {
+                    "modelId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Model ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "scale",
+            "name": "Scale Model",
+            "description": "Scale model replicas up or down",
+            "semantic_tags": [
+                "scale",
+                "replicas",
+                "autoscale",
+                "capacity",
+                "compute"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/models/{modelId}/scale",
+                "params": {
+                    "modelId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Model ID"
+                    },
+                    "min_replicas": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Minimum replicas"
+                    },
+                    "max_replicas": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Maximum replicas"
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,130 @@
+{
+    "provider": "woocommerce",
+    "name": "WooCommerce",
+    "description": "E-commerce platform REST API built on WordPress",
+    "base_url": "https://your-store.com/wp-json/wc/v3",
+    "auth": {
+        "type": "basic",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_products",
+            "name": "List Products",
+            "description": "List all products in the WooCommerce store",
+            "semantic_tags": [
+                "products",
+                "list",
+                "catalog",
+                "inventory",
+                "ecommerce"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/products",
+                "params": {
+                    "per_page": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results per page"
+                    },
+                    "search": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Search query"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_product",
+            "name": "Create Product",
+            "description": "Create a new product listing",
+            "semantic_tags": [
+                "product",
+                "create",
+                "listing",
+                "add",
+                "catalog"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/products",
+                "params": {
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Product name"
+                    },
+                    "regular_price": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Price"
+                    },
+                    "description": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Product description"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_orders",
+            "name": "List Orders",
+            "description": "List all orders with status filtering",
+            "semantic_tags": [
+                "orders",
+                "list",
+                "sales",
+                "transactions",
+                "ecommerce"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/orders",
+                "params": {
+                    "status": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Order status filter"
+                    },
+                    "per_page": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results per page"
+                    }
+                }
+            }
+        },
+        {
+            "id": "update_order",
+            "name": "Update Order",
+            "description": "Update an order's status or details",
+            "semantic_tags": [
+                "order",
+                "update",
+                "status",
+                "modify",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "PUT",
+                "path": "/orders/{orderId}",
+                "params": {
+                    "orderId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Order ID"
+                    },
+                    "status": {
+                        "type": "string",
+                        "required": false,
+                        "description": "New status"
+                    }
+                }
+            }
+        }
+    ]
+}

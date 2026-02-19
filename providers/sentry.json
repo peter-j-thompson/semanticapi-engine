@@ -1,0 +1,138 @@
+{
+  "provider": "sentry",
+  "name": "Sentry",
+  "description": "Application monitoring and error tracking platform",
+  "base_url": "https://sentry.io/api/0",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_issues",
+      "name": "List Issues",
+      "description": "List error issues for a project.",
+      "semantic_tags": [
+        "errors",
+        "issues",
+        "bugs",
+        "exceptions",
+        "crashes",
+        "error list"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/projects/{organization_slug}/{project_slug}/issues/",
+        "params": {
+          "organization_slug": {
+            "type": "string",
+            "required": true,
+            "description": "Organization slug"
+          },
+          "project_slug": {
+            "type": "string",
+            "required": true,
+            "description": "Project slug"
+          },
+          "query": {
+            "type": "string",
+            "required": false,
+            "description": "Search query"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_issue",
+      "name": "Get Issue Details",
+      "description": "Get detailed information about a specific error issue.",
+      "semantic_tags": [
+        "error details",
+        "issue details",
+        "bug info"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/issues/{issue_id}/",
+        "params": {
+          "issue_id": {
+            "type": "string",
+            "required": true,
+            "description": "Issue ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_events",
+      "name": "List Events",
+      "description": "List error events for an issue.",
+      "semantic_tags": [
+        "events",
+        "occurrences",
+        "error events",
+        "stack traces"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/issues/{issue_id}/events/",
+        "params": {
+          "issue_id": {
+            "type": "string",
+            "required": true,
+            "description": "Issue ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_projects",
+      "name": "List Projects",
+      "description": "List all projects in the organization.",
+      "semantic_tags": [
+        "projects",
+        "list projects",
+        "monitored projects"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/organizations/{organization_slug}/projects/",
+        "params": {
+          "organization_slug": {
+            "type": "string",
+            "required": true,
+            "description": "Organization slug"
+          }
+        }
+      }
+    },
+    {
+      "id": "resolve_issue",
+      "name": "Resolve Issue",
+      "description": "Mark an issue as resolved.",
+      "semantic_tags": [
+        "resolve",
+        "fix",
+        "close issue",
+        "mark resolved"
+      ],
+      "endpoint": {
+        "method": "PUT",
+        "path": "/issues/{issue_id}/",
+        "params": {
+          "issue_id": {
+            "type": "string",
+            "required": true,
+            "description": "Issue ID"
+          },
+          "status": {
+            "type": "string",
+            "required": true,
+            "description": "New status (resolved, unresolved, ignored)"
+          }
+        }
+      }
+    }
+  ]
+}

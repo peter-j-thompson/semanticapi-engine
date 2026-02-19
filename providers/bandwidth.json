@@ -1,0 +1,91 @@
+{
+  "provider": "bandwidth",
+  "name": "Bandwidth",
+  "description": "Enterprise communications platform for voice, messaging, and 911",
+  "base_url": "https://messaging.bandwidth.com/api/v2",
+  "auth": {
+    "type": "basic",
+    "header": "Authorization",
+    "prefix": "Basic"
+  },
+  "capabilities": [
+    {
+      "id": "send_sms",
+      "name": "Send SMS",
+      "description": "Send an SMS or MMS message.",
+      "semantic_tags": ["send sms", "text message", "sms", "mms"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/users/{accountId}/messages",
+        "params": {
+          "accountId": { "type": "string", "required": true, "description": "Bandwidth account ID" },
+          "to": { "type": "array", "required": true, "description": "Recipient phone numbers" },
+          "from": { "type": "string", "required": true, "description": "Sender phone number" },
+          "text": { "type": "string", "required": true, "description": "Message text" },
+          "applicationId": { "type": "string", "required": true, "description": "Application ID" }
+        }
+      }
+    },
+    {
+      "id": "list_messages",
+      "name": "List Messages",
+      "description": "Search and list messages.",
+      "semantic_tags": ["messages", "message history", "search messages"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/users/{accountId}/messages",
+        "params": {
+          "accountId": { "type": "string", "required": true, "description": "Bandwidth account ID" },
+          "messageId": { "type": "string", "required": false, "description": "Filter by message ID" },
+          "sourceTn": { "type": "string", "required": false, "description": "Filter by source number" }
+        }
+      }
+    },
+    {
+      "id": "create_call",
+      "name": "Create Call",
+      "description": "Create an outbound phone call.",
+      "semantic_tags": ["voice call", "phone call", "outbound call"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/accounts/{accountId}/calls",
+        "params": {
+          "accountId": { "type": "string", "required": true, "description": "Account ID" },
+          "to": { "type": "string", "required": true, "description": "Destination number" },
+          "from": { "type": "string", "required": true, "description": "Caller ID number" },
+          "answerUrl": { "type": "string", "required": true, "description": "URL for call instructions" },
+          "applicationId": { "type": "string", "required": true, "description": "Application ID" }
+        }
+      }
+    },
+    {
+      "id": "list_available_numbers",
+      "name": "List Available Numbers",
+      "description": "Search for available phone numbers to purchase.",
+      "semantic_tags": ["available numbers", "phone numbers", "buy number"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/accounts/{accountId}/availableNumbers",
+        "params": {
+          "accountId": { "type": "string", "required": true, "description": "Account ID" },
+          "areaCode": { "type": "string", "required": false, "description": "Area code filter" },
+          "quantity": { "type": "integer", "required": false, "description": "Number of results" }
+        }
+      }
+    },
+    {
+      "id": "get_call_info",
+      "name": "Get Call Info",
+      "description": "Get information about a specific call.",
+      "semantic_tags": ["call info", "call details", "call status"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/accounts/{accountId}/calls/{callId}",
+        "params": {
+          "accountId": { "type": "string", "required": true, "description": "Account ID" },
+          "callId": { "type": "string", "required": true, "description": "Call ID" }
+        }
+      }
+    }
+  ]
+}

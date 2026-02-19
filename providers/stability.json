@@ -1,0 +1,155 @@
+{
+  "provider": "stability",
+  "name": "Stability AI",
+  "description": "AI image generation with Stable Diffusion models",
+  "base_url": "https://api.stability.ai/v1",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "text_to_image",
+      "name": "Text to Image",
+      "description": "Generate images from text prompts using Stable Diffusion.",
+      "semantic_tags": [
+        "generate image",
+        "text to image",
+        "create picture",
+        "art",
+        "stable diffusion",
+        "draw"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/generation/{engine_id}/text-to-image",
+        "params": {
+          "engine_id": {
+            "type": "string",
+            "required": true,
+            "description": "Engine ID (e.g. stable-diffusion-xl-1024-v1-0)"
+          },
+          "text_prompts": {
+            "type": "array",
+            "required": true,
+            "description": "Array of text prompts with weights"
+          },
+          "height": {
+            "type": "integer",
+            "required": false,
+            "description": "Image height in pixels"
+          },
+          "width": {
+            "type": "integer",
+            "required": false,
+            "description": "Image width in pixels"
+          },
+          "samples": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of images to generate"
+          }
+        }
+      }
+    },
+    {
+      "id": "image_to_image",
+      "name": "Image to Image",
+      "description": "Transform an existing image based on a text prompt.",
+      "semantic_tags": [
+        "transform image",
+        "edit image",
+        "image to image",
+        "modify picture",
+        "style transfer"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/generation/{engine_id}/image-to-image",
+        "params": {
+          "engine_id": {
+            "type": "string",
+            "required": true,
+            "description": "Engine ID"
+          },
+          "text_prompts": {
+            "type": "array",
+            "required": true,
+            "description": "Text prompts"
+          },
+          "init_image": {
+            "type": "string",
+            "required": true,
+            "description": "Base64-encoded initial image"
+          }
+        }
+      }
+    },
+    {
+      "id": "upscale",
+      "name": "Upscale Image",
+      "description": "Upscale an image to higher resolution.",
+      "semantic_tags": [
+        "upscale",
+        "enhance",
+        "higher resolution",
+        "enlarge image",
+        "improve quality"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/generation/{engine_id}/image-to-image/upscale",
+        "params": {
+          "engine_id": {
+            "type": "string",
+            "required": true,
+            "description": "Engine ID"
+          },
+          "image": {
+            "type": "string",
+            "required": true,
+            "description": "Base64-encoded image to upscale"
+          },
+          "width": {
+            "type": "integer",
+            "required": false,
+            "description": "Target width"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_engines",
+      "name": "List Engines",
+      "description": "List available Stability AI engines.",
+      "semantic_tags": [
+        "engines",
+        "models",
+        "available engines",
+        "list models"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/engines/list",
+        "params": {}
+      }
+    },
+    {
+      "id": "get_account",
+      "name": "Get Account",
+      "description": "Get account details including credit balance.",
+      "semantic_tags": [
+        "account",
+        "credits",
+        "balance",
+        "usage"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/user/account",
+        "params": {}
+      }
+    }
+  ]
+}

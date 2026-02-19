@@ -1,0 +1,110 @@
+{
+    "provider": "bing-search",
+    "name": "Bing Search",
+    "description": "Microsoft Bing Search API for web, image, news, and entity search",
+    "base_url": "https://api.bing.microsoft.com/v7.0",
+    "auth": {
+        "type": "api_key",
+        "header": "Ocp-Apim-Subscription-Key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "web_search",
+            "name": "Web Search",
+            "description": "Search the web using Microsoft Bing",
+            "semantic_tags": [
+                "search",
+                "web",
+                "bing",
+                "query",
+                "results"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "count": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Number of results"
+                    }
+                }
+            }
+        },
+        {
+            "id": "news_search",
+            "name": "News Search",
+            "description": "Search Bing News for recent articles",
+            "semantic_tags": [
+                "news",
+                "search",
+                "articles",
+                "bing",
+                "current"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/news/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "News query"
+                    }
+                }
+            }
+        },
+        {
+            "id": "image_search",
+            "name": "Image Search",
+            "description": "Search for images using Bing Image Search",
+            "semantic_tags": [
+                "image",
+                "search",
+                "visual",
+                "bing",
+                "photos"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/images/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Image search query"
+                    }
+                }
+            }
+        },
+        {
+            "id": "entity_search",
+            "name": "Entity Search",
+            "description": "Search for entities with knowledge graph data",
+            "semantic_tags": [
+                "entity",
+                "knowledge",
+                "graph",
+                "people",
+                "places"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/entities",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Entity search query"
+                    }
+                }
+            }
+        }
+    ]
+}

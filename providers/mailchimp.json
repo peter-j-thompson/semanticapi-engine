@@ -1,0 +1,124 @@
+{
+  "provider": "mailchimp",
+  "name": "Mailchimp",
+  "description": "Email marketing and automation platform",
+  "base_url": "https://server.api.mailchimp.com/3.0",
+  "auth": {
+    "type": "basic",
+    "header": "Authorization",
+    "prefix": "Basic"
+  },
+  "capabilities": [
+    {
+      "id": "list_audiences",
+      "name": "List Audiences",
+      "description": "Get all audiences/lists in the account.",
+      "semantic_tags": ["audiences", "lists", "mailing lists", "subscribers"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/lists",
+        "params": {
+          "count": { "type": "integer", "required": false, "description": "Number of records to return" },
+          "offset": { "type": "integer", "required": false, "description": "Number of records to skip" }
+        }
+      }
+    },
+    {
+      "id": "add_member",
+      "name": "Add List Member",
+      "description": "Add a subscriber to an audience/list.",
+      "semantic_tags": ["add subscriber", "subscribe", "add to list", "new member"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/lists/{list_id}/members",
+        "params": {
+          "list_id": { "type": "string", "required": true, "description": "Audience/list ID" },
+          "email_address": { "type": "string", "required": true, "description": "Email address" },
+          "status": { "type": "string", "required": true, "description": "Subscription status (subscribed, unsubscribed, pending)" }
+        }
+      }
+    },
+    {
+      "id": "send_campaign",
+      "name": "Send Campaign",
+      "description": "Send an email campaign.",
+      "semantic_tags": ["send campaign", "send email", "email blast", "newsletter"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/campaigns/{campaign_id}/actions/send",
+        "params": {
+          "campaign_id": { "type": "string", "required": true, "description": "Campaign ID" }
+        }
+      }
+    },
+    {
+      "id": "create_campaign",
+      "name": "Create Campaign",
+      "description": "Create a new email campaign.",
+      "semantic_tags": ["create campaign", "new campaign", "email campaign"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/campaigns",
+        "params": {
+          "type": { "type": "string", "required": true, "description": "Campaign type (regular, plaintext, absplit, rss)" },
+          "recipients": { "type": "object", "required": true, "description": "Recipients object with list_id" },
+          "settings": { "type": "object", "required": true, "description": "Campaign settings (subject_line, from_name, reply_to)" }
+        }
+      }
+    },
+    {
+      "id": "list_campaigns",
+      "name": "List Campaigns",
+      "description": "Get all campaigns in the account.",
+      "semantic_tags": ["campaigns", "email campaigns", "newsletters"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/campaigns",
+        "params": {
+          "count": { "type": "integer", "required": false, "description": "Number of records to return" },
+          "status": { "type": "string", "required": false, "description": "Filter by status (save, paused, schedule, sending, sent)" }
+        }
+      }
+    },
+    {
+      "id": "get_campaign_report",
+      "name": "Get Campaign Report",
+      "description": "Get performance report for a campaign.",
+      "semantic_tags": ["campaign report", "stats", "analytics", "open rate", "click rate"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/reports/{campaign_id}",
+        "params": {
+          "campaign_id": { "type": "string", "required": true, "description": "Campaign ID" }
+        }
+      }
+    },
+    {
+      "id": "search_members",
+      "name": "Search Members",
+      "description": "Search for list members across all audiences.",
+      "semantic_tags": ["search subscribers", "find member", "search contacts"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/search-members",
+        "params": {
+          "query": { "type": "string", "required": true, "description": "Search query" }
+        }
+      }
+    },
+    {
+      "id": "create_template",
+      "name": "Create Template",
+      "description": "Create a new email template.",
+      "semantic_tags": ["create template", "email template", "new template"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/templates",
+        "params": {
+          "name": { "type": "string", "required": true, "description": "Template name" },
+          "html": { "type": "string", "required": true, "description": "HTML content of the template" }
+        }
+      }
+    }
+  ]
+}

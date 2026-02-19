@@ -1,0 +1,115 @@
+{
+  "provider": "intercom",
+  "name": "Intercom",
+  "description": "Customer messaging platform for sales, marketing, and support",
+  "base_url": "https://api.intercom.io",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "create_contact",
+      "name": "Create Contact",
+      "description": "Create a new contact (lead or user).",
+      "semantic_tags": ["create contact", "new user", "new lead", "add contact"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/contacts",
+        "params": {
+          "role": { "type": "string", "required": true, "description": "Contact role (user or lead)" },
+          "email": { "type": "string", "required": false, "description": "Email address" },
+          "name": { "type": "string", "required": false, "description": "Full name" }
+        }
+      }
+    },
+    {
+      "id": "search_contacts",
+      "name": "Search Contacts",
+      "description": "Search for contacts using filters.",
+      "semantic_tags": ["search contacts", "find user", "find contact"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/contacts/search",
+        "params": {
+          "query": { "type": "object", "required": true, "description": "Search query with field, operator, value" }
+        }
+      }
+    },
+    {
+      "id": "send_message",
+      "name": "Send Message",
+      "description": "Send a message to a user or lead.",
+      "semantic_tags": ["send message", "message user", "in-app message"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/messages",
+        "params": {
+          "message_type": { "type": "string", "required": true, "description": "Message type (inapp or email)" },
+          "subject": { "type": "string", "required": true, "description": "Message subject" },
+          "body": { "type": "string", "required": true, "description": "Message body (HTML)" },
+          "from": { "type": "object", "required": true, "description": "Admin sender object with type and id" },
+          "to": { "type": "object", "required": true, "description": "Recipient object with type and id" }
+        }
+      }
+    },
+    {
+      "id": "list_conversations",
+      "name": "List Conversations",
+      "description": "List all conversations.",
+      "semantic_tags": ["conversations", "inbox", "messages", "support tickets"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/conversations",
+        "params": {
+          "per_page": { "type": "integer", "required": false, "description": "Results per page" }
+        }
+      }
+    },
+    {
+      "id": "reply_conversation",
+      "name": "Reply to Conversation",
+      "description": "Reply to an existing conversation.",
+      "semantic_tags": ["reply", "respond", "conversation reply"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/conversations/{id}/reply",
+        "params": {
+          "id": { "type": "string", "required": true, "description": "Conversation ID" },
+          "message_type": { "type": "string", "required": true, "description": "Type (comment or note)" },
+          "type": { "type": "string", "required": true, "description": "Sender type (admin or user)" },
+          "body": { "type": "string", "required": true, "description": "Reply body" }
+        }
+      }
+    },
+    {
+      "id": "create_article",
+      "name": "Create Article",
+      "description": "Create a help center article.",
+      "semantic_tags": ["create article", "help center", "knowledge base", "documentation"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/articles",
+        "params": {
+          "title": { "type": "string", "required": true, "description": "Article title" },
+          "body": { "type": "string", "required": true, "description": "Article body (HTML)" },
+          "author_id": { "type": "integer", "required": true, "description": "Author admin ID" }
+        }
+      }
+    },
+    {
+      "id": "create_tag",
+      "name": "Create Tag",
+      "description": "Create a new tag.",
+      "semantic_tags": ["create tag", "tag", "label"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/tags",
+        "params": {
+          "name": { "type": "string", "required": true, "description": "Tag name" }
+        }
+      }
+    }
+  ]
+}

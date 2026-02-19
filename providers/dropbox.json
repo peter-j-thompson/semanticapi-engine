@@ -1,0 +1,120 @@
+{
+    "provider": "dropbox",
+    "name": "Dropbox",
+    "description": "Cloud file storage and synchronization API",
+    "base_url": "https://api.dropboxapi.com/2",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "upload",
+            "name": "Upload File",
+            "description": "Upload a file to Dropbox cloud storage",
+            "semantic_tags": [
+                "upload",
+                "file",
+                "store",
+                "save",
+                "cloud"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "https://content.dropboxapi.com/2/files/upload",
+                "params": {
+                    "path": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Destination path"
+                    },
+                    "mode": {
+                        "type": "string",
+                        "required": false,
+                        "description": "add, overwrite, or update"
+                    }
+                }
+            }
+        },
+        {
+            "id": "download",
+            "name": "Download File",
+            "description": "Download a file from Dropbox",
+            "semantic_tags": [
+                "download",
+                "file",
+                "retrieve",
+                "get",
+                "read"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "https://content.dropboxapi.com/2/files/download",
+                "params": {
+                    "path": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File path"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_folder",
+            "name": "List Folder",
+            "description": "List all files and folders in a directory",
+            "semantic_tags": [
+                "list",
+                "folder",
+                "directory",
+                "browse",
+                "files"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/files/list_folder",
+                "params": {
+                    "path": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Folder path"
+                    },
+                    "recursive": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Include subfolders"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_shared_link",
+            "name": "Create Shared Link",
+            "description": "Create a public sharing link for a file or folder",
+            "semantic_tags": [
+                "share",
+                "link",
+                "public",
+                "access",
+                "collaborate"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/sharing/create_shared_link_with_settings",
+                "params": {
+                    "path": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File path"
+                    },
+                    "settings": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Sharing settings"
+                    }
+                }
+            }
+        }
+    ]
+}

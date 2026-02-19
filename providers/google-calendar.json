@@ -1,0 +1,150 @@
+{
+    "provider": "google-calendar",
+    "name": "Google Calendar",
+    "description": "Google Calendar API for managing events, schedules, and reminders",
+    "base_url": "https://www.googleapis.com/calendar/v3",
+    "auth": {
+        "type": "oauth2",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_events",
+            "name": "List Events",
+            "description": "List upcoming events from a Google Calendar",
+            "semantic_tags": [
+                "events",
+                "list",
+                "calendar",
+                "schedule",
+                "upcoming"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/calendars/{calendarId}/events",
+                "params": {
+                    "calendarId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Calendar ID or primary"
+                    },
+                    "timeMin": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Min time RFC3339"
+                    },
+                    "timeMax": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Max time RFC3339"
+                    },
+                    "maxResults": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max events"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_event",
+            "name": "Create Event",
+            "description": "Create a new calendar event with optional attendees",
+            "semantic_tags": [
+                "create",
+                "event",
+                "schedule",
+                "appointment",
+                "calendar"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/calendars/{calendarId}/events",
+                "params": {
+                    "calendarId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Calendar ID or primary"
+                    },
+                    "summary": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Event title"
+                    },
+                    "start": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Start time object"
+                    },
+                    "end": {
+                        "type": "object",
+                        "required": true,
+                        "description": "End time object"
+                    },
+                    "description": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Event description"
+                    }
+                }
+            }
+        },
+        {
+            "id": "update_event",
+            "name": "Update Event",
+            "description": "Update an existing calendar event",
+            "semantic_tags": [
+                "update",
+                "modify",
+                "event",
+                "reschedule",
+                "edit"
+            ],
+            "endpoint": {
+                "method": "PUT",
+                "path": "/calendars/{calendarId}/events/{eventId}",
+                "params": {
+                    "calendarId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Calendar ID"
+                    },
+                    "eventId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Event ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "delete_event",
+            "name": "Delete Event",
+            "description": "Delete a calendar event",
+            "semantic_tags": [
+                "delete",
+                "cancel",
+                "event",
+                "remove",
+                "calendar"
+            ],
+            "endpoint": {
+                "method": "DELETE",
+                "path": "/calendars/{calendarId}/events/{eventId}",
+                "params": {
+                    "calendarId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Calendar ID"
+                    },
+                    "eventId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Event ID"
+                    }
+                }
+            }
+        }
+    ]
+}

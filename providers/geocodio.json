@@ -1,0 +1,125 @@
+{
+    "provider": "geocodio",
+    "name": "Geocodio",
+    "description": "US and Canadian address geocoding and reverse geocoding API",
+    "base_url": "https://api.geocod.io/v1.7",
+    "auth": {
+        "type": "api_key",
+        "header": "api_key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "geocode",
+            "name": "Geocode Address",
+            "description": "Convert a US/Canadian address to coordinates",
+            "semantic_tags": [
+                "geocode",
+                "address",
+                "coordinates",
+                "location",
+                "convert"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/geocode",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Address to geocode"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "reverse",
+            "name": "Reverse Geocode",
+            "description": "Convert coordinates to a street address",
+            "semantic_tags": [
+                "reverse",
+                "geocode",
+                "coordinates",
+                "address",
+                "lookup"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/reverse",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "lat,lng coordinates"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "batch_geocode",
+            "name": "Batch Geocode",
+            "description": "Geocode multiple addresses in a single request",
+            "semantic_tags": [
+                "batch",
+                "geocode",
+                "bulk",
+                "addresses",
+                "multiple"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/geocode",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "addresses": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Array of addresses"
+                    }
+                }
+            }
+        },
+        {
+            "id": "batch_reverse",
+            "name": "Batch Reverse",
+            "description": "Reverse geocode multiple coordinate pairs",
+            "semantic_tags": [
+                "batch",
+                "reverse",
+                "bulk",
+                "coordinates",
+                "multiple"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/reverse",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "locations": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Array of lat,lng strings"
+                    }
+                }
+            }
+        }
+    ]
+}

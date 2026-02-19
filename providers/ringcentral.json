@@ -1,0 +1,130 @@
+{
+    "provider": "ringcentral",
+    "name": "RingCentral",
+    "description": "Cloud communications API for voice, SMS, fax, and meetings",
+    "base_url": "https://platform.ringcentral.com/restapi/v1.0",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "send_sms",
+            "name": "Send SMS",
+            "description": "Send an SMS text message to a phone number",
+            "semantic_tags": [
+                "sms",
+                "send",
+                "text",
+                "message",
+                "phone"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/account/~/extension/~/sms",
+                "params": {
+                    "from": {
+                        "type": "object",
+                        "required": true,
+                        "description": "From phone number"
+                    },
+                    "to": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Recipient numbers"
+                    },
+                    "text": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Message text"
+                    }
+                }
+            }
+        },
+        {
+            "id": "make_call",
+            "name": "Make Call",
+            "description": "Initiate a phone call via RingOut",
+            "semantic_tags": [
+                "call",
+                "phone",
+                "voice",
+                "ringout",
+                "dial"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/account/~/extension/~/ring-out",
+                "params": {
+                    "from": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Caller number"
+                    },
+                    "to": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Recipient number"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_messages",
+            "name": "List Messages",
+            "description": "List SMS and voicemail messages in the inbox",
+            "semantic_tags": [
+                "list",
+                "messages",
+                "sms",
+                "voicemail",
+                "inbox"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/account/~/extension/~/message-store",
+                "params": {
+                    "messageType": {
+                        "type": "string",
+                        "required": false,
+                        "description": "SMS or Voicemail"
+                    },
+                    "dateFrom": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Start date"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_call_log",
+            "name": "Get Call Log",
+            "description": "Retrieve call history and detailed call logs",
+            "semantic_tags": [
+                "calls",
+                "log",
+                "history",
+                "records",
+                "phone"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/account/~/extension/~/call-log",
+                "params": {
+                    "dateFrom": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Start date"
+                    },
+                    "dateTo": {
+                        "type": "string",
+                        "required": false,
+                        "description": "End date"
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,165 @@
+{
+  "provider": "cohere",
+  "name": "Cohere",
+  "description": "Enterprise AI platform for text generation, embeddings, and retrieval-augmented generation",
+  "base_url": "https://api.cohere.com/v2",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "chat",
+      "name": "Chat",
+      "description": "Generate conversational responses with Cohere's Command models.",
+      "semantic_tags": [
+        "chat",
+        "generate",
+        "conversation",
+        "AI response",
+        "ask cohere"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/chat",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model ID (e.g. command-r-plus)"
+          },
+          "messages": {
+            "type": "array",
+            "required": true,
+            "description": "Conversation messages"
+          }
+        }
+      }
+    },
+    {
+      "id": "embed",
+      "name": "Embed Text",
+      "description": "Generate text embeddings for semantic search and similarity.",
+      "semantic_tags": [
+        "embed",
+        "embeddings",
+        "vector",
+        "semantic search",
+        "similarity"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/embed",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Embedding model ID"
+          },
+          "texts": {
+            "type": "array",
+            "required": true,
+            "description": "Texts to embed"
+          },
+          "input_type": {
+            "type": "string",
+            "required": true,
+            "description": "Input type: search_document or search_query"
+          }
+        }
+      }
+    },
+    {
+      "id": "rerank",
+      "name": "Rerank",
+      "description": "Rerank search results by relevance to a query.",
+      "semantic_tags": [
+        "rerank",
+        "relevance",
+        "search ranking",
+        "sort by relevance"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/rerank",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Rerank model ID"
+          },
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "Search query"
+          },
+          "documents": {
+            "type": "array",
+            "required": true,
+            "description": "Documents to rerank"
+          }
+        }
+      }
+    },
+    {
+      "id": "classify",
+      "name": "Classify Text",
+      "description": "Classify text into categories using few-shot examples.",
+      "semantic_tags": [
+        "classify",
+        "categorize",
+        "label",
+        "text classification"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/classify",
+        "params": {
+          "inputs": {
+            "type": "array",
+            "required": true,
+            "description": "Texts to classify"
+          },
+          "examples": {
+            "type": "array",
+            "required": true,
+            "description": "Few-shot classification examples"
+          }
+        }
+      }
+    },
+    {
+      "id": "generate",
+      "name": "Generate Text",
+      "description": "Generate text completions with Cohere models.",
+      "semantic_tags": [
+        "generate",
+        "complete",
+        "text generation",
+        "write"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/generate",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model ID"
+          },
+          "prompt": {
+            "type": "string",
+            "required": true,
+            "description": "Text prompt"
+          },
+          "max_tokens": {
+            "type": "integer",
+            "required": false,
+            "description": "Max tokens to generate"
+          }
+        }
+      }
+    }
+  ]
+}

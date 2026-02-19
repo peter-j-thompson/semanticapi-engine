@@ -1,0 +1,165 @@
+{
+  "provider": "postmark",
+  "name": "Postmark",
+  "description": "Fast and reliable transactional email delivery",
+  "base_url": "https://api.postmarkapp.com",
+  "auth": {
+    "type": "api_key",
+    "header": "X-Postmark-Server-Token"
+  },
+  "capabilities": [
+    {
+      "id": "send_email",
+      "name": "Send Email",
+      "description": "Send a transactional email.",
+      "semantic_tags": [
+        "send email",
+        "email",
+        "transactional email",
+        "mail"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/email",
+        "params": {
+          "From": {
+            "type": "string",
+            "required": true,
+            "description": "Sender email"
+          },
+          "To": {
+            "type": "string",
+            "required": true,
+            "description": "Recipient email"
+          },
+          "Subject": {
+            "type": "string",
+            "required": true,
+            "description": "Subject line"
+          },
+          "HtmlBody": {
+            "type": "string",
+            "required": false,
+            "description": "HTML content"
+          },
+          "TextBody": {
+            "type": "string",
+            "required": false,
+            "description": "Plain text content"
+          }
+        }
+      }
+    },
+    {
+      "id": "send_template",
+      "name": "Send with Template",
+      "description": "Send an email using a predefined template.",
+      "semantic_tags": [
+        "template email",
+        "send template",
+        "email template"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/email/withTemplate",
+        "params": {
+          "TemplateId": {
+            "type": "integer",
+            "required": true,
+            "description": "Template ID"
+          },
+          "TemplateModel": {
+            "type": "object",
+            "required": true,
+            "description": "Template variables"
+          },
+          "From": {
+            "type": "string",
+            "required": true,
+            "description": "Sender"
+          },
+          "To": {
+            "type": "string",
+            "required": true,
+            "description": "Recipient"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_delivery_stats",
+      "name": "Get Delivery Stats",
+      "description": "Get email delivery statistics and bounce summary.",
+      "semantic_tags": [
+        "stats",
+        "delivery stats",
+        "bounces",
+        "email analytics"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/deliverystats",
+        "params": {}
+      }
+    },
+    {
+      "id": "search_outbound",
+      "name": "Search Outbound Messages",
+      "description": "Search sent messages with filters.",
+      "semantic_tags": [
+        "search emails",
+        "sent messages",
+        "outbound",
+        "email history"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/messages/outbound",
+        "params": {
+          "count": {
+            "type": "integer",
+            "required": true,
+            "description": "Number of messages"
+          },
+          "offset": {
+            "type": "integer",
+            "required": true,
+            "description": "Offset for pagination"
+          },
+          "recipient": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by recipient"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_bounces",
+      "name": "Get Bounces",
+      "description": "List bounced emails.",
+      "semantic_tags": [
+        "bounces",
+        "bounced emails",
+        "failed delivery"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/bounces",
+        "params": {
+          "count": {
+            "type": "integer",
+            "required": true,
+            "description": "Number of results"
+          },
+          "offset": {
+            "type": "integer",
+            "required": true,
+            "description": "Offset"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://account.postmarkapp.com/servers"
+}

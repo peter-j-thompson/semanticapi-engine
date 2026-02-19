@@ -1,0 +1,120 @@
+{
+    "provider": "box",
+    "name": "Box",
+    "description": "Enterprise cloud content management and file sharing platform API",
+    "base_url": "https://api.box.com/2.0",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "upload",
+            "name": "Upload File",
+            "description": "Upload a file to Box cloud storage",
+            "semantic_tags": [
+                "upload",
+                "file",
+                "store",
+                "cloud",
+                "content"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "https://upload.box.com/api/2.0/files/content",
+                "params": {
+                    "parent": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Parent folder {id}"
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_file",
+            "name": "Get File Info",
+            "description": "Get metadata and details about a file",
+            "semantic_tags": [
+                "file",
+                "info",
+                "metadata",
+                "details",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/files/{fileId}",
+                "params": {
+                    "fileId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search",
+            "name": "Search Content",
+            "description": "Search for files and folders across Box",
+            "semantic_tags": [
+                "search",
+                "find",
+                "content",
+                "files",
+                "query"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": false,
+                        "description": "file, folder, or web_link"
+                    }
+                }
+            }
+        },
+        {
+            "id": "share",
+            "name": "Create Shared Link",
+            "description": "Create a shared link for external access to a file",
+            "semantic_tags": [
+                "share",
+                "link",
+                "access",
+                "public",
+                "collaborate"
+            ],
+            "endpoint": {
+                "method": "PUT",
+                "path": "/files/{fileId}",
+                "params": {
+                    "fileId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File ID"
+                    },
+                    "shared_link": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Shared link settings"
+                    }
+                }
+            }
+        }
+    ]
+}

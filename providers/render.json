@@ -1,0 +1,120 @@
+{
+    "provider": "render",
+    "name": "Render",
+    "description": "Cloud platform for deploying web services, databases, and static sites",
+    "base_url": "https://api.render.com/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_services",
+            "name": "List Services",
+            "description": "List all deployed services in the account",
+            "semantic_tags": [
+                "list",
+                "services",
+                "deploy",
+                "inventory",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/services",
+                "params": {
+                    "type": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Service type filter"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max results"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_service",
+            "name": "Create Service",
+            "description": "Create and deploy a new web service from a Git repo",
+            "semantic_tags": [
+                "create",
+                "service",
+                "deploy",
+                "new",
+                "provision"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/services",
+                "params": {
+                    "type": {
+                        "type": "string",
+                        "required": true,
+                        "description": "web_service, static_site, etc."
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Service name"
+                    },
+                    "repo": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Git repository URL"
+                    }
+                }
+            }
+        },
+        {
+            "id": "deploy",
+            "name": "Trigger Deploy",
+            "description": "Trigger a new deployment for an existing service",
+            "semantic_tags": [
+                "deploy",
+                "trigger",
+                "release",
+                "update",
+                "push"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/services/{serviceId}/deploys",
+                "params": {
+                    "serviceId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Service ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_service",
+            "name": "Get Service",
+            "description": "Get details and deployment status of a service",
+            "semantic_tags": [
+                "service",
+                "details",
+                "status",
+                "info",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/services/{serviceId}",
+                "params": {
+                    "serviceId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Service ID"
+                    }
+                }
+            }
+        }
+    ]
+}

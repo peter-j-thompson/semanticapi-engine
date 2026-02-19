@@ -1,0 +1,135 @@
+{
+    "provider": "grafana",
+    "name": "Grafana",
+    "description": "Open-source monitoring and observability platform API",
+    "base_url": "https://grafana.com/api",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "query_datasource",
+            "name": "Query Datasource",
+            "description": "Execute a query against a configured datasource",
+            "semantic_tags": [
+                "query",
+                "datasource",
+                "metrics",
+                "data",
+                "monitor"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/ds/query",
+                "params": {
+                    "queries": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Array of query objects"
+                    },
+                    "from": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Start time"
+                    },
+                    "to": {
+                        "type": "string",
+                        "required": true,
+                        "description": "End time"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_dashboards",
+            "name": "List Dashboards",
+            "description": "Search and list monitoring dashboards",
+            "semantic_tags": [
+                "dashboards",
+                "list",
+                "search",
+                "monitor",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Search query"
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": false,
+                        "description": "dash-db or dash-folder"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_alert",
+            "name": "Create Alert Rule",
+            "description": "Create a new alerting rule for threshold monitoring",
+            "semantic_tags": [
+                "alert",
+                "create",
+                "rule",
+                "threshold",
+                "notify"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/provisioning/alert-rules",
+                "params": {
+                    "title": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Alert name"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Alert condition"
+                    },
+                    "data": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Query and condition data"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_annotations",
+            "name": "Get Annotations",
+            "description": "List annotations and events on dashboards",
+            "semantic_tags": [
+                "annotations",
+                "events",
+                "timeline",
+                "markers",
+                "history"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/annotations",
+                "params": {
+                    "from": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Start timestamp ms"
+                    },
+                    "to": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "End timestamp ms"
+                    }
+                }
+            }
+        }
+    ]
+}

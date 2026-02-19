@@ -1,0 +1,131 @@
+{
+  "provider": "upstash",
+  "name": "Upstash",
+  "description": "Serverless Redis and Kafka with REST API access",
+  "base_url": "https://{endpoint}.upstash.io",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "set",
+      "name": "Set Key",
+      "description": "Set a key-value pair in Redis.",
+      "semantic_tags": [
+        "set",
+        "store",
+        "save",
+        "cache",
+        "key value",
+        "write"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/set/{key}/{value}",
+        "params": {
+          "key": {
+            "type": "string",
+            "required": true,
+            "description": "Redis key"
+          },
+          "value": {
+            "type": "string",
+            "required": true,
+            "description": "Value to store"
+          }
+        }
+      }
+    },
+    {
+      "id": "get",
+      "name": "Get Key",
+      "description": "Get the value of a key.",
+      "semantic_tags": [
+        "get",
+        "read",
+        "fetch",
+        "cache lookup",
+        "retrieve"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/get/{key}",
+        "params": {
+          "key": {
+            "type": "string",
+            "required": true,
+            "description": "Redis key"
+          }
+        }
+      }
+    },
+    {
+      "id": "del",
+      "name": "Delete Key",
+      "description": "Delete a key from Redis.",
+      "semantic_tags": [
+        "delete",
+        "remove",
+        "del",
+        "clear key"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/del/{key}",
+        "params": {
+          "key": {
+            "type": "string",
+            "required": true,
+            "description": "Key to delete"
+          }
+        }
+      }
+    },
+    {
+      "id": "keys",
+      "name": "List Keys",
+      "description": "List keys matching a pattern.",
+      "semantic_tags": [
+        "keys",
+        "list keys",
+        "find keys",
+        "pattern"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/keys/{pattern}",
+        "params": {
+          "pattern": {
+            "type": "string",
+            "required": true,
+            "description": "Key pattern (e.g. user:*)"
+          }
+        }
+      }
+    },
+    {
+      "id": "pipeline",
+      "name": "Pipeline",
+      "description": "Execute multiple Redis commands in a single request.",
+      "semantic_tags": [
+        "pipeline",
+        "batch",
+        "multi",
+        "bulk commands"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/pipeline",
+        "params": {
+          "commands": {
+            "type": "array",
+            "required": true,
+            "description": "Array of Redis commands"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+    "provider": "crawlbase",
+    "name": "Crawlbase",
+    "description": "Web crawling and scraping API with built-in proxy rotation and JavaScript rendering",
+    "base_url": "https://api.crawlbase.com",
+    "auth": {
+        "type": "api_key",
+        "header": "token",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "crawl",
+            "name": "Crawl URL",
+            "description": "Fetch and return content from any URL through rotating proxies",
+            "semantic_tags": [
+                "crawl",
+                "scrape",
+                "proxy",
+                "content",
+                "fetch"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to crawl"
+                    },
+                    "token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        },
+        {
+            "id": "scraper",
+            "name": "Structured Scraper",
+            "description": "Extract structured data from supported websites automatically",
+            "semantic_tags": [
+                "structured",
+                "scraper",
+                "extract",
+                "data",
+                "parse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/scraper",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to scrape"
+                    },
+                    "token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        },
+        {
+            "id": "leads",
+            "name": "Find Leads",
+            "description": "Extract business leads and contact information from domains",
+            "semantic_tags": [
+                "leads",
+                "contacts",
+                "business",
+                "email",
+                "extract"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/leads",
+                "params": {
+                    "domain": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Domain to find leads for"
+                    },
+                    "token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        },
+        {
+            "id": "screenshot",
+            "name": "Capture Screenshot",
+            "description": "Take a rendered screenshot of any web page",
+            "semantic_tags": [
+                "screenshot",
+                "capture",
+                "image",
+                "visual",
+                "webpage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/screenshots",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to screenshot"
+                    },
+                    "token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        }
+    ]
+}

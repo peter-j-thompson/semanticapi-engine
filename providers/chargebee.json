@@ -1,0 +1,115 @@
+{
+    "provider": "chargebee",
+    "name": "Chargebee",
+    "description": "Subscription billing and revenue management platform",
+    "base_url": "https://your-site.chargebee.com/api/v2",
+    "auth": {
+        "type": "basic",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "create_subscription",
+            "name": "Create Subscription",
+            "description": "Create a new customer subscription",
+            "semantic_tags": [
+                "subscription",
+                "create",
+                "billing",
+                "recurring",
+                "customer"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/subscriptions",
+                "params": {
+                    "plan_id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Plan ID"
+                    },
+                    "customer": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Customer details"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_subscriptions",
+            "name": "List Subscriptions",
+            "description": "List all subscriptions with filtering",
+            "semantic_tags": [
+                "subscriptions",
+                "list",
+                "billing",
+                "recurring",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/subscriptions",
+                "params": {
+                    "status[is]": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Status filter"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_invoice",
+            "name": "Create Invoice",
+            "description": "Create a one-time invoice for a customer",
+            "semantic_tags": [
+                "invoice",
+                "create",
+                "billing",
+                "charge",
+                "payment"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/invoices",
+                "params": {
+                    "customer_id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Customer ID"
+                    },
+                    "charges": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Line item charges"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_customers",
+            "name": "List Customers",
+            "description": "List all customers with filtering",
+            "semantic_tags": [
+                "customers",
+                "list",
+                "accounts",
+                "manage",
+                "billing"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/customers",
+                "params": {
+                    "email[is]": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Email filter"
+                    }
+                }
+            }
+        }
+    ]
+}

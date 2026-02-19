@@ -1,0 +1,119 @@
+{
+  "provider": "brevo",
+  "name": "Brevo",
+  "description": "All-in-one marketing platform for email, SMS, and CRM (formerly Sendinblue)",
+  "base_url": "https://api.brevo.com/v3",
+  "auth": {
+    "type": "api_key",
+    "header": "api-key",
+    "prefix": ""
+  },
+  "capabilities": [
+    {
+      "id": "send_transactional_email",
+      "name": "Send Transactional Email",
+      "description": "Send a transactional email.",
+      "semantic_tags": ["send email", "transactional email", "email"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/smtp/email",
+        "params": {
+          "sender": { "type": "object", "required": true, "description": "Sender object with name and email" },
+          "to": { "type": "array", "required": true, "description": "Recipients with email and name" },
+          "subject": { "type": "string", "required": true, "description": "Email subject" },
+          "htmlContent": { "type": "string", "required": false, "description": "HTML content" },
+          "textContent": { "type": "string", "required": false, "description": "Plain text content" }
+        }
+      }
+    },
+    {
+      "id": "send_sms",
+      "name": "Send SMS",
+      "description": "Send a transactional SMS.",
+      "semantic_tags": ["send sms", "text message", "sms"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/transactionalSMS/sms",
+        "params": {
+          "sender": { "type": "string", "required": true, "description": "Sender name or number" },
+          "recipient": { "type": "string", "required": true, "description": "Recipient phone number" },
+          "content": { "type": "string", "required": true, "description": "SMS content" }
+        }
+      }
+    },
+    {
+      "id": "create_contact",
+      "name": "Create Contact",
+      "description": "Create a new contact.",
+      "semantic_tags": ["create contact", "add subscriber", "new contact"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/contacts",
+        "params": {
+          "email": { "type": "string", "required": true, "description": "Contact email" },
+          "listIds": { "type": "array", "required": false, "description": "List IDs to add contact to" },
+          "attributes": { "type": "object", "required": false, "description": "Contact attributes" }
+        }
+      }
+    },
+    {
+      "id": "get_contacts",
+      "name": "Get Contacts",
+      "description": "Get all contacts.",
+      "semantic_tags": ["contacts", "subscribers", "mailing list"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/contacts",
+        "params": {
+          "limit": { "type": "integer", "required": false, "description": "Results per page (max 1000)" },
+          "offset": { "type": "integer", "required": false, "description": "Pagination offset" }
+        }
+      }
+    },
+    {
+      "id": "create_email_campaign",
+      "name": "Create Email Campaign",
+      "description": "Create a new email campaign.",
+      "semantic_tags": ["create campaign", "email campaign", "newsletter"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/emailCampaigns",
+        "params": {
+          "name": { "type": "string", "required": true, "description": "Campaign name" },
+          "sender": { "type": "object", "required": true, "description": "Sender with name and email" },
+          "subject": { "type": "string", "required": true, "description": "Email subject" },
+          "htmlContent": { "type": "string", "required": true, "description": "HTML content" },
+          "recipients": { "type": "object", "required": true, "description": "Recipients with listIds" }
+        }
+      }
+    },
+    {
+      "id": "get_email_stats",
+      "name": "Get Email Statistics",
+      "description": "Get aggregated email statistics.",
+      "semantic_tags": ["email stats", "analytics", "delivery stats"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/smtp/statistics/aggregatedReport",
+        "params": {
+          "startDate": { "type": "string", "required": false, "description": "Start date (YYYY-MM-DD)" },
+          "endDate": { "type": "string", "required": false, "description": "End date (YYYY-MM-DD)" }
+        }
+      }
+    },
+    {
+      "id": "get_lists",
+      "name": "Get Lists",
+      "description": "Get all contact lists.",
+      "semantic_tags": ["lists", "contact lists", "mailing lists"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/contacts/lists",
+        "params": {
+          "limit": { "type": "integer", "required": false, "description": "Results per page" },
+          "offset": { "type": "integer", "required": false, "description": "Pagination offset" }
+        }
+      }
+    }
+  ]
+}

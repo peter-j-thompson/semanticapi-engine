@@ -1,0 +1,138 @@
+{
+  "provider": "google-ai",
+  "name": "Google Gemini",
+  "description": "Google's Gemini multimodal AI models for text, image, and code generation",
+  "base_url": "https://generativelanguage.googleapis.com/v1beta",
+  "auth": {
+    "type": "api_key",
+    "param": "key"
+  },
+  "capabilities": [
+    {
+      "id": "generate_content",
+      "name": "Generate Content",
+      "description": "Generate text content using Gemini models. Supports text, images, and multimodal inputs.",
+      "semantic_tags": [
+        "generate",
+        "chat",
+        "AI",
+        "gemini",
+        "text generation",
+        "ask gemini",
+        "prompt"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/models/{model}:generateContent",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model name (e.g. gemini-pro)"
+          },
+          "contents": {
+            "type": "array",
+            "required": true,
+            "description": "Content parts to send"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_models",
+      "name": "List Models",
+      "description": "List available Gemini models and their capabilities.",
+      "semantic_tags": [
+        "models",
+        "list models",
+        "available models"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/models",
+        "params": {}
+      }
+    },
+    {
+      "id": "embed_content",
+      "name": "Embed Content",
+      "description": "Generate embeddings for text content for semantic search and similarity.",
+      "semantic_tags": [
+        "embeddings",
+        "embed",
+        "vector",
+        "semantic search",
+        "similarity"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/models/{model}:embedContent",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Embedding model name"
+          },
+          "content": {
+            "type": "object",
+            "required": true,
+            "description": "Content to embed"
+          }
+        }
+      }
+    },
+    {
+      "id": "count_tokens",
+      "name": "Count Tokens",
+      "description": "Count tokens for content before sending.",
+      "semantic_tags": [
+        "tokens",
+        "count tokens",
+        "token estimate"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/models/{model}:countTokens",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model name"
+          },
+          "contents": {
+            "type": "array",
+            "required": true,
+            "description": "Content to count"
+          }
+        }
+      }
+    },
+    {
+      "id": "stream_content",
+      "name": "Stream Generate Content",
+      "description": "Generate content with streaming response for real-time output.",
+      "semantic_tags": [
+        "stream",
+        "streaming",
+        "real-time",
+        "generate stream"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/models/{model}:streamGenerateContent",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model name"
+          },
+          "contents": {
+            "type": "array",
+            "required": true,
+            "description": "Content parts"
+          }
+        }
+      }
+    }
+  ]
+}

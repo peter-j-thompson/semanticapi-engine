@@ -1,0 +1,135 @@
+{
+    "provider": "mapbox",
+    "name": "Mapbox",
+    "description": "Mapping and location platform with geocoding, directions, and map tiles",
+    "base_url": "https://api.mapbox.com",
+    "auth": {
+        "type": "api_key",
+        "header": "access_token",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "geocode",
+            "name": "Geocode",
+            "description": "Convert addresses to coordinates or reverse geocode",
+            "semantic_tags": [
+                "geocode",
+                "address",
+                "coordinates",
+                "location",
+                "convert"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/geocoding/v5/mapbox.places/{query}.json",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Address or place name"
+                    },
+                    "access_token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        },
+        {
+            "id": "directions",
+            "name": "Get Directions",
+            "description": "Get optimized routes and turn-by-turn directions",
+            "semantic_tags": [
+                "directions",
+                "route",
+                "navigation",
+                "travel",
+                "driving"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/directions/v5/mapbox/{profile}/{coordinates}",
+                "params": {
+                    "profile": {
+                        "type": "string",
+                        "required": true,
+                        "description": "driving, walking, cycling"
+                    },
+                    "coordinates": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Semicolon-separated coordinates"
+                    },
+                    "access_token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        },
+        {
+            "id": "isochrone",
+            "name": "Isochrone",
+            "description": "Get areas reachable within a time or distance from a point",
+            "semantic_tags": [
+                "isochrone",
+                "reachable",
+                "area",
+                "travel-time",
+                "accessibility"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/isochrone/v1/mapbox/{profile}/{coordinates}",
+                "params": {
+                    "profile": {
+                        "type": "string",
+                        "required": true,
+                        "description": "driving, walking, cycling"
+                    },
+                    "coordinates": {
+                        "type": "string",
+                        "required": true,
+                        "description": "lng,lat"
+                    },
+                    "contours_minutes": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Comma-separated minutes"
+                    },
+                    "access_token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        },
+        {
+            "id": "static_map",
+            "name": "Static Map",
+            "description": "Generate a static map image",
+            "semantic_tags": [
+                "map",
+                "static",
+                "image",
+                "visual",
+                "render"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/styles/v1/{username}/{styleId}/static/{overlay}/{lon},{lat},{zoom}/{width}x{height}",
+                "params": {
+                    "access_token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        }
+    ]
+}

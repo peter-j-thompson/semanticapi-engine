@@ -7,7 +7,11 @@
     "type": "oauth2",
     "auth_url": "https://github.com/login/oauth/authorize",
     "token_url": "https://github.com/login/oauth/access_token",
-    "scopes": ["repo", "user", "notifications"],
+    "scopes": [
+      "repo",
+      "user",
+      "notifications"
+    ],
     "client_id_env": "GITHUB_CLIENT_ID",
     "client_secret_env": "GITHUB_CLIENT_SECRET"
   },
@@ -16,16 +20,44 @@
       "id": "list_repos",
       "name": "List Repositories",
       "description": "Get a list of repositories for the authenticated user or a specified user/organization.",
-      "semantic_tags": ["repositories", "repos", "projects", "code", "my repos", "list repos", "show repositories"],
+      "semantic_tags": [
+        "repositories",
+        "repos",
+        "projects",
+        "code",
+        "my repos",
+        "list repos",
+        "show repositories"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/user/repos",
         "params": {
-          "type": {"type": "string", "required": false, "description": "Filter by repo type (all, owner, public, private, member)"},
-          "sort": {"type": "string", "required": false, "description": "Sort by (created, updated, pushed, full_name)"},
-          "direction": {"type": "string", "required": false, "description": "Sort direction (asc, desc)"},
-          "per_page": {"type": "integer", "required": false, "description": "Results per page (max 100)"},
-          "page": {"type": "integer", "required": false, "description": "Page number"}
+          "type": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by repo type (all, owner, public, private, member)"
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": "Sort by (created, updated, pushed, full_name)"
+          },
+          "direction": {
+            "type": "string",
+            "required": false,
+            "description": "Sort direction (asc, desc)"
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "description": "Results per page (max 100)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number"
+          }
         }
       }
     },
@@ -33,20 +65,65 @@
       "id": "list_issues",
       "name": "List Issues",
       "description": "Get issues for a repository. Filter by state, labels, assignee, and more.",
-      "semantic_tags": ["issues", "bugs", "tickets", "problems", "open issues", "repo issues", "list issues", "show issues"],
+      "semantic_tags": [
+        "issues",
+        "bugs",
+        "tickets",
+        "problems",
+        "open issues",
+        "repo issues",
+        "list issues",
+        "show issues"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/repos/{owner}/{repo}/issues",
         "params": {
-          "owner": {"type": "string", "required": true, "description": "Repository owner (username or org)"},
-          "repo": {"type": "string", "required": true, "description": "Repository name"},
-          "state": {"type": "string", "required": false, "description": "Filter by state (open, closed, all)"},
-          "labels": {"type": "string", "required": false, "description": "Comma-separated list of label names"},
-          "assignee": {"type": "string", "required": false, "description": "Filter by assignee username"},
-          "sort": {"type": "string", "required": false, "description": "Sort by (created, updated, comments)"},
-          "direction": {"type": "string", "required": false, "description": "Sort direction (asc, desc)"},
-          "per_page": {"type": "integer", "required": false, "description": "Results per page (max 100)"},
-          "page": {"type": "integer", "required": false, "description": "Page number"}
+          "owner": {
+            "type": "string",
+            "required": true,
+            "description": "Repository owner (username or org)"
+          },
+          "repo": {
+            "type": "string",
+            "required": true,
+            "description": "Repository name"
+          },
+          "state": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by state (open, closed, all)"
+          },
+          "labels": {
+            "type": "string",
+            "required": false,
+            "description": "Comma-separated list of label names"
+          },
+          "assignee": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by assignee username"
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": "Sort by (created, updated, comments)"
+          },
+          "direction": {
+            "type": "string",
+            "required": false,
+            "description": "Sort direction (asc, desc)"
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "description": "Results per page (max 100)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number"
+          }
         }
       }
     },
@@ -54,18 +131,54 @@
       "id": "create_issue",
       "name": "Create Issue",
       "description": "Create a new issue in a repository. File a bug report, feature request, or task.",
-      "semantic_tags": ["create issue", "new issue", "file bug", "report bug", "open issue", "submit issue", "new ticket"],
+      "semantic_tags": [
+        "create issue",
+        "new issue",
+        "file bug",
+        "report bug",
+        "open issue",
+        "submit issue",
+        "new ticket"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/repos/{owner}/{repo}/issues",
         "params": {
-          "owner": {"type": "string", "required": true, "description": "Repository owner (username or org)"},
-          "repo": {"type": "string", "required": true, "description": "Repository name"},
-          "title": {"type": "string", "required": true, "description": "Issue title"},
-          "body": {"type": "string", "required": false, "description": "Issue body/description (supports Markdown)"},
-          "assignees": {"type": "array", "required": false, "description": "Usernames to assign"},
-          "labels": {"type": "array", "required": false, "description": "Labels to apply"},
-          "milestone": {"type": "integer", "required": false, "description": "Milestone number to associate"}
+          "owner": {
+            "type": "string",
+            "required": true,
+            "description": "Repository owner (username or org)"
+          },
+          "repo": {
+            "type": "string",
+            "required": true,
+            "description": "Repository name"
+          },
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Issue title"
+          },
+          "body": {
+            "type": "string",
+            "required": false,
+            "description": "Issue body/description (supports Markdown)"
+          },
+          "assignees": {
+            "type": "array",
+            "required": false,
+            "description": "Usernames to assign"
+          },
+          "labels": {
+            "type": "array",
+            "required": false,
+            "description": "Labels to apply"
+          },
+          "milestone": {
+            "type": "integer",
+            "required": false,
+            "description": "Milestone number to associate"
+          }
         }
       }
     },
@@ -73,20 +186,64 @@
       "id": "list_prs",
       "name": "List Pull Requests",
       "description": "Get pull requests for a repository. Review code changes and merge requests.",
-      "semantic_tags": ["pull requests", "PRs", "merge requests", "code review", "open PRs", "list PRs", "show pull requests"],
+      "semantic_tags": [
+        "pull requests",
+        "PRs",
+        "merge requests",
+        "code review",
+        "open PRs",
+        "list PRs",
+        "show pull requests"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/repos/{owner}/{repo}/pulls",
         "params": {
-          "owner": {"type": "string", "required": true, "description": "Repository owner (username or org)"},
-          "repo": {"type": "string", "required": true, "description": "Repository name"},
-          "state": {"type": "string", "required": false, "description": "Filter by state (open, closed, all)"},
-          "head": {"type": "string", "required": false, "description": "Filter by head branch (user:branch)"},
-          "base": {"type": "string", "required": false, "description": "Filter by base branch"},
-          "sort": {"type": "string", "required": false, "description": "Sort by (created, updated, popularity, long-running)"},
-          "direction": {"type": "string", "required": false, "description": "Sort direction (asc, desc)"},
-          "per_page": {"type": "integer", "required": false, "description": "Results per page (max 100)"},
-          "page": {"type": "integer", "required": false, "description": "Page number"}
+          "owner": {
+            "type": "string",
+            "required": true,
+            "description": "Repository owner (username or org)"
+          },
+          "repo": {
+            "type": "string",
+            "required": true,
+            "description": "Repository name"
+          },
+          "state": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by state (open, closed, all)"
+          },
+          "head": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by head branch (user:branch)"
+          },
+          "base": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by base branch"
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": "Sort by (created, updated, popularity, long-running)"
+          },
+          "direction": {
+            "type": "string",
+            "required": false,
+            "description": "Sort direction (asc, desc)"
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "description": "Results per page (max 100)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number"
+          }
         }
       }
     },
@@ -94,7 +251,15 @@
       "id": "get_user",
       "name": "Get User Profile",
       "description": "Get profile information for a GitHub user or the authenticated user.",
-      "semantic_tags": ["user", "profile", "account", "user info", "who am I", "my profile", "github user"],
+      "semantic_tags": [
+        "user",
+        "profile",
+        "account",
+        "user info",
+        "who am I",
+        "my profile",
+        "github user"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/user",
@@ -105,19 +270,52 @@
       "id": "list_notifications",
       "name": "List Notifications",
       "description": "Get notifications for the authenticated user. See mentions, review requests, and activity.",
-      "semantic_tags": ["notifications", "alerts", "mentions", "inbox", "activity", "updates", "what's new"],
+      "semantic_tags": [
+        "notifications",
+        "alerts",
+        "mentions",
+        "inbox",
+        "activity",
+        "updates",
+        "what's new"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/notifications",
         "params": {
-          "all": {"type": "boolean", "required": false, "description": "Show all notifications (default: unread only)"},
-          "participating": {"type": "boolean", "required": false, "description": "Only show participating notifications"},
-          "since": {"type": "string", "required": false, "description": "Only show notifications updated after (ISO 8601)"},
-          "before": {"type": "string", "required": false, "description": "Only show notifications updated before (ISO 8601)"},
-          "per_page": {"type": "integer", "required": false, "description": "Results per page (max 100)"},
-          "page": {"type": "integer", "required": false, "description": "Page number"}
+          "all": {
+            "type": "boolean",
+            "required": false,
+            "description": "Show all notifications (default: unread only)"
+          },
+          "participating": {
+            "type": "boolean",
+            "required": false,
+            "description": "Only show participating notifications"
+          },
+          "since": {
+            "type": "string",
+            "required": false,
+            "description": "Only show notifications updated after (ISO 8601)"
+          },
+          "before": {
+            "type": "string",
+            "required": false,
+            "description": "Only show notifications updated before (ISO 8601)"
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "description": "Results per page (max 100)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number"
+          }
         }
       }
     }
-  ]
+  ],
+  "auth_setup_url": "https://github.com/settings/tokens"
 }

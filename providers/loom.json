@@ -1,0 +1,110 @@
+{
+    "provider": "loom",
+    "name": "Loom",
+    "description": "Video messaging platform API for managing and sharing screen recordings",
+    "base_url": "https://developer.loom.com/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_videos",
+            "name": "List Videos",
+            "description": "List all Loom videos in the workspace",
+            "semantic_tags": [
+                "videos",
+                "list",
+                "library",
+                "browse",
+                "content"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/videos",
+                "params": {
+                    "page": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Page number"
+                    },
+                    "per_page": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results per page"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_video",
+            "name": "Get Video",
+            "description": "Get details, embed URL, and metadata for a video",
+            "semantic_tags": [
+                "video",
+                "details",
+                "embed",
+                "info",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/videos/{videoId}",
+                "params": {
+                    "videoId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Video ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_transcript",
+            "name": "Get Transcript",
+            "description": "Get the full text transcript of a video",
+            "semantic_tags": [
+                "transcript",
+                "text",
+                "captions",
+                "video",
+                "content"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/videos/{videoId}/transcript",
+                "params": {
+                    "videoId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Video ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "delete_video",
+            "name": "Delete Video",
+            "description": "Delete a Loom video permanently",
+            "semantic_tags": [
+                "delete",
+                "remove",
+                "video",
+                "clean",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "DELETE",
+                "path": "/videos/{videoId}",
+                "params": {
+                    "videoId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Video ID"
+                    }
+                }
+            }
+        }
+    ]
+}

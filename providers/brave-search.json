@@ -1,0 +1,115 @@
+{
+    "provider": "brave-search",
+    "name": "Brave Search",
+    "description": "Independent privacy-focused search engine API with web, news, and image search",
+    "base_url": "https://api.search.brave.com",
+    "auth": {
+        "type": "bearer",
+        "header": "X-Subscription-Token",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "web_search",
+            "name": "Web Search",
+            "description": "Search the web using Brave's independent search index",
+            "semantic_tags": [
+                "search",
+                "web",
+                "query",
+                "results",
+                "brave"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/res/v1/web/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "count": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Number of results"
+                    }
+                }
+            }
+        },
+        {
+            "id": "news_search",
+            "name": "News Search",
+            "description": "Search for recent news articles across the web",
+            "semantic_tags": [
+                "news",
+                "search",
+                "articles",
+                "current",
+                "headlines"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/res/v1/news/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "News query"
+                    },
+                    "count": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Number of results"
+                    }
+                }
+            }
+        },
+        {
+            "id": "image_search",
+            "name": "Image Search",
+            "description": "Search for images across the web",
+            "semantic_tags": [
+                "image",
+                "search",
+                "visual",
+                "photos",
+                "pictures"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/res/v1/images/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Image search query"
+                    }
+                }
+            }
+        },
+        {
+            "id": "suggest",
+            "name": "Suggestions",
+            "description": "Get search query suggestions and autocomplete results",
+            "semantic_tags": [
+                "suggest",
+                "autocomplete",
+                "query",
+                "recommendations",
+                "search"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/res/v1/suggest/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Partial query"
+                    }
+                }
+            }
+        }
+    ]
+}

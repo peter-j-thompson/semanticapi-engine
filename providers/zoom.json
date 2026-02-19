@@ -1,0 +1,125 @@
+{
+    "provider": "zoom",
+    "name": "Zoom",
+    "description": "Video conferencing and meeting platform API",
+    "base_url": "https://api.zoom.us/v2",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "create_meeting",
+            "name": "Create Meeting",
+            "description": "Schedule a new Zoom meeting",
+            "semantic_tags": [
+                "meeting",
+                "create",
+                "schedule",
+                "video",
+                "conference"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/users/{userId}/meetings",
+                "params": {
+                    "userId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User ID or me"
+                    },
+                    "topic": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Meeting topic"
+                    },
+                    "type": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "1=instant 2=scheduled"
+                    },
+                    "start_time": {
+                        "type": "string",
+                        "required": false,
+                        "description": "ISO 8601 start time"
+                    },
+                    "duration": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Duration in minutes"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_meetings",
+            "name": "List Meetings",
+            "description": "List all scheduled meetings for a user",
+            "semantic_tags": [
+                "list",
+                "meetings",
+                "schedule",
+                "upcoming",
+                "calendar"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/users/{userId}/meetings",
+                "params": {
+                    "userId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User ID or me"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_meeting",
+            "name": "Get Meeting",
+            "description": "Get details of a specific Zoom meeting",
+            "semantic_tags": [
+                "meeting",
+                "details",
+                "info",
+                "status",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/meetings/{meetingId}",
+                "params": {
+                    "meetingId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Meeting ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "delete_meeting",
+            "name": "Delete Meeting",
+            "description": "Cancel and delete a scheduled meeting",
+            "semantic_tags": [
+                "delete",
+                "cancel",
+                "meeting",
+                "remove",
+                "schedule"
+            ],
+            "endpoint": {
+                "method": "DELETE",
+                "path": "/meetings/{meetingId}",
+                "params": {
+                    "meetingId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Meeting ID"
+                    }
+                }
+            }
+        }
+    ]
+}

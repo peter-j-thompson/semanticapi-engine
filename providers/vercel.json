@@ -1,0 +1,135 @@
+{
+  "provider": "vercel",
+  "name": "Vercel",
+  "description": "Cloud platform for frontend deployment and serverless functions",
+  "base_url": "https://api.vercel.com",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_deployments",
+      "name": "List Deployments",
+      "description": "List recent deployments.",
+      "semantic_tags": [
+        "deployments",
+        "deploys",
+        "list deployments",
+        "deployment history"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/v6/deployments",
+        "params": {
+          "projectId": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by project"
+          },
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of results"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_projects",
+      "name": "List Projects",
+      "description": "List all Vercel projects.",
+      "semantic_tags": [
+        "projects",
+        "list projects",
+        "my projects",
+        "apps"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/v9/projects",
+        "params": {}
+      }
+    },
+    {
+      "id": "get_project",
+      "name": "Get Project",
+      "description": "Get details of a specific project.",
+      "semantic_tags": [
+        "project details",
+        "project info"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/v9/projects/{idOrName}",
+        "params": {
+          "idOrName": {
+            "type": "string",
+            "required": true,
+            "description": "Project ID or name"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_domains",
+      "name": "List Domains",
+      "description": "List domains configured for your account.",
+      "semantic_tags": [
+        "domains",
+        "custom domains",
+        "list domains"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/v5/domains",
+        "params": {}
+      }
+    },
+    {
+      "id": "list_env_vars",
+      "name": "List Environment Variables",
+      "description": "List environment variables for a project.",
+      "semantic_tags": [
+        "env vars",
+        "environment variables",
+        "config",
+        "secrets"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/v9/projects/{idOrName}/env",
+        "params": {
+          "idOrName": {
+            "type": "string",
+            "required": true,
+            "description": "Project ID or name"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_deployment",
+      "name": "Get Deployment",
+      "description": "Get details and status of a deployment.",
+      "semantic_tags": [
+        "deployment status",
+        "deploy details",
+        "check deployment"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/v13/deployments/{id}",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Deployment ID or URL"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://vercel.com/account/tokens"
+}

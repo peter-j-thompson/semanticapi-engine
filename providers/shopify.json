@@ -12,13 +12,27 @@
       "id": "list_products",
       "name": "List Products",
       "description": "Get all products in the store",
-      "semantic_tags": ["products", "inventory", "items", "catalog", "merchandise"],
+      "semantic_tags": [
+        "products",
+        "inventory",
+        "items",
+        "catalog",
+        "merchandise"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/products.json",
         "params": {
-          "limit": {"type": "integer", "required": false, "description": "Number of products to retrieve"},
-          "status": {"type": "string", "required": false, "description": "Filter by status (active, archived, draft)"}
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of products to retrieve"
+          },
+          "status": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by status (active, archived, draft)"
+          }
         }
       }
     },
@@ -26,12 +40,20 @@
       "id": "get_product",
       "name": "Get Product",
       "description": "Get a single product by ID",
-      "semantic_tags": ["product", "item", "details"],
+      "semantic_tags": [
+        "product",
+        "item",
+        "details"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/products/{product_id}.json",
         "params": {
-          "product_id": {"type": "string", "required": true, "description": "Product ID"}
+          "product_id": {
+            "type": "string",
+            "required": true,
+            "description": "Product ID"
+          }
         }
       }
     },
@@ -39,12 +61,22 @@
       "id": "create_product",
       "name": "Create Product",
       "description": "Create a new product",
-      "semantic_tags": ["create", "new", "product", "add", "item"],
+      "semantic_tags": [
+        "create",
+        "new",
+        "product",
+        "add",
+        "item"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/products.json",
         "params": {
-          "product": {"type": "object", "required": true, "description": "Product data with title, body_html, vendor, etc."}
+          "product": {
+            "type": "object",
+            "required": true,
+            "description": "Product data with title, body_html, vendor, etc."
+          }
         }
       }
     },
@@ -52,13 +84,26 @@
       "id": "list_orders",
       "name": "List Orders",
       "description": "Get all orders",
-      "semantic_tags": ["orders", "sales", "purchases", "transactions"],
+      "semantic_tags": [
+        "orders",
+        "sales",
+        "purchases",
+        "transactions"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/orders.json",
         "params": {
-          "status": {"type": "string", "required": false, "description": "Filter by status (open, closed, any)"},
-          "limit": {"type": "integer", "required": false, "description": "Number of orders"}
+          "status": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by status (open, closed, any)"
+          },
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of orders"
+          }
         }
       }
     },
@@ -66,12 +111,21 @@
       "id": "get_order",
       "name": "Get Order",
       "description": "Get a single order by ID",
-      "semantic_tags": ["order", "sale", "purchase", "details"],
+      "semantic_tags": [
+        "order",
+        "sale",
+        "purchase",
+        "details"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/orders/{order_id}.json",
         "params": {
-          "order_id": {"type": "string", "required": true, "description": "Order ID"}
+          "order_id": {
+            "type": "string",
+            "required": true,
+            "description": "Order ID"
+          }
         }
       }
     },
@@ -79,12 +133,21 @@
       "id": "list_customers",
       "name": "List Customers",
       "description": "Get all customers",
-      "semantic_tags": ["customers", "buyers", "users", "clients"],
+      "semantic_tags": [
+        "customers",
+        "buyers",
+        "users",
+        "clients"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/customers.json",
         "params": {
-          "limit": {"type": "integer", "required": false, "description": "Number of customers"}
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of customers"
+          }
         }
       }
     },
@@ -92,12 +155,21 @@
       "id": "get_customer",
       "name": "Get Customer",
       "description": "Get a single customer by ID",
-      "semantic_tags": ["customer", "buyer", "user", "details"],
+      "semantic_tags": [
+        "customer",
+        "buyer",
+        "user",
+        "details"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/customers/{customer_id}.json",
         "params": {
-          "customer_id": {"type": "string", "required": true, "description": "Customer ID"}
+          "customer_id": {
+            "type": "string",
+            "required": true,
+            "description": "Customer ID"
+          }
         }
       }
     },
@@ -105,13 +177,26 @@
       "id": "list_inventory",
       "name": "List Inventory",
       "description": "Get inventory levels",
-      "semantic_tags": ["inventory", "stock", "levels", "quantity"],
+      "semantic_tags": [
+        "inventory",
+        "stock",
+        "levels",
+        "quantity"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/inventory_levels.json",
         "params": {
-          "inventory_item_ids": {"type": "string", "required": false, "description": "Comma-separated inventory item IDs"},
-          "location_ids": {"type": "string", "required": false, "description": "Comma-separated location IDs"}
+          "inventory_item_ids": {
+            "type": "string",
+            "required": false,
+            "description": "Comma-separated inventory item IDs"
+          },
+          "location_ids": {
+            "type": "string",
+            "required": false,
+            "description": "Comma-separated location IDs"
+          }
         }
       }
     },
@@ -119,7 +204,12 @@
       "id": "get_shop",
       "name": "Get Shop Info",
       "description": "Get information about the shop",
-      "semantic_tags": ["shop", "store", "info", "settings"],
+      "semantic_tags": [
+        "shop",
+        "store",
+        "info",
+        "settings"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/shop.json",
@@ -130,12 +220,21 @@
       "id": "count_orders",
       "name": "Count Orders",
       "description": "Get the count of orders",
-      "semantic_tags": ["count", "orders", "total", "number"],
+      "semantic_tags": [
+        "count",
+        "orders",
+        "total",
+        "number"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/orders/count.json",
         "params": {
-          "status": {"type": "string", "required": false, "description": "Filter by status"}
+          "status": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by status"
+          }
         }
       }
     }
@@ -165,5 +264,6 @@
     "get_shop": {
       "data_field": "shop"
     }
-  }
+  },
+  "auth_setup_url": "https://admin.shopify.com/store/YOUR_STORE/settings/apps/development"
 }

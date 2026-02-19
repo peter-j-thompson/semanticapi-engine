@@ -1,0 +1,135 @@
+{
+    "provider": "deepgram",
+    "name": "Deepgram",
+    "description": "AI speech recognition API for transcription and audio intelligence",
+    "base_url": "https://api.deepgram.com",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Token"
+    },
+    "capabilities": [
+        {
+            "id": "transcribe",
+            "name": "Transcribe Audio",
+            "description": "Transcribe audio to text with speaker diarization",
+            "semantic_tags": [
+                "transcribe",
+                "speech",
+                "text",
+                "audio",
+                "stt"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/listen",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Audio file URL"
+                    },
+                    "model": {
+                        "type": "string",
+                        "required": false,
+                        "description": "nova-2, enhanced, base"
+                    },
+                    "language": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Language code"
+                    },
+                    "diarize": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Enable speaker diarization"
+                    }
+                }
+            }
+        },
+        {
+            "id": "transcribe_live",
+            "name": "Live Transcription",
+            "description": "Get real-time streaming transcription via WebSocket",
+            "semantic_tags": [
+                "live",
+                "streaming",
+                "realtime",
+                "transcription",
+                "speech"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v1/listen",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Model name"
+                    },
+                    "language": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Language code"
+                    }
+                }
+            }
+        },
+        {
+            "id": "summarize",
+            "name": "Summarize Audio",
+            "description": "Transcribe and summarize audio content",
+            "semantic_tags": [
+                "summarize",
+                "audio",
+                "summary",
+                "content",
+                "intelligence"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/listen",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Audio URL"
+                    },
+                    "summarize": {
+                        "type": "boolean",
+                        "required": true,
+                        "description": "Enable summarization"
+                    }
+                }
+            }
+        },
+        {
+            "id": "detect_language",
+            "name": "Detect Language",
+            "description": "Detect the spoken language in audio",
+            "semantic_tags": [
+                "language",
+                "detect",
+                "identify",
+                "audio",
+                "classify"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/listen",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Audio URL"
+                    },
+                    "detect_language": {
+                        "type": "boolean",
+                        "required": true,
+                        "description": "Enable language detection"
+                    }
+                }
+            }
+        }
+    ]
+}

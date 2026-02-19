@@ -1,0 +1,141 @@
+{
+  "provider": "replicate",
+  "name": "Replicate",
+  "description": "Run open-source ML models in the cloud with a simple API",
+  "base_url": "https://api.replicate.com/v1",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "create_prediction",
+      "name": "Create Prediction",
+      "description": "Run a model and get a prediction. Supports image generation, language models, and more.",
+      "semantic_tags": [
+        "run model",
+        "prediction",
+        "generate",
+        "inference",
+        "run AI"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/predictions",
+        "params": {
+          "version": {
+            "type": "string",
+            "required": true,
+            "description": "Model version ID"
+          },
+          "input": {
+            "type": "object",
+            "required": true,
+            "description": "Model input parameters"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_prediction",
+      "name": "Get Prediction",
+      "description": "Check the status and output of a prediction.",
+      "semantic_tags": [
+        "prediction status",
+        "check result",
+        "get output"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/predictions/{prediction_id}",
+        "params": {
+          "prediction_id": {
+            "type": "string",
+            "required": true,
+            "description": "Prediction ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_predictions",
+      "name": "List Predictions",
+      "description": "List recent predictions and their statuses.",
+      "semantic_tags": [
+        "predictions",
+        "history",
+        "list runs",
+        "recent predictions"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/predictions",
+        "params": {}
+      }
+    },
+    {
+      "id": "list_models",
+      "name": "List Models",
+      "description": "Browse available models on Replicate.",
+      "semantic_tags": [
+        "models",
+        "browse models",
+        "available models",
+        "find model"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/models",
+        "params": {}
+      }
+    },
+    {
+      "id": "get_model",
+      "name": "Get Model",
+      "description": "Get details about a specific model including versions and schema.",
+      "semantic_tags": [
+        "model details",
+        "model info",
+        "model schema"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/models/{owner}/{name}",
+        "params": {
+          "owner": {
+            "type": "string",
+            "required": true,
+            "description": "Model owner"
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Model name"
+          }
+        }
+      }
+    },
+    {
+      "id": "cancel_prediction",
+      "name": "Cancel Prediction",
+      "description": "Cancel a running prediction.",
+      "semantic_tags": [
+        "cancel",
+        "stop",
+        "abort prediction"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/predictions/{prediction_id}/cancel",
+        "params": {
+          "prediction_id": {
+            "type": "string",
+            "required": true,
+            "description": "Prediction ID to cancel"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+    "provider": "serpapi",
+    "name": "SerpAPI",
+    "description": "Real-time search engine results API supporting Google, Bing, Yahoo and more",
+    "base_url": "https://serpapi.com",
+    "auth": {
+        "type": "api_key",
+        "header": "api_key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "google_search",
+            "name": "Google Search",
+            "description": "Get real-time Google search results with structured data",
+            "semantic_tags": [
+                "google",
+                "search",
+                "serp",
+                "results",
+                "web"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "engine": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to google"
+                    }
+                }
+            }
+        },
+        {
+            "id": "google_maps",
+            "name": "Google Maps Search",
+            "description": "Search Google Maps for businesses and places",
+            "semantic_tags": [
+                "maps",
+                "local",
+                "business",
+                "places",
+                "location"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "engine": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to google_maps"
+                    }
+                }
+            }
+        },
+        {
+            "id": "google_shopping",
+            "name": "Google Shopping",
+            "description": "Search Google Shopping for products and prices",
+            "semantic_tags": [
+                "shopping",
+                "products",
+                "prices",
+                "compare",
+                "ecommerce"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Product search query"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "engine": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to google_shopping"
+                    }
+                }
+            }
+        },
+        {
+            "id": "google_news",
+            "name": "Google News",
+            "description": "Search Google News for latest headlines and articles",
+            "semantic_tags": [
+                "news",
+                "google",
+                "articles",
+                "current",
+                "headlines"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "News query"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "engine": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to google_news"
+                    }
+                }
+            }
+        }
+    ]
+}

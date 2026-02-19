@@ -1,0 +1,118 @@
+{
+  "provider": "zendesk",
+  "name": "Zendesk",
+  "description": "Customer service and support ticketing platform",
+  "base_url": "https://{subdomain}.zendesk.com/api/v2",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "create_ticket",
+      "name": "Create Ticket",
+      "description": "Create a new support ticket.",
+      "semantic_tags": ["create ticket", "new ticket", "support ticket", "open ticket"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/tickets.json",
+        "params": {
+          "ticket": { "type": "object", "required": true, "description": "Ticket object with subject, description, priority, etc." }
+        }
+      }
+    },
+    {
+      "id": "list_tickets",
+      "name": "List Tickets",
+      "description": "List all tickets.",
+      "semantic_tags": ["tickets", "support tickets", "list tickets"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/tickets.json",
+        "params": {
+          "page": { "type": "integer", "required": false, "description": "Page number" },
+          "per_page": { "type": "integer", "required": false, "description": "Results per page" }
+        }
+      }
+    },
+    {
+      "id": "update_ticket",
+      "name": "Update Ticket",
+      "description": "Update an existing ticket.",
+      "semantic_tags": ["update ticket", "edit ticket", "modify ticket"],
+      "endpoint": {
+        "method": "PUT",
+        "path": "/tickets/{ticket_id}.json",
+        "params": {
+          "ticket_id": { "type": "integer", "required": true, "description": "Ticket ID" },
+          "ticket": { "type": "object", "required": true, "description": "Updated ticket fields" }
+        }
+      }
+    },
+    {
+      "id": "search",
+      "name": "Search",
+      "description": "Search across tickets, users, and organizations.",
+      "semantic_tags": ["search", "find ticket", "search tickets"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/search.json",
+        "params": {
+          "query": { "type": "string", "required": true, "description": "Search query string" }
+        }
+      }
+    },
+    {
+      "id": "create_user",
+      "name": "Create User",
+      "description": "Create a new user.",
+      "semantic_tags": ["create user", "new user", "add customer"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/users.json",
+        "params": {
+          "user": { "type": "object", "required": true, "description": "User object with name, email, role" }
+        }
+      }
+    },
+    {
+      "id": "list_users",
+      "name": "List Users",
+      "description": "List all users.",
+      "semantic_tags": ["users", "customers", "list users"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/users.json",
+        "params": {
+          "role": { "type": "string", "required": false, "description": "Filter by role (end-user, agent, admin)" }
+        }
+      }
+    },
+    {
+      "id": "add_ticket_comment",
+      "name": "Add Ticket Comment",
+      "description": "Add a comment to an existing ticket.",
+      "semantic_tags": ["comment", "reply", "ticket reply", "add comment"],
+      "endpoint": {
+        "method": "PUT",
+        "path": "/tickets/{ticket_id}.json",
+        "params": {
+          "ticket_id": { "type": "integer", "required": true, "description": "Ticket ID" },
+          "ticket": { "type": "object", "required": true, "description": "Object with comment containing body and public fields" }
+        }
+      }
+    },
+    {
+      "id": "list_organizations",
+      "name": "List Organizations",
+      "description": "List all organizations.",
+      "semantic_tags": ["organizations", "companies", "accounts"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/organizations.json",
+        "params": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+    "provider": "browserless",
+    "name": "Browserless",
+    "description": "Headless Chrome browser automation as a service for scraping and PDF generation",
+    "base_url": "https://chrome.browserless.io",
+    "auth": {
+        "type": "api_key",
+        "header": "Authorization",
+        "prefix": "Basic"
+    },
+    "capabilities": [
+        {
+            "id": "get_content",
+            "name": "Get Page Content",
+            "description": "Retrieve fully rendered HTML content after JavaScript execution",
+            "semantic_tags": [
+                "html",
+                "content",
+                "render",
+                "page",
+                "browser"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/content",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to navigate to"
+                    },
+                    "waitFor": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Milliseconds to wait after page load"
+                    }
+                }
+            }
+        },
+        {
+            "id": "take_screenshot",
+            "name": "Take Screenshot",
+            "description": "Capture a PNG screenshot of any webpage",
+            "semantic_tags": [
+                "screenshot",
+                "png",
+                "capture",
+                "visual",
+                "webpage"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/screenshot",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to screenshot"
+                    },
+                    "options": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Puppeteer screenshot options"
+                    }
+                }
+            }
+        },
+        {
+            "id": "generate_pdf",
+            "name": "Generate PDF",
+            "description": "Generate a PDF document from any webpage URL",
+            "semantic_tags": [
+                "pdf",
+                "generate",
+                "document",
+                "convert",
+                "page"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/pdf",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to convert to PDF"
+                    },
+                    "options": {
+                        "type": "object",
+                        "required": false,
+                        "description": "PDF generation options"
+                    }
+                }
+            }
+        },
+        {
+            "id": "run_function",
+            "name": "Run Puppeteer Function",
+            "description": "Execute custom Puppeteer code on the remote headless browser",
+            "semantic_tags": [
+                "puppeteer",
+                "automation",
+                "execute",
+                "browser",
+                "script"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/function",
+                "params": {
+                    "code": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Puppeteer function code to execute"
+                    },
+                    "context": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Variables to pass to the function"
+                    }
+                }
+            }
+        }
+    ]
+}

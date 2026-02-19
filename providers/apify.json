@@ -1,0 +1,120 @@
+{
+    "provider": "apify",
+    "name": "Apify",
+    "description": "Web scraping and automation platform with thousands of pre-built actors",
+    "base_url": "https://api.apify.com/v2",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "run_actor",
+            "name": "Run Actor",
+            "description": "Start an Apify actor (pre-built scraper or automation tool)",
+            "semantic_tags": [
+                "actor",
+                "run",
+                "scraper",
+                "automation",
+                "crawl"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/acts/{actorId}/runs",
+                "params": {
+                    "actorId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Actor ID or username/actor-name"
+                    },
+                    "input": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Input configuration for the actor"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_dataset",
+            "name": "Get Dataset Items",
+            "description": "Retrieve scraped data items from a dataset produced by an actor run",
+            "semantic_tags": [
+                "dataset",
+                "results",
+                "data",
+                "items",
+                "output"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/datasets/{datasetId}/items",
+                "params": {
+                    "datasetId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Dataset ID"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max items to return"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_run",
+            "name": "Get Run Status",
+            "description": "Check the execution status and results of an actor run",
+            "semantic_tags": [
+                "status",
+                "run",
+                "check",
+                "progress",
+                "monitor"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/actor-runs/{runId}",
+                "params": {
+                    "runId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Run ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "kv_get",
+            "name": "Get Key-Value Store Record",
+            "description": "Retrieve a record from an Apify key-value store",
+            "semantic_tags": [
+                "storage",
+                "key-value",
+                "record",
+                "retrieve",
+                "store"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/key-value-stores/{storeId}/records/{key}",
+                "params": {
+                    "storeId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Store ID"
+                    },
+                    "key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Record key"
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -23,14 +23,32 @@
       "id": "search",
       "name": "Search",
       "description": "Search for pages, databases, or content in Notion",
-      "semantic_tags": ["search", "find", "query", "pages", "databases"],
+      "semantic_tags": [
+        "search",
+        "find",
+        "query",
+        "pages",
+        "databases"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/search",
         "params": {
-          "query": {"type": "string", "required": false, "description": "Search query text"},
-          "filter": {"type": "object", "required": false, "description": "Filter by object type (page or database)"},
-          "page_size": {"type": "integer", "required": false, "description": "Number of results"}
+          "query": {
+            "type": "string",
+            "required": false,
+            "description": "Search query text"
+          },
+          "filter": {
+            "type": "object",
+            "required": false,
+            "description": "Filter by object type (page or database)"
+          },
+          "page_size": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of results"
+          }
         }
       }
     },
@@ -38,12 +56,21 @@
       "id": "get_page",
       "name": "Get Page",
       "description": "Retrieve a page by its ID",
-      "semantic_tags": ["page", "get", "retrieve", "fetch"],
+      "semantic_tags": [
+        "page",
+        "get",
+        "retrieve",
+        "fetch"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/pages/{page_id}",
         "params": {
-          "page_id": {"type": "string", "required": true, "description": "Page ID"}
+          "page_id": {
+            "type": "string",
+            "required": true,
+            "description": "Page ID"
+          }
         }
       }
     },
@@ -51,14 +78,32 @@
       "id": "create_page",
       "name": "Create Page",
       "description": "Create a new page in a database or as a child of another page",
-      "semantic_tags": ["create", "new", "page", "add", "note"],
+      "semantic_tags": [
+        "create",
+        "new",
+        "page",
+        "add",
+        "note"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/pages",
         "params": {
-          "parent": {"type": "object", "required": true, "description": "Parent database or page"},
-          "properties": {"type": "object", "required": true, "description": "Page properties"},
-          "children": {"type": "array", "required": false, "description": "Page content blocks"}
+          "parent": {
+            "type": "object",
+            "required": true,
+            "description": "Parent database or page"
+          },
+          "properties": {
+            "type": "object",
+            "required": true,
+            "description": "Page properties"
+          },
+          "children": {
+            "type": "array",
+            "required": false,
+            "description": "Page content blocks"
+          }
         }
       }
     },
@@ -66,13 +111,26 @@
       "id": "update_page",
       "name": "Update Page",
       "description": "Update page properties",
-      "semantic_tags": ["update", "edit", "modify", "page"],
+      "semantic_tags": [
+        "update",
+        "edit",
+        "modify",
+        "page"
+      ],
       "endpoint": {
         "method": "PATCH",
         "path": "/pages/{page_id}",
         "params": {
-          "page_id": {"type": "string", "required": true, "description": "Page ID"},
-          "properties": {"type": "object", "required": true, "description": "Properties to update"}
+          "page_id": {
+            "type": "string",
+            "required": true,
+            "description": "Page ID"
+          },
+          "properties": {
+            "type": "object",
+            "required": true,
+            "description": "Properties to update"
+          }
         }
       }
     },
@@ -80,15 +138,38 @@
       "id": "query_database",
       "name": "Query Database",
       "description": "Query a database with filters and sorts",
-      "semantic_tags": ["database", "query", "filter", "list", "table", "entries"],
+      "semantic_tags": [
+        "database",
+        "query",
+        "filter",
+        "list",
+        "table",
+        "entries"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/databases/{database_id}/query",
         "params": {
-          "database_id": {"type": "string", "required": true, "description": "Database ID"},
-          "filter": {"type": "object", "required": false, "description": "Filter conditions"},
-          "sorts": {"type": "array", "required": false, "description": "Sort order"},
-          "page_size": {"type": "integer", "required": false, "description": "Number of results"}
+          "database_id": {
+            "type": "string",
+            "required": true,
+            "description": "Database ID"
+          },
+          "filter": {
+            "type": "object",
+            "required": false,
+            "description": "Filter conditions"
+          },
+          "sorts": {
+            "type": "array",
+            "required": false,
+            "description": "Sort order"
+          },
+          "page_size": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of results"
+          }
         }
       }
     },
@@ -96,12 +177,21 @@
       "id": "get_database",
       "name": "Get Database",
       "description": "Retrieve database schema and properties",
-      "semantic_tags": ["database", "schema", "get", "properties"],
+      "semantic_tags": [
+        "database",
+        "schema",
+        "get",
+        "properties"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/databases/{database_id}",
         "params": {
-          "database_id": {"type": "string", "required": true, "description": "Database ID"}
+          "database_id": {
+            "type": "string",
+            "required": true,
+            "description": "Database ID"
+          }
         }
       }
     },
@@ -109,12 +199,22 @@
       "id": "list_users",
       "name": "List Users",
       "description": "List all users in the workspace",
-      "semantic_tags": ["users", "members", "workspace", "people", "team"],
+      "semantic_tags": [
+        "users",
+        "members",
+        "workspace",
+        "people",
+        "team"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/users",
         "params": {
-          "page_size": {"type": "integer", "required": false, "description": "Number of results"}
+          "page_size": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of results"
+          }
         }
       }
     },
@@ -122,13 +222,26 @@
       "id": "get_block_children",
       "name": "Get Block Children",
       "description": "Get content blocks within a page or block",
-      "semantic_tags": ["content", "blocks", "children", "page content"],
+      "semantic_tags": [
+        "content",
+        "blocks",
+        "children",
+        "page content"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/blocks/{block_id}/children",
         "params": {
-          "block_id": {"type": "string", "required": true, "description": "Block or page ID"},
-          "page_size": {"type": "integer", "required": false, "description": "Number of results"}
+          "block_id": {
+            "type": "string",
+            "required": true,
+            "description": "Block or page ID"
+          },
+          "page_size": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of results"
+          }
         }
       }
     },
@@ -136,13 +249,27 @@
       "id": "append_blocks",
       "name": "Append Blocks",
       "description": "Add content blocks to a page",
-      "semantic_tags": ["add", "append", "content", "write", "blocks"],
+      "semantic_tags": [
+        "add",
+        "append",
+        "content",
+        "write",
+        "blocks"
+      ],
       "endpoint": {
         "method": "PATCH",
         "path": "/blocks/{block_id}/children",
         "params": {
-          "block_id": {"type": "string", "required": true, "description": "Page or block ID"},
-          "children": {"type": "array", "required": true, "description": "Blocks to append"}
+          "block_id": {
+            "type": "string",
+            "required": true,
+            "description": "Page or block ID"
+          },
+          "children": {
+            "type": "array",
+            "required": true,
+            "description": "Blocks to append"
+          }
         }
       }
     }
@@ -160,5 +287,6 @@
       "data_field": "results",
       "pagination_field": "next_cursor"
     }
-  }
+  },
+  "auth_setup_url": "https://www.notion.so/my-integrations"
 }

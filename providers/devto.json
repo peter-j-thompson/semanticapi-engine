@@ -1,0 +1,120 @@
+{
+    "provider": "devto",
+    "name": "Dev.to",
+    "description": "Developer community blogging platform API",
+    "base_url": "https://dev.to/api",
+    "auth": {
+        "type": "api_key",
+        "header": "api-key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "list_articles",
+            "name": "List Articles",
+            "description": "List published articles with filtering",
+            "semantic_tags": [
+                "articles",
+                "list",
+                "blog",
+                "dev",
+                "content"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/articles",
+                "params": {
+                    "tag": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Filter by tag"
+                    },
+                    "username": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Filter by author"
+                    },
+                    "per_page": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results per page"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_article",
+            "name": "Create Article",
+            "description": "Publish a new article on Dev.to",
+            "semantic_tags": [
+                "article",
+                "create",
+                "publish",
+                "blog",
+                "write"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/articles",
+                "params": {
+                    "article": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Article {title, body_markdown, published, tags}"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_article",
+            "name": "Get Article",
+            "description": "Get a specific article by ID",
+            "semantic_tags": [
+                "article",
+                "details",
+                "read",
+                "content",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/articles/{articleId}",
+                "params": {
+                    "articleId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Article ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "update_article",
+            "name": "Update Article",
+            "description": "Update an existing article",
+            "semantic_tags": [
+                "article",
+                "update",
+                "edit",
+                "modify",
+                "blog"
+            ],
+            "endpoint": {
+                "method": "PUT",
+                "path": "/articles/{articleId}",
+                "params": {
+                    "articleId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Article ID"
+                    },
+                    "article": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Updated article data"
+                    }
+                }
+            }
+        }
+    ]
+}

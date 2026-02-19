@@ -1,0 +1,137 @@
+{
+  "provider": "anthropic",
+  "name": "Anthropic",
+  "description": "Claude AI language models for text generation, analysis, and conversation",
+  "base_url": "https://api.anthropic.com/v1",
+  "auth": {
+    "type": "api_key",
+    "header": "x-api-key"
+  },
+  "capabilities": [
+    {
+      "id": "create_message",
+      "name": "Create Message",
+      "description": "Send a message to Claude and get an AI-generated response. Supports text generation, analysis, coding, and conversation.",
+      "semantic_tags": [
+        "chat",
+        "generate text",
+        "ask claude",
+        "AI response",
+        "completion",
+        "conversation",
+        "prompt"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/messages",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model ID (e.g. claude-sonnet-4-20250514)"
+          },
+          "max_tokens": {
+            "type": "integer",
+            "required": true,
+            "description": "Maximum tokens to generate"
+          },
+          "messages": {
+            "type": "array",
+            "required": true,
+            "description": "Array of message objects with role and content"
+          }
+        }
+      }
+    },
+    {
+      "id": "count_tokens",
+      "name": "Count Tokens",
+      "description": "Count the number of tokens in a message before sending it.",
+      "semantic_tags": [
+        "tokens",
+        "count",
+        "usage",
+        "token count",
+        "estimate cost"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/messages/count_tokens",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model ID"
+          },
+          "messages": {
+            "type": "array",
+            "required": true,
+            "description": "Messages to count tokens for"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_models",
+      "name": "List Models",
+      "description": "List available Claude models.",
+      "semantic_tags": [
+        "models",
+        "available models",
+        "list models",
+        "which models"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/models",
+        "params": {}
+      }
+    },
+    {
+      "id": "create_batch",
+      "name": "Create Message Batch",
+      "description": "Create a batch of message requests for asynchronous processing at lower cost.",
+      "semantic_tags": [
+        "batch",
+        "bulk",
+        "async",
+        "batch processing",
+        "bulk messages"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/messages/batches",
+        "params": {
+          "requests": {
+            "type": "array",
+            "required": true,
+            "description": "Array of batch request objects"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_batches",
+      "name": "List Message Batches",
+      "description": "List all message batches and their processing status.",
+      "semantic_tags": [
+        "batches",
+        "batch status",
+        "list batches",
+        "batch jobs"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/messages/batches",
+        "params": {
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of batches to return"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://console.anthropic.com/settings/keys"
+}

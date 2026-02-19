@@ -47,7 +47,7 @@ DEBUG = os.environ.get("DEBUG", "false").lower() == "true"
 app = FastAPI(
     title="Semantic API Engine",
     description="Natural language interface to any API",
-    version="0.1.0",
+    version="0.2.0",
     docs_url="/docs",
     redoc_url="/redoc",
 )

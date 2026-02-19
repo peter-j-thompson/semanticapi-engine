@@ -1,0 +1,98 @@
+{
+  "provider": "freshdesk",
+  "name": "Freshdesk",
+  "description": "Customer support and helpdesk software",
+  "base_url": "https://{domain}.freshdesk.com/api/v2",
+  "auth": {
+    "type": "basic",
+    "header": "Authorization",
+    "prefix": "Basic"
+  },
+  "capabilities": [
+    {
+      "id": "create_ticket",
+      "name": "Create Ticket",
+      "description": "Create a new support ticket.",
+      "semantic_tags": ["create ticket", "new ticket", "support request"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/tickets",
+        "params": {
+          "subject": { "type": "string", "required": true, "description": "Ticket subject" },
+          "description": { "type": "string", "required": true, "description": "Ticket description (HTML)" },
+          "email": { "type": "string", "required": true, "description": "Requester email" },
+          "priority": { "type": "integer", "required": false, "description": "Priority (1=Low, 2=Medium, 3=High, 4=Urgent)" },
+          "status": { "type": "integer", "required": false, "description": "Status (2=Open, 3=Pending, 4=Resolved, 5=Closed)" }
+        }
+      }
+    },
+    {
+      "id": "list_tickets",
+      "name": "List Tickets",
+      "description": "List all tickets with optional filters.",
+      "semantic_tags": ["tickets", "list tickets", "support tickets"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/tickets",
+        "params": {
+          "filter": { "type": "string", "required": false, "description": "Predefined filter (new_and_my_open, watching, spam, deleted)" },
+          "page": { "type": "integer", "required": false, "description": "Page number" }
+        }
+      }
+    },
+    {
+      "id": "update_ticket",
+      "name": "Update Ticket",
+      "description": "Update a ticket's properties.",
+      "semantic_tags": ["update ticket", "edit ticket"],
+      "endpoint": {
+        "method": "PUT",
+        "path": "/tickets/{id}",
+        "params": {
+          "id": { "type": "integer", "required": true, "description": "Ticket ID" },
+          "status": { "type": "integer", "required": false, "description": "New status" },
+          "priority": { "type": "integer", "required": false, "description": "New priority" }
+        }
+      }
+    },
+    {
+      "id": "reply_ticket",
+      "name": "Reply to Ticket",
+      "description": "Reply to a support ticket.",
+      "semantic_tags": ["reply", "ticket reply", "respond"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/tickets/{id}/reply",
+        "params": {
+          "id": { "type": "integer", "required": true, "description": "Ticket ID" },
+          "body": { "type": "string", "required": true, "description": "Reply body (HTML)" }
+        }
+      }
+    },
+    {
+      "id": "create_contact",
+      "name": "Create Contact",
+      "description": "Create a new contact.",
+      "semantic_tags": ["create contact", "new contact", "add customer"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/contacts",
+        "params": {
+          "name": { "type": "string", "required": true, "description": "Contact name" },
+          "email": { "type": "string", "required": true, "description": "Contact email" }
+        }
+      }
+    },
+    {
+      "id": "list_agents",
+      "name": "List Agents",
+      "description": "List all support agents.",
+      "semantic_tags": ["agents", "support agents", "team"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/agents",
+        "params": {}
+      }
+    }
+  ]
+}

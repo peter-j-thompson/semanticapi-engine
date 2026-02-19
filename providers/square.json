@@ -1,0 +1,170 @@
+{
+  "provider": "square",
+  "name": "Square",
+  "description": "Payment processing, point-of-sale, and business management platform",
+  "base_url": "https://connect.squareup.com/v2",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "create_payment",
+      "name": "Create Payment",
+      "description": "Process a payment using a card or other payment source.",
+      "semantic_tags": [
+        "payment",
+        "charge",
+        "process payment",
+        "card payment",
+        "POS"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/payments",
+        "params": {
+          "source_id": {
+            "type": "string",
+            "required": true,
+            "description": "Payment source (card nonce or ID)"
+          },
+          "amount_money": {
+            "type": "object",
+            "required": true,
+            "description": "Amount with currency"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "required": true,
+            "description": "Unique key to prevent duplicates"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_payments",
+      "name": "List Payments",
+      "description": "List recent payments.",
+      "semantic_tags": [
+        "payments",
+        "transactions",
+        "payment history",
+        "list payments"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/payments",
+        "params": {
+          "begin_time": {
+            "type": "string",
+            "required": false,
+            "description": "Start time filter"
+          },
+          "end_time": {
+            "type": "string",
+            "required": false,
+            "description": "End time filter"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_customers",
+      "name": "List Customers",
+      "description": "List customers in your Square directory.",
+      "semantic_tags": [
+        "customers",
+        "directory",
+        "list customers",
+        "buyer list"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/customers",
+        "params": {}
+      }
+    },
+    {
+      "id": "create_customer",
+      "name": "Create Customer",
+      "description": "Add a new customer to your directory.",
+      "semantic_tags": [
+        "add customer",
+        "new customer",
+        "create customer"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/customers",
+        "params": {
+          "given_name": {
+            "type": "string",
+            "required": false,
+            "description": "First name"
+          },
+          "family_name": {
+            "type": "string",
+            "required": false,
+            "description": "Last name"
+          },
+          "email_address": {
+            "type": "string",
+            "required": false,
+            "description": "Email"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_catalog",
+      "name": "List Catalog",
+      "description": "List items in your product catalog.",
+      "semantic_tags": [
+        "catalog",
+        "products",
+        "items",
+        "inventory",
+        "menu"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/catalog/list",
+        "params": {
+          "types": {
+            "type": "string",
+            "required": false,
+            "description": "Object types to list (ITEM, CATEGORY, etc.)"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_invoice",
+      "name": "Create Invoice",
+      "description": "Create an invoice to bill a customer.",
+      "semantic_tags": [
+        "invoice",
+        "bill",
+        "create invoice",
+        "billing"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/invoices",
+        "params": {
+          "invoice": {
+            "type": "object",
+            "required": true,
+            "description": "Invoice details"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "required": true,
+            "description": "Unique key"
+          }
+        }
+      }
+    }
+  ]
+}

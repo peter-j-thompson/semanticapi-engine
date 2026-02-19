@@ -1,0 +1,125 @@
+{
+    "provider": "runway",
+    "name": "Runway",
+    "description": "AI creative tools API for video generation and editing",
+    "base_url": "https://api.runwayml.com/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "generate_video",
+            "name": "Generate Video",
+            "description": "Generate a video from a text prompt or image",
+            "semantic_tags": [
+                "video",
+                "generate",
+                "ai",
+                "creative",
+                "motion"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/image_to_video",
+                "params": {
+                    "promptImage": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Input image URL"
+                    },
+                    "promptText": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Text prompt"
+                    },
+                    "model": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Model version"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_task",
+            "name": "Get Task Status",
+            "description": "Check the status of a generation task",
+            "semantic_tags": [
+                "task",
+                "status",
+                "check",
+                "progress",
+                "generation"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/tasks/{taskId}",
+                "params": {
+                    "taskId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Task ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "remove_background",
+            "name": "Remove Background",
+            "description": "Remove the background from an image using AI",
+            "semantic_tags": [
+                "background",
+                "remove",
+                "image",
+                "edit",
+                "segment"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/remove_background",
+                "params": {
+                    "image": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Image URL"
+                    }
+                }
+            }
+        },
+        {
+            "id": "inpaint",
+            "name": "Inpaint Image",
+            "description": "Fill in or edit specific areas of an image using AI",
+            "semantic_tags": [
+                "inpaint",
+                "edit",
+                "image",
+                "fill",
+                "creative"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/inpaint",
+                "params": {
+                    "image": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Image URL"
+                    },
+                    "mask": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Mask image URL"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Edit prompt"
+                    }
+                }
+            }
+        }
+    ]
+}

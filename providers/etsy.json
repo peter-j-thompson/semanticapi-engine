@@ -1,0 +1,130 @@
+{
+    "provider": "etsy",
+    "name": "Etsy",
+    "description": "Handmade and vintage marketplace API for managing shops and listings",
+    "base_url": "https://openapi.etsy.com/v3",
+    "auth": {
+        "type": "api_key",
+        "header": "x-api-key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "get_listings",
+            "name": "Get Listings",
+            "description": "Get active listings for a shop",
+            "semantic_tags": [
+                "listings",
+                "shop",
+                "products",
+                "handmade",
+                "marketplace"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/application/shops/{shopId}/listings/active",
+                "params": {
+                    "shopId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Shop ID"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results limit"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_listing",
+            "name": "Create Listing",
+            "description": "Create a new listing in a shop",
+            "semantic_tags": [
+                "listing",
+                "create",
+                "product",
+                "sell",
+                "add"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/application/shops/{shopId}/listings",
+                "params": {
+                    "shopId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Shop ID"
+                    },
+                    "title": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Listing title"
+                    },
+                    "price": {
+                        "type": "number",
+                        "required": true,
+                        "description": "Price"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Stock quantity"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_shop",
+            "name": "Get Shop",
+            "description": "Get details about an Etsy shop",
+            "semantic_tags": [
+                "shop",
+                "details",
+                "info",
+                "store",
+                "profile"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/application/shops/{shopId}",
+                "params": {
+                    "shopId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Shop ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_receipts",
+            "name": "Get Receipts",
+            "description": "Get order receipts for a shop",
+            "semantic_tags": [
+                "receipts",
+                "orders",
+                "sales",
+                "transactions",
+                "income"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/application/shops/{shopId}/receipts",
+                "params": {
+                    "shopId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Shop ID"
+                    },
+                    "was_shipped": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Filter shipped status"
+                    }
+                }
+            }
+        }
+    ]
+}

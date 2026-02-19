@@ -1,0 +1,109 @@
+{
+    "provider": "gumroad",
+    "name": "Gumroad",
+    "description": "Digital product selling platform API for creators",
+    "base_url": "https://api.gumroad.com/v2",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_products",
+            "name": "List Products",
+            "description": "List all products for the authenticated user",
+            "semantic_tags": [
+                "products",
+                "list",
+                "digital",
+                "creator",
+                "inventory"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/products",
+                "params": {}
+            }
+        },
+        {
+            "id": "get_product",
+            "name": "Get Product",
+            "description": "Get details of a specific product",
+            "semantic_tags": [
+                "product",
+                "details",
+                "info",
+                "digital",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/products/{productId}",
+                "params": {
+                    "productId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Product ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_sales",
+            "name": "List Sales",
+            "description": "List all sales with date filtering",
+            "semantic_tags": [
+                "sales",
+                "list",
+                "transactions",
+                "revenue",
+                "history"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/sales",
+                "params": {
+                    "after": {
+                        "type": "string",
+                        "required": false,
+                        "description": "After date"
+                    },
+                    "before": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Before date"
+                    }
+                }
+            }
+        },
+        {
+            "id": "verify_license",
+            "name": "Verify License",
+            "description": "Verify a product license key",
+            "semantic_tags": [
+                "license",
+                "verify",
+                "validate",
+                "key",
+                "check"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/licenses/verify",
+                "params": {
+                    "product_id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Product ID"
+                    },
+                    "license_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "License key to verify"
+                    }
+                }
+            }
+        }
+    ]
+}

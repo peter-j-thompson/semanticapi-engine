@@ -1,0 +1,110 @@
+{
+    "provider": "weaviate",
+    "name": "Weaviate",
+    "description": "Open-source vector database with built-in ML model inference and semantic search",
+    "base_url": "https://your-cluster.weaviate.network/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "create_object",
+            "name": "Create Object",
+            "description": "Create a new data object in a Weaviate class with auto-vectorization",
+            "semantic_tags": [
+                "create",
+                "object",
+                "insert",
+                "store",
+                "data"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/objects",
+                "params": {
+                    "class": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Class name"
+                    },
+                    "properties": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Object properties"
+                    }
+                }
+            }
+        },
+        {
+            "id": "graphql",
+            "name": "GraphQL Query",
+            "description": "Query objects using GraphQL with vector and keyword search",
+            "semantic_tags": [
+                "query",
+                "graphql",
+                "search",
+                "vector",
+                "semantic"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/graphql",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "GraphQL query string"
+                    }
+                }
+            }
+        },
+        {
+            "id": "batch_create",
+            "name": "Batch Create",
+            "description": "Create multiple objects in a single batch request",
+            "semantic_tags": [
+                "batch",
+                "create",
+                "bulk",
+                "import",
+                "objects"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/batch/objects",
+                "params": {
+                    "objects": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Array of objects to create"
+                    }
+                }
+            }
+        },
+        {
+            "id": "near_text",
+            "name": "Near Text Search",
+            "description": "Semantic similarity search using natural language text",
+            "semantic_tags": [
+                "semantic",
+                "search",
+                "text",
+                "natural",
+                "similarity"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/graphql",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "GraphQL nearText query"
+                    }
+                }
+            }
+        }
+    ]
+}

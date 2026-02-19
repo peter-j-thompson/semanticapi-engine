@@ -1,0 +1,120 @@
+{
+    "provider": "assemblyai",
+    "name": "AssemblyAI",
+    "description": "AI speech-to-text API with advanced audio intelligence features",
+    "base_url": "https://api.assemblyai.com",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "transcribe",
+            "name": "Transcribe",
+            "description": "Submit audio for transcription with optional analysis",
+            "semantic_tags": [
+                "transcribe",
+                "speech",
+                "text",
+                "audio",
+                "stt"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v2/transcript",
+                "params": {
+                    "audio_url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Audio file URL"
+                    },
+                    "language_code": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Language code"
+                    },
+                    "speaker_labels": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Enable diarization"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_transcript",
+            "name": "Get Transcript",
+            "description": "Retrieve a completed transcription result",
+            "semantic_tags": [
+                "transcript",
+                "result",
+                "get",
+                "status",
+                "text"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v2/transcript/{transcriptId}",
+                "params": {
+                    "transcriptId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Transcript ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "lemur_task",
+            "name": "LeMUR Task",
+            "description": "Use LeMUR AI to answer questions about transcribed audio",
+            "semantic_tags": [
+                "lemur",
+                "ai",
+                "question",
+                "audio",
+                "intelligence"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/lemur/v3/generate/task",
+                "params": {
+                    "transcript_ids": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Transcript IDs"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Task prompt"
+                    }
+                }
+            }
+        },
+        {
+            "id": "realtime",
+            "name": "Real-Time Transcription",
+            "description": "Stream audio for real-time transcription via WebSocket",
+            "semantic_tags": [
+                "realtime",
+                "streaming",
+                "live",
+                "transcription",
+                "speech"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v2/realtime/ws",
+                "params": {
+                    "sample_rate": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Audio sample rate"
+                    }
+                }
+            }
+        }
+    ]
+}

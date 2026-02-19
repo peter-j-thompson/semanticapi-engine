@@ -1,0 +1,120 @@
+{
+    "provider": "statuspage",
+    "name": "Statuspage",
+    "description": "Public status page and incident communication platform by Atlassian",
+    "base_url": "https://api.statuspage.io/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "OAuth"
+    },
+    "capabilities": [
+        {
+            "id": "create_incident",
+            "name": "Create Incident",
+            "description": "Create a new incident on the status page",
+            "semantic_tags": [
+                "incident",
+                "create",
+                "status",
+                "outage",
+                "communicate"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/pages/{pageId}/incidents",
+                "params": {
+                    "pageId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Page ID"
+                    },
+                    "incident": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Incident details"
+                    }
+                }
+            }
+        },
+        {
+            "id": "update_incident",
+            "name": "Update Incident",
+            "description": "Post an update to an existing incident",
+            "semantic_tags": [
+                "incident",
+                "update",
+                "progress",
+                "status",
+                "communicate"
+            ],
+            "endpoint": {
+                "method": "PATCH",
+                "path": "/pages/{pageId}/incidents/{incidentId}",
+                "params": {
+                    "pageId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Page ID"
+                    },
+                    "incidentId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Incident ID"
+                    },
+                    "incident": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Update details"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_incidents",
+            "name": "List Incidents",
+            "description": "List all incidents on a status page",
+            "semantic_tags": [
+                "incidents",
+                "list",
+                "history",
+                "status",
+                "monitor"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/pages/{pageId}/incidents",
+                "params": {
+                    "pageId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Page ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_components",
+            "name": "Get Components",
+            "description": "List all monitored components and their status",
+            "semantic_tags": [
+                "components",
+                "list",
+                "status",
+                "services",
+                "health"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/pages/{pageId}/components",
+                "params": {
+                    "pageId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Page ID"
+                    }
+                }
+            }
+        }
+    ]
+}

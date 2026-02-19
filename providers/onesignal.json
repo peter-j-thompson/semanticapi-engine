@@ -1,0 +1,89 @@
+{
+  "provider": "onesignal",
+  "name": "OneSignal",
+  "description": "Push notification and in-app messaging platform",
+  "base_url": "https://onesignal.com/api/v1",
+  "auth": {
+    "type": "api_key",
+    "header": "Authorization",
+    "prefix": "Basic"
+  },
+  "capabilities": [
+    {
+      "id": "create_notification",
+      "name": "Create Notification",
+      "description": "Send a push notification to users.",
+      "semantic_tags": ["push notification", "send notification", "notify users", "mobile push"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/notifications",
+        "params": {
+          "app_id": { "type": "string", "required": true, "description": "OneSignal app ID" },
+          "included_segments": { "type": "array", "required": false, "description": "Segments to target (e.g., ['All'])" },
+          "include_player_ids": { "type": "array", "required": false, "description": "Specific player IDs to target" },
+          "contents": { "type": "object", "required": true, "description": "Notification content by language (e.g., {en: 'Hello'})" },
+          "headings": { "type": "object", "required": false, "description": "Notification title by language" }
+        }
+      }
+    },
+    {
+      "id": "view_notifications",
+      "name": "View Notifications",
+      "description": "List sent notifications.",
+      "semantic_tags": ["notifications", "notification history", "sent notifications"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/notifications",
+        "params": {
+          "app_id": { "type": "string", "required": true, "description": "App ID" },
+          "limit": { "type": "integer", "required": false, "description": "Results per page" },
+          "offset": { "type": "integer", "required": false, "description": "Pagination offset" }
+        }
+      }
+    },
+    {
+      "id": "view_devices",
+      "name": "View Devices",
+      "description": "List registered devices/players.",
+      "semantic_tags": ["devices", "players", "subscribers", "users"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/players",
+        "params": {
+          "app_id": { "type": "string", "required": true, "description": "App ID" },
+          "limit": { "type": "integer", "required": false, "description": "Results per page" },
+          "offset": { "type": "integer", "required": false, "description": "Pagination offset" }
+        }
+      }
+    },
+    {
+      "id": "cancel_notification",
+      "name": "Cancel Notification",
+      "description": "Cancel a scheduled notification.",
+      "semantic_tags": ["cancel notification", "stop notification"],
+      "endpoint": {
+        "method": "DELETE",
+        "path": "/notifications/{id}",
+        "params": {
+          "id": { "type": "string", "required": true, "description": "Notification ID" },
+          "app_id": { "type": "string", "required": true, "description": "App ID" }
+        }
+      }
+    },
+    {
+      "id": "create_segment",
+      "name": "Create Segment",
+      "description": "Create a user segment.",
+      "semantic_tags": ["create segment", "user segment", "audience"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/apps/{app_id}/segments",
+        "params": {
+          "app_id": { "type": "string", "required": true, "description": "App ID" },
+          "name": { "type": "string", "required": true, "description": "Segment name" },
+          "filters": { "type": "array", "required": true, "description": "Segment filter rules" }
+        }
+      }
+    }
+  ]
+}

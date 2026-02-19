@@ -1,0 +1,159 @@
+{
+  "provider": "clickup",
+  "name": "ClickUp",
+  "description": "All-in-one productivity and project management platform",
+  "base_url": "https://api.clickup.com/api/v2",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization"
+  },
+  "capabilities": [
+    {
+      "id": "list_tasks",
+      "name": "List Tasks",
+      "description": "Get tasks in a list.",
+      "semantic_tags": [
+        "tasks",
+        "list tasks",
+        "to-dos",
+        "assignments"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/list/{list_id}/task",
+        "params": {
+          "list_id": {
+            "type": "string",
+            "required": true,
+            "description": "List ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_task",
+      "name": "Create Task",
+      "description": "Create a new task in a list.",
+      "semantic_tags": [
+        "create task",
+        "new task",
+        "add task"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/list/{list_id}/task",
+        "params": {
+          "list_id": {
+            "type": "string",
+            "required": true,
+            "description": "List ID"
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Task name"
+          },
+          "description": {
+            "type": "string",
+            "required": false,
+            "description": "Task description"
+          },
+          "priority": {
+            "type": "integer",
+            "required": false,
+            "description": "Priority (1=urgent, 4=low)"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_spaces",
+      "name": "Get Spaces",
+      "description": "Get all spaces in a workspace.",
+      "semantic_tags": [
+        "spaces",
+        "workspace spaces",
+        "list spaces"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/team/{team_id}/space",
+        "params": {
+          "team_id": {
+            "type": "string",
+            "required": true,
+            "description": "Team/workspace ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_teams",
+      "name": "Get Workspaces",
+      "description": "Get all workspaces (teams) for the user.",
+      "semantic_tags": [
+        "workspaces",
+        "teams",
+        "list workspaces"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/team",
+        "params": {}
+      }
+    },
+    {
+      "id": "update_task",
+      "name": "Update Task",
+      "description": "Update a task's details or status.",
+      "semantic_tags": [
+        "update task",
+        "edit task",
+        "change status",
+        "complete task"
+      ],
+      "endpoint": {
+        "method": "PUT",
+        "path": "/task/{task_id}",
+        "params": {
+          "task_id": {
+            "type": "string",
+            "required": true,
+            "description": "Task ID"
+          },
+          "name": {
+            "type": "string",
+            "required": false,
+            "description": "New name"
+          },
+          "status": {
+            "type": "string",
+            "required": false,
+            "description": "New status"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_task",
+      "name": "Get Task",
+      "description": "Get details of a specific task.",
+      "semantic_tags": [
+        "task details",
+        "get task",
+        "task info"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/task/{task_id}",
+        "params": {
+          "task_id": {
+            "type": "string",
+            "required": true,
+            "description": "Task ID"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -246,6 +246,26 @@ class IntentParser:
         ),
         r"transcribe.*?(?:audio|recording|file)": ("openai", "transcribe"),
         r"embed(?:ding)?.*?['\"](.+)['\"]": ("openai", "create_embedding"),
+        r"(?:ask|tell|chat|prompt|complete|write|create|explain).*?(?:openai|gpt|chatgpt|ai)\s*[:\-]?\s*(.+)": (
+            "openai",
+            "create_completion",
+        ),
+        r"(?:openai|gpt|chatgpt)\s+(?:ask|tell|write|explain|create)\s*[:\-]?\s*(.+)": (
+            "openai",
+            "create_completion",
+        ),
+        r"^(?:generate|write|create|make)\s+(?:a\s+)?(?:list|step.?by.?step|guide|summary|outline|essay|article|story|poem|code|script|recipe|plan)": (
+            "openai",
+            "create_completion",
+        ),
+        r"^(?:explain|describe|summarize|translate|rewrite|improve|edit)\s+": (
+            "openai",
+            "create_completion",
+        ),
+        r"^(?:what is|what are|how to|how do|why does|can you|could you|please)\s+": (
+            "openai",
+            "create_completion",
+        ),
     }
 
     def __init__(self, llm_client: Optional[Callable] = None):
@@ -350,6 +370,44 @@ Respond in JSON:
             action = "list"
         elif any(kw in query_lower for kw in ["send", "create", "make"]):
             action = "create"
+
+        # Detect SMS/text messaging — route to Twilio
+        sms_keywords = ["sms", "text message", "send text", "send message"]
+        if not provider and any(kw in query_lower for kw in sms_keywords):
+            provider = "twilio"
+            action = "send_sms"
+            phone_match = re.search(r'(\+?[\d\-\s]{10,})', query)
+            entities = {}
+            if phone_match:
+                entities["to"] = phone_match.group(1).strip()
+            return ParsedIntent(
+                intent_type=intent_type,
+                provider=provider,
+                action=action,
+                entities=entities,
+                filters={},
+                output_hints={},
+                confidence=0.7,
+                raw_query=query,
+            )
+
+        # If no provider detected but looks like AI/text generation, route to OpenAI
+        generation_keywords = [
+            "generate", "write", "create", "make", "explain", "describe",
+            "summarize", "translate", "what is", "how to", "list of",
+            "step by step", "help me", "can you", "please", "tell me",
+        ]
+        if not provider and any(kw in query_lower for kw in generation_keywords):
+            return ParsedIntent(
+                intent_type=intent_type,
+                provider="openai",
+                action="create_completion",
+                entities={"prompt": query},
+                filters={},
+                output_hints={},
+                confidence=0.6,
+                raw_query=query,
+            )
 
         return ParsedIntent(
             intent_type=intent_type,
@@ -545,6 +603,54 @@ class APIRegistry:
                             "type": "string",
                             "required": True,
                             "description": "Image description",
+                        },
+                        "n": {
+                            "type": "int",
+                            "required": False,
+                            "description": "Number of images",
+                        },
+                        "size": {
+                            "type": "string",
+                            "required": False,
+                            "description": "Image size",
+                        },
+                    },
+                ),
+                APIEndpoint(
+                    provider="openai",
+                    name="create_embedding",
+                    method="POST",
+                    path="/embeddings",
+                    description="Create text embeddings",
+                    parameters={
+                        "model": {
+                            "type": "string",
+                            "required": True,
+                            "description": "Model ID",
+                        },
+                        "input": {
+                            "type": "string",
+                            "required": True,
+                            "description": "Text to embed",
+                        },
+                    },
+                ),
+                APIEndpoint(
+                    provider="openai",
+                    name="transcribe",
+                    method="POST",
+                    path="/audio/transcriptions",
+                    description="Transcribe audio to text",
+                    parameters={
+                        "file": {
+                            "type": "file",
+                            "required": True,
+                            "description": "Audio file",
+                        },
+                        "model": {
+                            "type": "string",
+                            "required": True,
+                            "description": "Model ID",
                         },
                     },
                 ),
@@ -1028,6 +1134,8 @@ class SemanticAPI:
             if endpoint.name == "create_image":
                 params.setdefault("n", 1)
                 params.setdefault("size", "1024x1024")
+            elif endpoint.name == "create_embedding":
+                params.setdefault("model", "text-embedding-ada-002")
             elif endpoint.name == "create_completion":
                 params.setdefault("model", "gpt-4o-mini")
                 prompt = params.pop("prompt", None) or intent.raw_query

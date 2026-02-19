@@ -1,0 +1,135 @@
+{
+    "provider": "wolfram-alpha",
+    "name": "Wolfram Alpha",
+    "description": "Computational knowledge engine for math, science, and factual queries",
+    "base_url": "https://api.wolframalpha.com",
+    "auth": {
+        "type": "api_key",
+        "header": "appid",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "query",
+            "name": "Full Query",
+            "description": "Get complete computational results for any factual or mathematical query",
+            "semantic_tags": [
+                "compute",
+                "math",
+                "science",
+                "knowledge",
+                "calculate"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v2/query",
+                "params": {
+                    "input": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Query input"
+                    },
+                    "appid": {
+                        "type": "string",
+                        "required": true,
+                        "description": "App ID"
+                    },
+                    "format": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Output format"
+                    }
+                }
+            }
+        },
+        {
+            "id": "short_answer",
+            "name": "Short Answer",
+            "description": "Get a brief one-line text answer to a factual question",
+            "semantic_tags": [
+                "answer",
+                "short",
+                "factual",
+                "quick",
+                "text"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v1/result",
+                "params": {
+                    "i": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Question"
+                    },
+                    "appid": {
+                        "type": "string",
+                        "required": true,
+                        "description": "App ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "spoken",
+            "name": "Spoken Answer",
+            "description": "Get a natural language spoken answer suitable for voice assistants",
+            "semantic_tags": [
+                "spoken",
+                "voice",
+                "natural",
+                "language",
+                "answer"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v1/spoken",
+                "params": {
+                    "i": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Question"
+                    },
+                    "appid": {
+                        "type": "string",
+                        "required": true,
+                        "description": "App ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "conversation",
+            "name": "Conversation",
+            "description": "Multi-turn conversational interaction with Wolfram Alpha",
+            "semantic_tags": [
+                "conversation",
+                "chat",
+                "multi-turn",
+                "interactive",
+                "dialog"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v1/conversation.jsp",
+                "params": {
+                    "i": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Message"
+                    },
+                    "appid": {
+                        "type": "string",
+                        "required": true,
+                        "description": "App ID"
+                    },
+                    "conversationid": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Conversation ID for continuation"
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,99 @@
+{
+    "provider": "onedrive",
+    "name": "OneDrive",
+    "description": "Microsoft OneDrive file storage and sharing via Microsoft Graph API",
+    "base_url": "https://graph.microsoft.com/v1.0",
+    "auth": {
+        "type": "oauth2",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_files",
+            "name": "List Files",
+            "description": "List files and folders in OneDrive root or a specific folder",
+            "semantic_tags": [
+                "list",
+                "files",
+                "folder",
+                "browse",
+                "onedrive"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/me/drive/root/children",
+                "params": {}
+            }
+        },
+        {
+            "id": "upload",
+            "name": "Upload File",
+            "description": "Upload a file to OneDrive at a specified path",
+            "semantic_tags": [
+                "upload",
+                "file",
+                "store",
+                "create",
+                "onedrive"
+            ],
+            "endpoint": {
+                "method": "PUT",
+                "path": "/me/drive/root:/{filePath}:/content",
+                "params": {
+                    "filePath": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File path in OneDrive"
+                    }
+                }
+            }
+        },
+        {
+            "id": "download",
+            "name": "Download File",
+            "description": "Download a file from OneDrive by item ID",
+            "semantic_tags": [
+                "download",
+                "file",
+                "get",
+                "retrieve",
+                "content"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/me/drive/items/{itemId}/content",
+                "params": {
+                    "itemId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Item ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search",
+            "name": "Search Files",
+            "description": "Search for files across OneDrive",
+            "semantic_tags": [
+                "search",
+                "find",
+                "files",
+                "query",
+                "onedrive"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/me/drive/root/search(q='{query}')",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    }
+                }
+            }
+        }
+    ]
+}

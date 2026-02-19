@@ -1,0 +1,137 @@
+{
+    "provider": "digitalocean",
+    "name": "DigitalOcean",
+    "description": "Cloud infrastructure API for droplets, Kubernetes, databases, and apps",
+    "base_url": "https://api.digitalocean.com/v2",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_droplets",
+            "name": "List Droplets",
+            "description": "List all virtual machine droplets",
+            "semantic_tags": [
+                "droplets",
+                "list",
+                "servers",
+                "vms",
+                "inventory"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/droplets",
+                "params": {
+                    "per_page": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results per page"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_droplet",
+            "name": "Create Droplet",
+            "description": "Create a new virtual machine droplet",
+            "semantic_tags": [
+                "create",
+                "droplet",
+                "server",
+                "vm",
+                "provision"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/droplets",
+                "params": {
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Droplet name"
+                    },
+                    "region": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Region slug"
+                    },
+                    "size": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Size slug"
+                    },
+                    "image": {
+                        "type": "string",
+                        "required": true,
+                        "description": "OS image slug or ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_app",
+            "name": "Create App",
+            "description": "Create an App Platform application",
+            "semantic_tags": [
+                "app",
+                "create",
+                "platform",
+                "deploy",
+                "paas"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/apps",
+                "params": {
+                    "spec": {
+                        "type": "object",
+                        "required": true,
+                        "description": "App specification"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_domains",
+            "name": "List Domains",
+            "description": "List all DNS domains in the account",
+            "semantic_tags": [
+                "domains",
+                "list",
+                "dns",
+                "manage",
+                "networking"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/domains",
+                "params": {}
+            }
+        },
+        {
+            "id": "delete_droplet",
+            "name": "Delete Droplet",
+            "description": "Destroy and delete a droplet permanently",
+            "semantic_tags": [
+                "delete",
+                "droplet",
+                "destroy",
+                "remove",
+                "server"
+            ],
+            "endpoint": {
+                "method": "DELETE",
+                "path": "/droplets/{dropletId}",
+                "params": {
+                    "dropletId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Droplet ID"
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,128 @@
+{
+  "provider": "monday",
+  "name": "Monday.com",
+  "description": "Work operating system for team collaboration and project management",
+  "base_url": "https://api.monday.com/v2",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_boards",
+      "name": "List Boards",
+      "description": "List all boards in the workspace.",
+      "semantic_tags": [
+        "boards",
+        "list boards",
+        "projects",
+        "workspaces"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL query for boards"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_items",
+      "name": "List Items",
+      "description": "List items on a board.",
+      "semantic_tags": [
+        "items",
+        "tasks",
+        "rows",
+        "board items"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL query for items on a board"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_item",
+      "name": "Create Item",
+      "description": "Create a new item on a board.",
+      "semantic_tags": [
+        "create item",
+        "new item",
+        "add task",
+        "new row"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL mutation for create_item"
+          },
+          "variables": {
+            "type": "object",
+            "required": false,
+            "description": "Variables for the mutation"
+          }
+        }
+      }
+    },
+    {
+      "id": "update_item",
+      "name": "Update Item",
+      "description": "Update column values of an item.",
+      "semantic_tags": [
+        "update item",
+        "change value",
+        "edit item",
+        "update status"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL mutation for change_column_value"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_me",
+      "name": "Get Current User",
+      "description": "Get the authenticated user's info.",
+      "semantic_tags": [
+        "me",
+        "my account",
+        "user info",
+        "who am i"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL query: { me { id name email } }"
+          }
+        }
+      }
+    }
+  ]
+}

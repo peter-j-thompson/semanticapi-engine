@@ -1,0 +1,165 @@
+{
+    "provider": "etherscan",
+    "name": "Etherscan",
+    "description": "Ethereum blockchain explorer API for transactions, contracts, and analytics",
+    "base_url": "https://api.etherscan.io",
+    "auth": {
+        "type": "api_key",
+        "header": "apikey",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "get_balance",
+            "name": "Get ETH Balance",
+            "description": "Get the ETH balance of an Ethereum address",
+            "semantic_tags": [
+                "balance",
+                "eth",
+                "address",
+                "wallet",
+                "blockchain"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/api",
+                "params": {
+                    "module": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to account"
+                    },
+                    "action": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to balance"
+                    },
+                    "address": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Ethereum address"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_transactions",
+            "name": "Get Transactions",
+            "description": "Get transaction list for an Ethereum address",
+            "semantic_tags": [
+                "transactions",
+                "list",
+                "history",
+                "address",
+                "ethereum"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/api",
+                "params": {
+                    "module": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to account"
+                    },
+                    "action": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to txlist"
+                    },
+                    "address": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Ethereum address"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "startblock": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Start block"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_contract_abi",
+            "name": "Get Contract ABI",
+            "description": "Get the ABI for a verified smart contract",
+            "semantic_tags": [
+                "contract",
+                "abi",
+                "verified",
+                "source",
+                "interface"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/api",
+                "params": {
+                    "module": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to contract"
+                    },
+                    "action": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to getabi"
+                    },
+                    "address": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Contract address"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "gas_tracker",
+            "name": "Gas Tracker",
+            "description": "Get current Ethereum gas prices",
+            "semantic_tags": [
+                "gas",
+                "price",
+                "tracker",
+                "fee",
+                "ethereum"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/api",
+                "params": {
+                    "module": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to gastracker"
+                    },
+                    "action": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to gasoracle"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        }
+    ]
+}

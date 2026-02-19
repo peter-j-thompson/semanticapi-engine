@@ -1,0 +1,109 @@
+{
+    "provider": "modal",
+    "name": "Modal",
+    "description": "Serverless cloud platform for running AI/ML workloads and functions",
+    "base_url": "https://api.modal.com/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "run_function",
+            "name": "Run Function",
+            "description": "Run a deployed function in the Modal cloud",
+            "semantic_tags": [
+                "run",
+                "function",
+                "serverless",
+                "compute",
+                "execute"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/apps/{appId}/functions/{functionName}",
+                "params": {
+                    "appId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "App ID"
+                    },
+                    "functionName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Function name"
+                    },
+                    "input": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Function input"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_apps",
+            "name": "List Apps",
+            "description": "List all deployed Modal applications",
+            "semantic_tags": [
+                "list",
+                "apps",
+                "deployed",
+                "inventory",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/apps",
+                "params": {}
+            }
+        },
+        {
+            "id": "get_app",
+            "name": "Get App",
+            "description": "Get details and status of a Modal application",
+            "semantic_tags": [
+                "app",
+                "details",
+                "status",
+                "info",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/apps/{appId}",
+                "params": {
+                    "appId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "App ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_functions",
+            "name": "List Functions",
+            "description": "List all functions in a Modal application",
+            "semantic_tags": [
+                "functions",
+                "list",
+                "endpoints",
+                "app",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/apps/{appId}/functions",
+                "params": {
+                    "appId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "App ID"
+                    }
+                }
+            }
+        }
+    ]
+}

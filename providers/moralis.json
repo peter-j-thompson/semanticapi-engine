@@ -1,0 +1,125 @@
+{
+    "provider": "moralis",
+    "name": "Moralis",
+    "description": "Web3 data API for blockchain, NFT, and DeFi data",
+    "base_url": "https://deep-index.moralis.io/api/v2.2",
+    "auth": {
+        "type": "api_key",
+        "header": "X-API-Key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "get_balance",
+            "name": "Get Wallet Balance",
+            "description": "Get native token balance for a wallet address",
+            "semantic_tags": [
+                "balance",
+                "wallet",
+                "native",
+                "token",
+                "web3"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/{address}/balance",
+                "params": {
+                    "address": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Wallet address"
+                    },
+                    "chain": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Chain ID e.g. eth, polygon"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_nfts",
+            "name": "Get NFTs",
+            "description": "Get all NFTs owned by a wallet address",
+            "semantic_tags": [
+                "nfts",
+                "wallet",
+                "tokens",
+                "collectibles",
+                "web3"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/{address}/nft",
+                "params": {
+                    "address": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Wallet address"
+                    },
+                    "chain": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Chain ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_transactions",
+            "name": "Get Transactions",
+            "description": "Get transaction history for a wallet",
+            "semantic_tags": [
+                "transactions",
+                "history",
+                "wallet",
+                "transfers",
+                "web3"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/{address}",
+                "params": {
+                    "address": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Wallet address"
+                    },
+                    "chain": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Chain ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_token_price",
+            "name": "Get Token Price",
+            "description": "Get the current USD price of an ERC20 token",
+            "semantic_tags": [
+                "token",
+                "price",
+                "erc20",
+                "defi",
+                "value"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/erc20/{tokenAddress}/price",
+                "params": {
+                    "tokenAddress": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Token contract address"
+                    },
+                    "chain": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Chain ID"
+                    }
+                }
+            }
+        }
+    ]
+}

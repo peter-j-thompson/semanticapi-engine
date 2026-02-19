@@ -1,0 +1,140 @@
+{
+    "provider": "together-ai",
+    "name": "Together AI",
+    "description": "Open-source AI model inference platform for LLMs, image, and code models",
+    "base_url": "https://api.together.xyz",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "chat",
+            "name": "Chat Completion",
+            "description": "Generate chat completions using open-source LLMs",
+            "semantic_tags": [
+                "chat",
+                "completion",
+                "llm",
+                "inference",
+                "ai"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/chat/completions",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Model name"
+                    },
+                    "messages": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Chat messages"
+                    },
+                    "max_tokens": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max tokens"
+                    }
+                }
+            }
+        },
+        {
+            "id": "completion",
+            "name": "Text Completion",
+            "description": "Generate text completions from a prompt",
+            "semantic_tags": [
+                "completion",
+                "text",
+                "generate",
+                "llm",
+                "inference"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/completions",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Model name"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Text prompt"
+                    },
+                    "max_tokens": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max tokens"
+                    }
+                }
+            }
+        },
+        {
+            "id": "embeddings",
+            "name": "Generate Embeddings",
+            "description": "Generate vector embeddings from text",
+            "semantic_tags": [
+                "embeddings",
+                "vectors",
+                "text",
+                "semantic",
+                "encode"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/embeddings",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Embedding model"
+                    },
+                    "input": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Text to embed"
+                    }
+                }
+            }
+        },
+        {
+            "id": "image",
+            "name": "Generate Image",
+            "description": "Generate images from text prompts",
+            "semantic_tags": [
+                "image",
+                "generate",
+                "text-to-image",
+                "creative",
+                "ai"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/images/generations",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Image model"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Image prompt"
+                    },
+                    "n": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Number of images"
+                    }
+                }
+            }
+        }
+    ]
+}

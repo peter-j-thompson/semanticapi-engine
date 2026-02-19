@@ -1,0 +1,124 @@
+{
+    "provider": "cockroachdb",
+    "name": "CockroachDB",
+    "description": "Distributed SQL database cloud service with global consistency",
+    "base_url": "https://cockroachlabs.cloud/api/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_clusters",
+            "name": "List Clusters",
+            "description": "List all CockroachDB cloud clusters",
+            "semantic_tags": [
+                "list",
+                "clusters",
+                "inventory",
+                "manage",
+                "database"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/clusters",
+                "params": {}
+            }
+        },
+        {
+            "id": "create_cluster",
+            "name": "Create Cluster",
+            "description": "Create a new distributed SQL cluster",
+            "semantic_tags": [
+                "create",
+                "cluster",
+                "provision",
+                "database",
+                "new"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/clusters",
+                "params": {
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cluster name"
+                    },
+                    "provider": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cloud provider GCP/AWS/AZURE"
+                    },
+                    "spec": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Cluster specification"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_database",
+            "name": "Create Database",
+            "description": "Create a new database within a cluster",
+            "semantic_tags": [
+                "create",
+                "database",
+                "new",
+                "schema",
+                "setup"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/clusters/{clusterId}/databases",
+                "params": {
+                    "clusterId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cluster ID"
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_sql_user",
+            "name": "Create SQL User",
+            "description": "Create a SQL user for database authentication",
+            "semantic_tags": [
+                "user",
+                "create",
+                "access",
+                "sql",
+                "auth"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/clusters/{clusterId}/sql-users",
+                "params": {
+                    "clusterId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cluster ID"
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Username"
+                    },
+                    "password": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Password"
+                    }
+                }
+            }
+        }
+    ]
+}

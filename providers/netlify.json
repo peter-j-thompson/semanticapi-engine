@@ -1,0 +1,138 @@
+{
+  "provider": "netlify",
+  "name": "Netlify",
+  "description": "Web hosting and automation platform for modern web projects",
+  "base_url": "https://api.netlify.com/api/v1",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_sites",
+      "name": "List Sites",
+      "description": "List all sites in your Netlify account.",
+      "semantic_tags": [
+        "sites",
+        "list sites",
+        "my sites",
+        "websites",
+        "projects"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/sites",
+        "params": {}
+      }
+    },
+    {
+      "id": "get_site",
+      "name": "Get Site",
+      "description": "Get details of a specific site.",
+      "semantic_tags": [
+        "site details",
+        "site info",
+        "get site"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/sites/{site_id}",
+        "params": {
+          "site_id": {
+            "type": "string",
+            "required": true,
+            "description": "Site ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_deploys",
+      "name": "List Deploys",
+      "description": "List deployments for a site.",
+      "semantic_tags": [
+        "deploys",
+        "deployments",
+        "deploy history",
+        "builds"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/sites/{site_id}/deploys",
+        "params": {
+          "site_id": {
+            "type": "string",
+            "required": true,
+            "description": "Site ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_forms",
+      "name": "List Forms",
+      "description": "List form submissions for a site.",
+      "semantic_tags": [
+        "forms",
+        "submissions",
+        "form data"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/sites/{site_id}/forms",
+        "params": {
+          "site_id": {
+            "type": "string",
+            "required": true,
+            "description": "Site ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_env_vars",
+      "name": "List Environment Variables",
+      "description": "List environment variables for a site.",
+      "semantic_tags": [
+        "env vars",
+        "environment",
+        "config",
+        "variables"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/accounts/{account_slug}/env",
+        "params": {
+          "account_slug": {
+            "type": "string",
+            "required": true,
+            "description": "Account slug"
+          }
+        }
+      }
+    },
+    {
+      "id": "trigger_build",
+      "name": "Trigger Build",
+      "description": "Trigger a new deploy/build for a site.",
+      "semantic_tags": [
+        "deploy",
+        "build",
+        "trigger deploy",
+        "redeploy"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/sites/{site_id}/builds",
+        "params": {
+          "site_id": {
+            "type": "string",
+            "required": true,
+            "description": "Site ID"
+          }
+        }
+      }
+    }
+  ]
+}

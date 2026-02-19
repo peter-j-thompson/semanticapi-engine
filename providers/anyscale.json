@@ -1,0 +1,119 @@
+{
+    "provider": "anyscale",
+    "name": "Anyscale",
+    "description": "Scalable AI compute platform built on Ray for model serving",
+    "base_url": "https://api.endpoints.anyscale.com",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "chat",
+            "name": "Chat Completion",
+            "description": "Run chat completions on hosted open-source models",
+            "semantic_tags": [
+                "chat",
+                "completion",
+                "llm",
+                "hosted",
+                "inference"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/chat/completions",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Model name"
+                    },
+                    "messages": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Chat messages"
+                    },
+                    "temperature": {
+                        "type": "number",
+                        "required": false,
+                        "description": "Sampling temperature"
+                    }
+                }
+            }
+        },
+        {
+            "id": "completion",
+            "name": "Text Completion",
+            "description": "Generate text completions with hosted models",
+            "semantic_tags": [
+                "completion",
+                "text",
+                "generate",
+                "inference",
+                "hosted"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/completions",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Model name"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Text prompt"
+                    }
+                }
+            }
+        },
+        {
+            "id": "embeddings",
+            "name": "Embeddings",
+            "description": "Generate text embeddings using hosted models",
+            "semantic_tags": [
+                "embeddings",
+                "vectors",
+                "encode",
+                "text",
+                "semantic"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/embeddings",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Embedding model"
+                    },
+                    "input": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Text to embed"
+                    }
+                }
+            }
+        },
+        {
+            "id": "models",
+            "name": "List Models",
+            "description": "List all available models on the platform",
+            "semantic_tags": [
+                "models",
+                "list",
+                "available",
+                "catalog",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v1/models",
+                "params": {}
+            }
+        }
+    ]
+}

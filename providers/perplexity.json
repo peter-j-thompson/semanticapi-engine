@@ -1,0 +1,130 @@
+{
+    "provider": "perplexity",
+    "name": "Perplexity",
+    "description": "AI-powered search and answer engine with real-time web grounding",
+    "base_url": "https://api.perplexity.ai",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "chat_completions",
+            "name": "Chat Completions",
+            "description": "Generate AI responses grounded in real-time web search results",
+            "semantic_tags": [
+                "chat",
+                "ai",
+                "search",
+                "grounded",
+                "answer"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/chat/completions",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Model ID (sonar, sonar-pro)"
+                    },
+                    "messages": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Array of chat messages"
+                    },
+                    "search_recency_filter": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Filter: month, week, day, hour"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search_answer",
+            "name": "Search and Answer",
+            "description": "Ask a question and get a sourced answer grounded in web search",
+            "semantic_tags": [
+                "search",
+                "answer",
+                "question",
+                "web",
+                "grounded"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/chat/completions",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to sonar or sonar-pro"
+                    },
+                    "messages": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Messages with user question"
+                    }
+                }
+            }
+        },
+        {
+            "id": "research",
+            "name": "Deep Research",
+            "description": "Perform comprehensive research on a topic with citations",
+            "semantic_tags": [
+                "research",
+                "deep",
+                "citations",
+                "analysis",
+                "comprehensive"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/chat/completions",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to sonar-pro"
+                    },
+                    "messages": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Research question"
+                    }
+                }
+            }
+        },
+        {
+            "id": "reasoning",
+            "name": "Reasoning",
+            "description": "Use reasoning models for complex multi-step analytical questions",
+            "semantic_tags": [
+                "reasoning",
+                "analysis",
+                "complex",
+                "logic",
+                "think"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/chat/completions",
+                "params": {
+                    "model": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to sonar-reasoning"
+                    },
+                    "messages": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Complex question"
+                    }
+                }
+            }
+        }
+    ]
+}

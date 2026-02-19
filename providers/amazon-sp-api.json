@@ -1,0 +1,135 @@
+{
+    "provider": "amazon-sp-api",
+    "name": "Amazon SP-API",
+    "description": "Amazon Selling Partner API for marketplace sellers",
+    "base_url": "https://sellingpartnerapi-na.amazon.com",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "get_orders",
+            "name": "Get Orders",
+            "description": "List orders for the seller account with date filtering",
+            "semantic_tags": [
+                "orders",
+                "list",
+                "sales",
+                "amazon",
+                "marketplace"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/orders/v0/orders",
+                "params": {
+                    "MarketplaceIds": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Marketplace IDs"
+                    },
+                    "CreatedAfter": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Start date ISO 8601"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_inventory",
+            "name": "Get Inventory",
+            "description": "Get FBA inventory summaries",
+            "semantic_tags": [
+                "inventory",
+                "stock",
+                "fba",
+                "warehouse",
+                "levels"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/fba/inventory/v1/summaries",
+                "params": {
+                    "granularityType": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Marketplace"
+                    },
+                    "granularityId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Marketplace ID"
+                    },
+                    "marketplaceIds": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Marketplace IDs"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_catalog_item",
+            "name": "Get Catalog Item",
+            "description": "Get details for an Amazon catalog item by ASIN",
+            "semantic_tags": [
+                "catalog",
+                "item",
+                "product",
+                "asin",
+                "details"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/catalog/2022-04-01/items/{asin}",
+                "params": {
+                    "asin": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Amazon ASIN"
+                    },
+                    "marketplaceIds": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Marketplace IDs"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_feed",
+            "name": "Create Feed",
+            "description": "Submit a feed for bulk product/inventory updates",
+            "semantic_tags": [
+                "feed",
+                "submit",
+                "bulk",
+                "update",
+                "products"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/feeds/2021-06-30/feeds",
+                "params": {
+                    "feedType": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Feed type"
+                    },
+                    "marketplaceIds": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Marketplace IDs"
+                    },
+                    "inputFeedDocumentId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Feed document ID"
+                    }
+                }
+            }
+        }
+    ]
+}

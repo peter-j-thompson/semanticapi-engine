@@ -1,0 +1,115 @@
+{
+    "provider": "paddle",
+    "name": "Paddle",
+    "description": "Payment infrastructure for SaaS with subscriptions and billing",
+    "base_url": "https://api.paddle.com",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_products",
+            "name": "List Products",
+            "description": "List all products in the Paddle catalog",
+            "semantic_tags": [
+                "products",
+                "list",
+                "catalog",
+                "saas",
+                "billing"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/products",
+                "params": {
+                    "status": {
+                        "type": "string",
+                        "required": false,
+                        "description": "active or archived"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_subscriptions",
+            "name": "List Subscriptions",
+            "description": "List all subscriptions with filtering",
+            "semantic_tags": [
+                "subscriptions",
+                "list",
+                "recurring",
+                "billing",
+                "customers"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/subscriptions",
+                "params": {
+                    "status": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Subscription status filter"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_price",
+            "name": "Create Price",
+            "description": "Create a new price for a product",
+            "semantic_tags": [
+                "price",
+                "create",
+                "billing",
+                "amount",
+                "product"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/prices",
+                "params": {
+                    "product_id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Product ID"
+                    },
+                    "description": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Price description"
+                    },
+                    "unit_price": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Amount and currency"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_transactions",
+            "name": "List Transactions",
+            "description": "List all payment transactions",
+            "semantic_tags": [
+                "transactions",
+                "list",
+                "payments",
+                "revenue",
+                "history"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/transactions",
+                "params": {
+                    "status": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Transaction status"
+                    }
+                }
+            }
+        }
+    ]
+}

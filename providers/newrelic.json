@@ -1,0 +1,114 @@
+{
+    "provider": "newrelic",
+    "name": "New Relic",
+    "description": "Full-stack observability platform for application performance monitoring",
+    "base_url": "https://api.newrelic.com/v2",
+    "auth": {
+        "type": "api_key",
+        "header": "Api-Key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "query_nrql",
+            "name": "NRQL Query",
+            "description": "Run a NRQL query to analyze application and infrastructure data",
+            "semantic_tags": [
+                "query",
+                "nrql",
+                "analytics",
+                "apm",
+                "data"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/accounts/{accountId}/query",
+                "params": {
+                    "accountId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Account ID"
+                    },
+                    "nrql": {
+                        "type": "string",
+                        "required": true,
+                        "description": "NRQL query string"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_applications",
+            "name": "List Applications",
+            "description": "List all monitored applications",
+            "semantic_tags": [
+                "list",
+                "applications",
+                "apm",
+                "inventory",
+                "monitor"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/applications.json",
+                "params": {}
+            }
+        },
+        {
+            "id": "get_app_metrics",
+            "name": "Get App Metrics",
+            "description": "Get performance metrics for an application",
+            "semantic_tags": [
+                "metrics",
+                "application",
+                "performance",
+                "apm",
+                "monitor"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/applications/{appId}/metrics/data.json",
+                "params": {
+                    "appId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Application ID"
+                    },
+                    "names[]": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Metric name"
+                    },
+                    "from": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Start time"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_alert",
+            "name": "Create Alert Policy",
+            "description": "Create an alert policy for threshold violations",
+            "semantic_tags": [
+                "alert",
+                "policy",
+                "create",
+                "threshold",
+                "notification"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/alerts_policies.json",
+                "params": {
+                    "policy": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Alert policy configuration"
+                    }
+                }
+            }
+        }
+    ]
+}

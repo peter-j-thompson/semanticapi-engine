@@ -1,0 +1,189 @@
+{
+  "provider": "cloudflare",
+  "name": "Cloudflare",
+  "description": "Web performance and security platform with CDN, DNS, and edge computing",
+  "base_url": "https://api.cloudflare.com/client/v4",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_zones",
+      "name": "List Zones",
+      "description": "List all DNS zones (domains) in your account.",
+      "semantic_tags": [
+        "zones",
+        "domains",
+        "sites",
+        "list domains",
+        "my domains"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/zones",
+        "params": {
+          "name": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by domain name"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_dns_records",
+      "name": "List DNS Records",
+      "description": "List DNS records for a zone.",
+      "semantic_tags": [
+        "DNS",
+        "records",
+        "DNS records",
+        "A record",
+        "CNAME"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/zones/{zone_id}/dns_records",
+        "params": {
+          "zone_id": {
+            "type": "string",
+            "required": true,
+            "description": "Zone ID"
+          },
+          "type": {
+            "type": "string",
+            "required": false,
+            "description": "Record type (A, AAAA, CNAME, etc.)"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_dns_record",
+      "name": "Create DNS Record",
+      "description": "Create a new DNS record.",
+      "semantic_tags": [
+        "add DNS",
+        "create record",
+        "new DNS record",
+        "point domain"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/zones/{zone_id}/dns_records",
+        "params": {
+          "zone_id": {
+            "type": "string",
+            "required": true,
+            "description": "Zone ID"
+          },
+          "type": {
+            "type": "string",
+            "required": true,
+            "description": "Record type"
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Record name"
+          },
+          "content": {
+            "type": "string",
+            "required": true,
+            "description": "Record content (IP, target, etc.)"
+          }
+        }
+      }
+    },
+    {
+      "id": "purge_cache",
+      "name": "Purge Cache",
+      "description": "Purge cached files from Cloudflare's CDN.",
+      "semantic_tags": [
+        "purge cache",
+        "clear cache",
+        "invalidate",
+        "CDN cache"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/zones/{zone_id}/purge_cache",
+        "params": {
+          "zone_id": {
+            "type": "string",
+            "required": true,
+            "description": "Zone ID"
+          },
+          "purge_everything": {
+            "type": "boolean",
+            "required": false,
+            "description": "Purge all cached files"
+          },
+          "files": {
+            "type": "array",
+            "required": false,
+            "description": "Specific URLs to purge"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_workers",
+      "name": "List Workers",
+      "description": "List Cloudflare Workers scripts.",
+      "semantic_tags": [
+        "workers",
+        "edge functions",
+        "serverless",
+        "list workers"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/accounts/{account_id}/workers/scripts",
+        "params": {
+          "account_id": {
+            "type": "string",
+            "required": true,
+            "description": "Account ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_analytics",
+      "name": "Get Zone Analytics",
+      "description": "Get traffic analytics for a zone.",
+      "semantic_tags": [
+        "analytics",
+        "traffic",
+        "stats",
+        "visitors",
+        "bandwidth"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/zones/{zone_id}/analytics/dashboard",
+        "params": {
+          "zone_id": {
+            "type": "string",
+            "required": true,
+            "description": "Zone ID"
+          },
+          "since": {
+            "type": "string",
+            "required": false,
+            "description": "Start time (ISO 8601)"
+          },
+          "until": {
+            "type": "string",
+            "required": false,
+            "description": "End time (ISO 8601)"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://dash.cloudflare.com/profile/api-tokens"
+}

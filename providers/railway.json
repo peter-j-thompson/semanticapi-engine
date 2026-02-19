@@ -1,0 +1,105 @@
+{
+    "provider": "railway",
+    "name": "Railway",
+    "description": "Infrastructure platform for deploying apps with zero configuration",
+    "base_url": "https://backboard.railway.app/graphql/v2",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_projects",
+            "name": "List Projects",
+            "description": "List all Railway projects via GraphQL",
+            "semantic_tags": [
+                "list",
+                "projects",
+                "inventory",
+                "manage",
+                "deploy"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "GraphQL query for projects"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_project",
+            "name": "Create Project",
+            "description": "Create a new Railway project",
+            "semantic_tags": [
+                "create",
+                "project",
+                "new",
+                "deploy",
+                "setup"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "GraphQL mutation"
+                    }
+                }
+            }
+        },
+        {
+            "id": "deploy",
+            "name": "Deploy Service",
+            "description": "Deploy or redeploy a service within a project",
+            "semantic_tags": [
+                "deploy",
+                "service",
+                "release",
+                "build",
+                "push"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "GraphQL deploy mutation"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_deployments",
+            "name": "Get Deployments",
+            "description": "List deployment history and status for a service",
+            "semantic_tags": [
+                "deployments",
+                "list",
+                "history",
+                "releases",
+                "status"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "GraphQL query"
+                    }
+                }
+            }
+        }
+    ]
+}

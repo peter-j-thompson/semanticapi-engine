@@ -1,0 +1,125 @@
+{
+    "provider": "parsehub",
+    "name": "ParseHub",
+    "description": "Visual web scraping tool with API for running and managing extraction projects",
+    "base_url": "https://www.parsehub.com/api/v2",
+    "auth": {
+        "type": "api_key",
+        "header": "api_key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "run_project",
+            "name": "Run Project",
+            "description": "Start a scraping run for a configured ParseHub project",
+            "semantic_tags": [
+                "run",
+                "project",
+                "scrape",
+                "start",
+                "crawl"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/projects/{projectToken}/run",
+                "params": {
+                    "projectToken": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Project token"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "start_url": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Override start URL"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_project",
+            "name": "Get Project",
+            "description": "Get configuration and details about a ParseHub project",
+            "semantic_tags": [
+                "project",
+                "details",
+                "info",
+                "status",
+                "config"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/projects/{projectToken}",
+                "params": {
+                    "projectToken": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Project token"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_run_data",
+            "name": "Get Run Data",
+            "description": "Download the extracted data from a completed scraping run",
+            "semantic_tags": [
+                "data",
+                "download",
+                "results",
+                "output",
+                "extract"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/runs/{runToken}/data",
+                "params": {
+                    "runToken": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Run token"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_projects",
+            "name": "List Projects",
+            "description": "List all scraping projects in the account",
+            "semantic_tags": [
+                "list",
+                "projects",
+                "account",
+                "inventory",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/projects",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        }
+    ]
+}

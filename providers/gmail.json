@@ -25,15 +25,6 @@
       "description": "Send an email to one or more recipients. Compose and deliver email messages.",
       "semantic_tags": ["email", "send email", "mail", "message", "compose", "write email", "send message"],
       "scopes_required": ["https://www.googleapis.com/auth/gmail.send"],
-      "request_transform": {
-        "type": "mime_encode",
-        "input_fields": {
-          "to": ["to", "To"],
-          "subject": ["subject", "Subject"],
-          "body": ["body", "Body", "message"]
-        },
-        "output_field": "raw"
-      },
       "endpoint": {
         "method": "POST",
         "path": "/users/me/messages/send",
@@ -42,7 +33,8 @@
           "to": {"type": "string", "required": true, "description": "Recipient email address"},
           "subject": {"type": "string", "required": true, "description": "Email subject line"},
           "body": {"type": "string", "required": true, "description": "Email body content"}
-        }
+        },
+        "request_transform": "gmail_send"
       }
     },
     {

@@ -1,0 +1,115 @@
+{
+    "provider": "npm",
+    "name": "npm",
+    "description": "npm registry API for searching and retrieving JavaScript package metadata",
+    "base_url": "https://registry.npmjs.org",
+    "auth": {
+        "type": "none",
+        "header": "",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "get_package",
+            "name": "Get Package",
+            "description": "Get full metadata for an npm package",
+            "semantic_tags": [
+                "package",
+                "info",
+                "metadata",
+                "npm",
+                "javascript"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/{packageName}",
+                "params": {
+                    "packageName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Package name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search",
+            "name": "Search Packages",
+            "description": "Search the npm registry for packages by keyword",
+            "semantic_tags": [
+                "search",
+                "packages",
+                "find",
+                "npm",
+                "discover"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/-/v1/search",
+                "params": {
+                    "text": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Number of results"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_version",
+            "name": "Get Version",
+            "description": "Get metadata for a specific package version",
+            "semantic_tags": [
+                "version",
+                "package",
+                "specific",
+                "release",
+                "info"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/{packageName}/{version}",
+                "params": {
+                    "packageName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Package name"
+                    },
+                    "version": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Semver version"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_downloads",
+            "name": "Get Downloads",
+            "description": "Get weekly download statistics for a package",
+            "semantic_tags": [
+                "downloads",
+                "stats",
+                "popularity",
+                "metrics",
+                "usage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "https://api.npmjs.org/downloads/point/last-week/{packageName}",
+                "params": {
+                    "packageName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Package name"
+                    }
+                }
+            }
+        }
+    ]
+}

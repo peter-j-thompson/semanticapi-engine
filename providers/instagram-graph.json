@@ -1,0 +1,130 @@
+{
+    "provider": "instagram-graph",
+    "name": "Instagram Graph",
+    "description": "Instagram Graph API for business accounts, media, and insights",
+    "base_url": "https://graph.facebook.com/v18.0",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "get_media",
+            "name": "Get User Media",
+            "description": "Get recent media posts from a business Instagram account",
+            "semantic_tags": [
+                "media",
+                "posts",
+                "feed",
+                "instagram",
+                "content"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/{userId}/media",
+                "params": {
+                    "userId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Instagram business account ID"
+                    },
+                    "fields": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Fields to return"
+                    }
+                }
+            }
+        },
+        {
+            "id": "publish_photo",
+            "name": "Publish Photo",
+            "description": "Create and publish a photo post on Instagram",
+            "semantic_tags": [
+                "publish",
+                "photo",
+                "post",
+                "share",
+                "instagram"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{userId}/media",
+                "params": {
+                    "userId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Account ID"
+                    },
+                    "image_url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Public image URL"
+                    },
+                    "caption": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Post caption"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_insights",
+            "name": "Get Insights",
+            "description": "Get analytics insights for a media post",
+            "semantic_tags": [
+                "insights",
+                "analytics",
+                "metrics",
+                "engagement",
+                "performance"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/{mediaId}/insights",
+                "params": {
+                    "mediaId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Media ID"
+                    },
+                    "metric": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Metric names"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search_hashtag",
+            "name": "Search Hashtag",
+            "description": "Search for a hashtag and get its ID for querying",
+            "semantic_tags": [
+                "hashtag",
+                "search",
+                "discover",
+                "trending",
+                "explore"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/ig_hashtag_search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Hashtag text"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User ID for permissions"
+                    }
+                }
+            }
+        }
+    ]
+}

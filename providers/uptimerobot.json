@@ -1,0 +1,135 @@
+{
+    "provider": "uptimerobot",
+    "name": "Uptime Robot",
+    "description": "Website uptime monitoring service with alerting",
+    "base_url": "https://api.uptimerobot.com/v2",
+    "auth": {
+        "type": "api_key",
+        "header": "api_key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "get_monitors",
+            "name": "Get Monitors",
+            "description": "Get status of all uptime monitors",
+            "semantic_tags": [
+                "monitors",
+                "status",
+                "uptime",
+                "health",
+                "check"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/getMonitors",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "monitors": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Specific monitor IDs"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_monitor",
+            "name": "Create Monitor",
+            "description": "Create a new uptime monitor for a URL",
+            "semantic_tags": [
+                "create",
+                "monitor",
+                "uptime",
+                "watch",
+                "url"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/newMonitor",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "friendly_name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Monitor name"
+                    },
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to monitor"
+                    },
+                    "type": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "1=HTTP, 2=keyword, 3=ping"
+                    }
+                }
+            }
+        },
+        {
+            "id": "edit_monitor",
+            "name": "Edit Monitor",
+            "description": "Update an existing monitor's configuration",
+            "semantic_tags": [
+                "edit",
+                "monitor",
+                "update",
+                "config",
+                "modify"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/editMonitor",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Monitor ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "delete_monitor",
+            "name": "Delete Monitor",
+            "description": "Delete an uptime monitor",
+            "semantic_tags": [
+                "delete",
+                "monitor",
+                "remove",
+                "clean",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/deleteMonitor",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Monitor ID"
+                    }
+                }
+            }
+        }
+    ]
+}

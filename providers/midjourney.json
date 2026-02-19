@@ -1,0 +1,125 @@
+{
+    "provider": "midjourney",
+    "name": "Midjourney",
+    "description": "AI image generation service via API proxy",
+    "base_url": "https://api.midjourney.com",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "imagine",
+            "name": "Imagine",
+            "description": "Generate images from a text prompt",
+            "semantic_tags": [
+                "imagine",
+                "generate",
+                "image",
+                "ai",
+                "creative"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/imagine",
+                "params": {
+                    "prompt": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Image generation prompt"
+                    },
+                    "aspect_ratio": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Aspect ratio e.g. 16:9"
+                    },
+                    "model": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Model version"
+                    }
+                }
+            }
+        },
+        {
+            "id": "upscale",
+            "name": "Upscale",
+            "description": "Upscale a generated image to higher resolution",
+            "semantic_tags": [
+                "upscale",
+                "enhance",
+                "resolution",
+                "image",
+                "quality"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/upscale",
+                "params": {
+                    "taskId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Original task ID"
+                    },
+                    "index": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Image index 1-4"
+                    }
+                }
+            }
+        },
+        {
+            "id": "variation",
+            "name": "Create Variation",
+            "description": "Generate variations of a selected image",
+            "semantic_tags": [
+                "variation",
+                "remix",
+                "alternative",
+                "image",
+                "creative"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/variation",
+                "params": {
+                    "taskId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Original task ID"
+                    },
+                    "index": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Image index 1-4"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_task",
+            "name": "Get Task",
+            "description": "Check generation task status and get results",
+            "semantic_tags": [
+                "task",
+                "status",
+                "result",
+                "check",
+                "progress"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v1/task/{taskId}",
+                "params": {
+                    "taskId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Task ID"
+                    }
+                }
+            }
+        }
+    ]
+}

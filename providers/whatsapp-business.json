@@ -1,0 +1,170 @@
+{
+    "provider": "whatsapp-business",
+    "name": "WhatsApp Business",
+    "description": "WhatsApp Business API for sending messages, templates, and media via Meta Graph API",
+    "base_url": "https://graph.facebook.com/v18.0",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "send_text",
+            "name": "Send Text Message",
+            "description": "Send a text message to a WhatsApp user",
+            "semantic_tags": [
+                "send",
+                "message",
+                "text",
+                "whatsapp",
+                "chat"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{phoneNumberId}/messages",
+                "params": {
+                    "phoneNumberId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Phone number ID"
+                    },
+                    "messaging_product": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to whatsapp"
+                    },
+                    "to": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Recipient phone number"
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to text"
+                    },
+                    "text": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Text body object"
+                    }
+                }
+            }
+        },
+        {
+            "id": "send_template",
+            "name": "Send Template",
+            "description": "Send a pre-approved template message for notifications",
+            "semantic_tags": [
+                "template",
+                "send",
+                "notification",
+                "approved",
+                "whatsapp"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{phoneNumberId}/messages",
+                "params": {
+                    "phoneNumberId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Phone number ID"
+                    },
+                    "messaging_product": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to whatsapp"
+                    },
+                    "to": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Recipient phone"
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to template"
+                    },
+                    "template": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Template config"
+                    }
+                }
+            }
+        },
+        {
+            "id": "send_media",
+            "name": "Send Media",
+            "description": "Send an image, video, audio, or document via WhatsApp",
+            "semantic_tags": [
+                "media",
+                "send",
+                "image",
+                "document",
+                "whatsapp"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{phoneNumberId}/messages",
+                "params": {
+                    "phoneNumberId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Phone number ID"
+                    },
+                    "messaging_product": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to whatsapp"
+                    },
+                    "to": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Recipient phone"
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Media type"
+                    }
+                }
+            }
+        },
+        {
+            "id": "upload_media",
+            "name": "Upload Media",
+            "description": "Upload media files to WhatsApp servers for sending",
+            "semantic_tags": [
+                "upload",
+                "media",
+                "file",
+                "image",
+                "store"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{phoneNumberId}/media",
+                "params": {
+                    "phoneNumberId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Phone number ID"
+                    },
+                    "file": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File to upload"
+                    },
+                    "messaging_product": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to whatsapp"
+                    }
+                }
+            }
+        }
+    ]
+}

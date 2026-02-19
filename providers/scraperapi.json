@@ -1,0 +1,125 @@
+{
+    "provider": "scraperapi",
+    "name": "ScraperAPI",
+    "description": "Proxy rotation API for web scraping with CAPTCHA handling and retries",
+    "base_url": "https://api.scraperapi.com",
+    "auth": {
+        "type": "api_key",
+        "header": "api_key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "scrape",
+            "name": "Scrape URL",
+            "description": "Scrape any URL through ScraperAPI's proxy network with auto-retries",
+            "semantic_tags": [
+                "scrape",
+                "proxy",
+                "fetch",
+                "html",
+                "bypass"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to scrape"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "render": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Enable JS rendering"
+                    }
+                }
+            }
+        },
+        {
+            "id": "structured",
+            "name": "Structured Data",
+            "description": "Extract structured data from Amazon, Google, and other supported sites",
+            "semantic_tags": [
+                "structured",
+                "amazon",
+                "google",
+                "extract",
+                "parse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/structured",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to extract from"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "async_scrape",
+            "name": "Async Scrape",
+            "description": "Submit an asynchronous scraping job for batch processing",
+            "semantic_tags": [
+                "async",
+                "batch",
+                "scrape",
+                "job",
+                "queue"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/jobs",
+                "params": {
+                    "apiKey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to scrape"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_job",
+            "name": "Get Job Status",
+            "description": "Check the status and retrieve results of an async scraping job",
+            "semantic_tags": [
+                "status",
+                "job",
+                "check",
+                "async",
+                "result"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/jobs/{jobId}",
+                "params": {
+                    "jobId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Job ID"
+                    }
+                }
+            }
+        }
+    ]
+}

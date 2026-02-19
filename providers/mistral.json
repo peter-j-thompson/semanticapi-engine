@@ -1,0 +1,153 @@
+{
+  "provider": "mistral",
+  "name": "Mistral AI",
+  "description": "Open and commercial AI models for text generation and embeddings",
+  "base_url": "https://api.mistral.ai/v1",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "chat_completions",
+      "name": "Chat Completions",
+      "description": "Generate chat responses using Mistral models.",
+      "semantic_tags": [
+        "chat",
+        "generate",
+        "completion",
+        "AI response",
+        "ask mistral",
+        "conversation"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/chat/completions",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model ID (e.g. mistral-large-latest)"
+          },
+          "messages": {
+            "type": "array",
+            "required": true,
+            "description": "Chat messages"
+          },
+          "max_tokens": {
+            "type": "integer",
+            "required": false,
+            "description": "Maximum tokens to generate"
+          },
+          "temperature": {
+            "type": "number",
+            "required": false,
+            "description": "Sampling temperature (0-1)"
+          }
+        }
+      }
+    },
+    {
+      "id": "embeddings",
+      "name": "Create Embeddings",
+      "description": "Generate text embeddings for semantic search.",
+      "semantic_tags": [
+        "embeddings",
+        "embed",
+        "vector",
+        "semantic search"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/embeddings",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Embedding model ID"
+          },
+          "input": {
+            "type": "array",
+            "required": true,
+            "description": "Texts to embed"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_models",
+      "name": "List Models",
+      "description": "List available Mistral models.",
+      "semantic_tags": [
+        "models",
+        "list models",
+        "available models"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/models",
+        "params": {}
+      }
+    },
+    {
+      "id": "fim_completions",
+      "name": "Fill in the Middle",
+      "description": "Code completion with fill-in-the-middle capability.",
+      "semantic_tags": [
+        "code completion",
+        "fill in middle",
+        "code",
+        "autocomplete"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/fim/completions",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model ID (e.g. codestral-latest)"
+          },
+          "prompt": {
+            "type": "string",
+            "required": true,
+            "description": "Code before cursor"
+          },
+          "suffix": {
+            "type": "string",
+            "required": false,
+            "description": "Code after cursor"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_agent_completion",
+      "name": "Agents Completion",
+      "description": "Run a Mistral AI agent with tool use capabilities.",
+      "semantic_tags": [
+        "agent",
+        "tools",
+        "function calling",
+        "AI agent"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/agents/completions",
+        "params": {
+          "agent_id": {
+            "type": "string",
+            "required": true,
+            "description": "Agent ID"
+          },
+          "messages": {
+            "type": "array",
+            "required": true,
+            "description": "Messages to send to agent"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "provider": "aws-ses",
+  "name": "Amazon SES",
+  "description": "AWS Simple Email Service for transactional and marketing email",
+  "base_url": "https://email.{region}.amazonaws.com/v2",
+  "auth": {
+    "type": "aws_signature",
+    "header": "Authorization",
+    "prefix": "AWS4-HMAC-SHA256"
+  },
+  "capabilities": [
+    {
+      "id": "send_email",
+      "name": "Send Email",
+      "description": "Send an email message.",
+      "semantic_tags": ["send email", "email", "transactional email"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/email/outbound-emails",
+        "params": {
+          "FromEmailAddress": { "type": "string", "required": true, "description": "Sender email" },
+          "Destination": { "type": "object", "required": true, "description": "Recipients (ToAddresses, CcAddresses, BccAddresses)" },
+          "Content": { "type": "object", "required": true, "description": "Email content (Simple or Raw)" }
+        }
+      }
+    },
+    {
+      "id": "list_identities",
+      "name": "List Email Identities",
+      "description": "List verified email identities.",
+      "semantic_tags": ["identities", "verified emails", "domains"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/email/identities",
+        "params": {
+          "PageSize": { "type": "integer", "required": false, "description": "Results per page" }
+        }
+      }
+    },
+    {
+      "id": "create_contact_list",
+      "name": "Create Contact List",
+      "description": "Create a contact list for email campaigns.",
+      "semantic_tags": ["contact list", "mailing list", "create list"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/email/contact-lists",
+        "params": {
+          "ContactListName": { "type": "string", "required": true, "description": "List name" },
+          "Description": { "type": "string", "required": false, "description": "List description" }
+        }
+      }
+    },
+    {
+      "id": "get_account",
+      "name": "Get Account Info",
+      "description": "Get SES account sending details and limits.",
+      "semantic_tags": ["account", "sending limits", "quota"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/email/account",
+        "params": {}
+      }
+    },
+    {
+      "id": "create_email_template",
+      "name": "Create Email Template",
+      "description": "Create an email template.",
+      "semantic_tags": ["create template", "email template"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/email/templates",
+        "params": {
+          "TemplateName": { "type": "string", "required": true, "description": "Template name" },
+          "TemplateContent": { "type": "object", "required": true, "description": "Template content with Subject, Html, Text" }
+        }
+      }
+    }
+  ]
+}

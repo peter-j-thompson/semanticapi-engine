@@ -1,0 +1,130 @@
+{
+    "provider": "duckduckgo",
+    "name": "DuckDuckGo",
+    "description": "Privacy-focused search engine instant answer API",
+    "base_url": "https://api.duckduckgo.com",
+    "auth": {
+        "type": "none",
+        "header": "",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "instant_answer",
+            "name": "Instant Answer",
+            "description": "Get instant answers, abstracts, and related topics for a query",
+            "semantic_tags": [
+                "search",
+                "instant",
+                "answer",
+                "summary",
+                "privacy"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "format": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to json"
+                    },
+                    "no_redirect": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Set to 1 to prevent redirects"
+                    }
+                }
+            }
+        },
+        {
+            "id": "bang",
+            "name": "Bang Redirect",
+            "description": "Use DuckDuckGo bang shortcuts to search specific sites",
+            "semantic_tags": [
+                "bang",
+                "shortcut",
+                "redirect",
+                "site-specific",
+                "search"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Query with bang e.g. !w query"
+                    },
+                    "format": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to json"
+                    }
+                }
+            }
+        },
+        {
+            "id": "related",
+            "name": "Related Topics",
+            "description": "Get related topics and categories for exploration",
+            "semantic_tags": [
+                "related",
+                "topics",
+                "categories",
+                "explore",
+                "discover"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "format": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to json"
+                    }
+                }
+            }
+        },
+        {
+            "id": "definition",
+            "name": "Get Definition",
+            "description": "Get definitions and abstract summaries for terms",
+            "semantic_tags": [
+                "definition",
+                "abstract",
+                "summary",
+                "meaning",
+                "explain"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Term to define"
+                    },
+                    "format": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to json"
+                    }
+                }
+            }
+        }
+    ]
+}

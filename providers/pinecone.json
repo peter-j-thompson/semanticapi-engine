@@ -1,0 +1,135 @@
+{
+    "provider": "pinecone",
+    "name": "Pinecone",
+    "description": "Vector database for high-performance similarity search and AI applications",
+    "base_url": "https://api.pinecone.io",
+    "auth": {
+        "type": "api_key",
+        "header": "Api-Key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "upsert",
+            "name": "Upsert Vectors",
+            "description": "Insert or update vectors with metadata in a Pinecone index",
+            "semantic_tags": [
+                "upsert",
+                "vectors",
+                "insert",
+                "embeddings",
+                "store"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/vectors/upsert",
+                "params": {
+                    "vectors": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Array of {id, values, metadata}"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Namespace"
+                    }
+                }
+            }
+        },
+        {
+            "id": "query",
+            "name": "Query Vectors",
+            "description": "Find the most similar vectors to a query vector",
+            "semantic_tags": [
+                "query",
+                "search",
+                "similarity",
+                "nearest",
+                "vectors"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/query",
+                "params": {
+                    "vector": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Query vector values"
+                    },
+                    "topK": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Number of results"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Namespace"
+                    },
+                    "includeMetadata": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Include metadata"
+                    }
+                }
+            }
+        },
+        {
+            "id": "delete",
+            "name": "Delete Vectors",
+            "description": "Delete vectors by ID or filter from an index",
+            "semantic_tags": [
+                "delete",
+                "remove",
+                "vectors",
+                "clean",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/vectors/delete",
+                "params": {
+                    "ids": {
+                        "type": "array",
+                        "required": false,
+                        "description": "Vector IDs to delete"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Namespace"
+                    },
+                    "deleteAll": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Delete all"
+                    }
+                }
+            }
+        },
+        {
+            "id": "describe_stats",
+            "name": "Index Stats",
+            "description": "Get statistics about vector count and dimensions in an index",
+            "semantic_tags": [
+                "stats",
+                "info",
+                "index",
+                "count",
+                "describe"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/describe_index_stats",
+                "params": {
+                    "filter": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Metadata filter"
+                    }
+                }
+            }
+        }
+    ]
+}

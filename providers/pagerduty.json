@@ -1,0 +1,115 @@
+{
+    "provider": "pagerduty",
+    "name": "PagerDuty",
+    "description": "Incident management and on-call scheduling platform",
+    "base_url": "https://api.pagerduty.com",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Token token="
+    },
+    "capabilities": [
+        {
+            "id": "create_incident",
+            "name": "Create Incident",
+            "description": "Create a new incident for on-call response",
+            "semantic_tags": [
+                "incident",
+                "create",
+                "alert",
+                "trigger",
+                "urgent"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/incidents",
+                "params": {
+                    "incident": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Incident details with title and service"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_incidents",
+            "name": "List Incidents",
+            "description": "List incidents with status and priority filtering",
+            "semantic_tags": [
+                "incidents",
+                "list",
+                "active",
+                "status",
+                "monitor"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/incidents",
+                "params": {
+                    "statuses[]": {
+                        "type": "string",
+                        "required": false,
+                        "description": "triggered, acknowledged, resolved"
+                    },
+                    "since": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Start date"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_oncall",
+            "name": "Get On-Call",
+            "description": "Get the current on-call schedule and responders",
+            "semantic_tags": [
+                "oncall",
+                "schedule",
+                "responder",
+                "duty",
+                "who"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/oncalls",
+                "params": {
+                    "schedule_ids[]": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Schedule ID filter"
+                    }
+                }
+            }
+        },
+        {
+            "id": "acknowledge",
+            "name": "Acknowledge Incident",
+            "description": "Acknowledge an active incident",
+            "semantic_tags": [
+                "acknowledge",
+                "incident",
+                "respond",
+                "accept",
+                "action"
+            ],
+            "endpoint": {
+                "method": "PUT",
+                "path": "/incidents/{incidentId}",
+                "params": {
+                    "incidentId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Incident ID"
+                    },
+                    "incident": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Status update"
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,165 @@
+{
+  "provider": "firebase",
+  "name": "Firebase",
+  "description": "Google's app development platform with Firestore database and cloud services",
+  "base_url": "https://firestore.googleapis.com/v1",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_documents",
+      "name": "List Documents",
+      "description": "List documents in a Firestore collection.",
+      "semantic_tags": [
+        "documents",
+        "list",
+        "collection",
+        "get data",
+        "firestore"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/projects/{project_id}/databases/(default)/documents/{collection}",
+        "params": {
+          "project_id": {
+            "type": "string",
+            "required": true,
+            "description": "Firebase project ID"
+          },
+          "collection": {
+            "type": "string",
+            "required": true,
+            "description": "Collection path"
+          },
+          "pageSize": {
+            "type": "integer",
+            "required": false,
+            "description": "Max documents per page"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_document",
+      "name": "Get Document",
+      "description": "Get a specific document by path.",
+      "semantic_tags": [
+        "get document",
+        "read",
+        "fetch",
+        "document details"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/projects/{project_id}/databases/(default)/documents/{document_path}",
+        "params": {
+          "project_id": {
+            "type": "string",
+            "required": true,
+            "description": "Project ID"
+          },
+          "document_path": {
+            "type": "string",
+            "required": true,
+            "description": "Full document path"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_document",
+      "name": "Create Document",
+      "description": "Create a new document in a collection.",
+      "semantic_tags": [
+        "create",
+        "add document",
+        "new document",
+        "write data"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/projects/{project_id}/databases/(default)/documents/{collection}",
+        "params": {
+          "project_id": {
+            "type": "string",
+            "required": true,
+            "description": "Project ID"
+          },
+          "collection": {
+            "type": "string",
+            "required": true,
+            "description": "Collection path"
+          },
+          "fields": {
+            "type": "object",
+            "required": true,
+            "description": "Document fields"
+          }
+        }
+      }
+    },
+    {
+      "id": "update_document",
+      "name": "Update Document",
+      "description": "Update fields of an existing document.",
+      "semantic_tags": [
+        "update",
+        "edit document",
+        "modify",
+        "patch"
+      ],
+      "endpoint": {
+        "method": "PATCH",
+        "path": "/projects/{project_id}/databases/(default)/documents/{document_path}",
+        "params": {
+          "project_id": {
+            "type": "string",
+            "required": true,
+            "description": "Project ID"
+          },
+          "document_path": {
+            "type": "string",
+            "required": true,
+            "description": "Document path"
+          },
+          "fields": {
+            "type": "object",
+            "required": true,
+            "description": "Fields to update"
+          }
+        }
+      }
+    },
+    {
+      "id": "run_query",
+      "name": "Run Query",
+      "description": "Run a structured query against Firestore.",
+      "semantic_tags": [
+        "query",
+        "search",
+        "filter",
+        "find documents"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/projects/{project_id}/databases/(default)/documents:runQuery",
+        "params": {
+          "project_id": {
+            "type": "string",
+            "required": true,
+            "description": "Project ID"
+          },
+          "structuredQuery": {
+            "type": "object",
+            "required": true,
+            "description": "Structured query object"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk"
+}

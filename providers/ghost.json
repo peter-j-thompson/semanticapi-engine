@@ -1,0 +1,120 @@
+{
+    "provider": "ghost",
+    "name": "Ghost",
+    "description": "Open-source headless CMS API for content publishing",
+    "base_url": "https://your-site.ghost.io/ghost/api/admin/v5.0",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_posts",
+            "name": "List Posts",
+            "description": "List all posts with filtering and pagination",
+            "semantic_tags": [
+                "posts",
+                "list",
+                "blog",
+                "content",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/posts/",
+                "params": {
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results limit"
+                    },
+                    "filter": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Filter expression"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_post",
+            "name": "Create Post",
+            "description": "Create a new blog post",
+            "semantic_tags": [
+                "post",
+                "create",
+                "publish",
+                "blog",
+                "write"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/posts/",
+                "params": {
+                    "posts": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Array with post object containing title and html"
+                    }
+                }
+            }
+        },
+        {
+            "id": "update_post",
+            "name": "Update Post",
+            "description": "Update an existing post's content or metadata",
+            "semantic_tags": [
+                "post",
+                "update",
+                "edit",
+                "modify",
+                "content"
+            ],
+            "endpoint": {
+                "method": "PUT",
+                "path": "/posts/{postId}/",
+                "params": {
+                    "postId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Post ID"
+                    },
+                    "posts": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Updated post data"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_members",
+            "name": "List Members",
+            "description": "List newsletter subscribers and members",
+            "semantic_tags": [
+                "members",
+                "list",
+                "subscribers",
+                "newsletter",
+                "audience"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/members/",
+                "params": {
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results limit"
+                    },
+                    "filter": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Filter expression"
+                    }
+                }
+            }
+        }
+    ]
+}

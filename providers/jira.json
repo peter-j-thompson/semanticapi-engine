@@ -1,0 +1,161 @@
+{
+  "provider": "jira",
+  "name": "Jira",
+  "description": "Project management and issue tracking for agile teams",
+  "base_url": "https://your-domain.atlassian.net/rest/api/3",
+  "auth": {
+    "type": "api_key",
+    "header": "Authorization",
+    "prefix": "Basic"
+  },
+  "capabilities": [
+    {
+      "id": "search_issues",
+      "name": "Search Issues",
+      "description": "Search for issues using JQL (Jira Query Language).",
+      "semantic_tags": [
+        "search",
+        "find issues",
+        "JQL",
+        "query",
+        "search tickets"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/search",
+        "params": {
+          "jql": {
+            "type": "string",
+            "required": true,
+            "description": "JQL query string"
+          },
+          "maxResults": {
+            "type": "integer",
+            "required": false,
+            "description": "Max results to return"
+          },
+          "fields": {
+            "type": "array",
+            "required": false,
+            "description": "Fields to include"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_issue",
+      "name": "Create Issue",
+      "description": "Create a new Jira issue (bug, story, task, etc.).",
+      "semantic_tags": [
+        "create issue",
+        "new ticket",
+        "new bug",
+        "new story",
+        "create task"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/issue",
+        "params": {
+          "fields": {
+            "type": "object",
+            "required": true,
+            "description": "Issue fields (project, issuetype, summary, description, etc.)"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_issue",
+      "name": "Get Issue",
+      "description": "Get details of a specific issue.",
+      "semantic_tags": [
+        "issue details",
+        "ticket info",
+        "get issue"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/issue/{issueIdOrKey}",
+        "params": {
+          "issueIdOrKey": {
+            "type": "string",
+            "required": true,
+            "description": "Issue ID or key (e.g. PROJ-123)"
+          }
+        }
+      }
+    },
+    {
+      "id": "transition_issue",
+      "name": "Transition Issue",
+      "description": "Move an issue to a different status (e.g. In Progress, Done).",
+      "semantic_tags": [
+        "move issue",
+        "change status",
+        "transition",
+        "update status",
+        "done",
+        "in progress"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/issue/{issueIdOrKey}/transitions",
+        "params": {
+          "issueIdOrKey": {
+            "type": "string",
+            "required": true,
+            "description": "Issue ID or key"
+          },
+          "transition": {
+            "type": "object",
+            "required": true,
+            "description": "Transition object with ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "add_comment",
+      "name": "Add Comment",
+      "description": "Add a comment to an issue.",
+      "semantic_tags": [
+        "comment",
+        "add comment",
+        "note",
+        "reply"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/issue/{issueIdOrKey}/comment",
+        "params": {
+          "issueIdOrKey": {
+            "type": "string",
+            "required": true,
+            "description": "Issue ID or key"
+          },
+          "body": {
+            "type": "object",
+            "required": true,
+            "description": "Comment body in ADF format"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_projects",
+      "name": "List Projects",
+      "description": "List all Jira projects.",
+      "semantic_tags": [
+        "projects",
+        "list projects",
+        "all projects"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/project",
+        "params": {}
+      }
+    }
+  ]
+}

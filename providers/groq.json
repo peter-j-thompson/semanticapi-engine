@@ -1,0 +1,148 @@
+{
+  "provider": "groq",
+  "name": "Groq",
+  "description": "Ultra-fast AI inference with LPU technology for open-source models",
+  "base_url": "https://api.groq.com/openai/v1",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "chat_completions",
+      "name": "Chat Completions",
+      "description": "Generate fast chat responses using Groq's LPU inference engine.",
+      "semantic_tags": [
+        "chat",
+        "fast AI",
+        "generate",
+        "completion",
+        "groq",
+        "conversation",
+        "quick response"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/chat/completions",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model ID (e.g. llama-3.1-70b-versatile, mixtral-8x7b-32768)"
+          },
+          "messages": {
+            "type": "array",
+            "required": true,
+            "description": "Chat messages"
+          },
+          "max_tokens": {
+            "type": "integer",
+            "required": false,
+            "description": "Max tokens"
+          },
+          "temperature": {
+            "type": "number",
+            "required": false,
+            "description": "Temperature (0-2)"
+          }
+        }
+      }
+    },
+    {
+      "id": "transcription",
+      "name": "Audio Transcription",
+      "description": "Transcribe audio to text using Whisper on Groq.",
+      "semantic_tags": [
+        "transcribe",
+        "speech to text",
+        "audio",
+        "whisper",
+        "voice to text"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/audio/transcriptions",
+        "params": {
+          "file": {
+            "type": "string",
+            "required": true,
+            "description": "Audio file"
+          },
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model (whisper-large-v3)"
+          }
+        }
+      }
+    },
+    {
+      "id": "translation",
+      "name": "Audio Translation",
+      "description": "Translate audio to English text.",
+      "semantic_tags": [
+        "translate audio",
+        "audio translation",
+        "speech translation"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/audio/translations",
+        "params": {
+          "file": {
+            "type": "string",
+            "required": true,
+            "description": "Audio file"
+          },
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Model (whisper-large-v3)"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_models",
+      "name": "List Models",
+      "description": "List available models on Groq.",
+      "semantic_tags": [
+        "models",
+        "available models",
+        "list models"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/models",
+        "params": {}
+      }
+    },
+    {
+      "id": "embeddings",
+      "name": "Create Embeddings",
+      "description": "Generate text embeddings.",
+      "semantic_tags": [
+        "embeddings",
+        "embed",
+        "vector"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/embeddings",
+        "params": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Embedding model"
+          },
+          "input": {
+            "type": "string",
+            "required": true,
+            "description": "Text to embed"
+          }
+        }
+      }
+    }
+  ]
+}

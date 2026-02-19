@@ -31,7 +31,7 @@ You describe what you want in plain English. The AI agent figures out which APIs
 "search my Notion for project planning docs"              →  Notion API
 ```
 
-Works with **8 built-in providers** and any API you add via a simple JSON file.
+Works with **163 built-in providers** covering **770+ API capabilities** — and you can add any API via a simple JSON file.
 
 ## Quick Start
 
@@ -84,7 +84,7 @@ cp .env.example .env
 docker compose up
 ```
 
-The server starts on port 8080 with all 8 providers loaded.
+The server starts on port 8080 with all 163 providers loaded.
 
 ## Usage
 
@@ -151,18 +151,24 @@ print(result.response)
 | `/api/providers/{name}/configure` | POST | Set provider credentials |
 | `/docs` | GET | Interactive API docs (Swagger) |
 
-## Built-in Providers
+## Built-in Providers (163 and counting)
 
-| Provider | Capabilities | Auth Type |
-|----------|-------------|-----------|
-| **Stripe** | Balance, payments, customers, subscriptions, refunds, invoices | API Key |
-| **Twilio** | SMS, voice calls, WhatsApp, phone lookup, verification | Basic Auth |
-| **OpenAI** | Chat, images, embeddings, transcription, TTS, vision | API Key |
-| **GitHub** | Repos, issues, PRs, notifications, user profile | OAuth |
-| **Shopify** | Products, orders, customers, inventory | Access Token |
-| **Slack** | Messages, channels, users, search, status | OAuth |
-| **Notion** | Search, pages, databases, blocks, users | OAuth |
-| **Gmail** | Send email, read inbox, search messages | OAuth |
+The engine ships with **163 provider definitions** covering payments, messaging, AI, DevOps, CRM, analytics, and more.
+
+**Featured providers:**
+
+| Category | Providers |
+|----------|-----------|
+| **Payments** | Stripe, Square, PayPal, Coinbase, Plaid, Wise |
+| **Messaging** | Twilio, Slack, Discord, SendGrid, Mailgun, Postmark |
+| **AI/ML** | OpenAI, Anthropic, Hugging Face, Replicate, ElevenLabs |
+| **DevOps** | GitHub, GitLab, Vercel, Fly.io, AWS, Cloudflare |
+| **CRM** | HubSpot, Salesforce, Intercom, Zendesk |
+| **Data** | Notion, Airtable, Google Sheets, Supabase, Firebase |
+| **Social** | Twitter/X, Reddit, LinkedIn, YouTube |
+| **And more** | 130+ additional providers across every category |
+
+Browse all providers in the [`providers/`](providers/) directory.
 
 ## Adding Custom Providers
 
@@ -257,9 +263,28 @@ processor = AgenticProcessor(ai_provider="ollama", model="llama3.2")
 processor = AgenticProcessor(ai_provider="openai", model="gpt-4o")
 ```
 
+## x402 Payment Support
+
+The engine includes optional [x402](https://www.x402.org) micropayment support — monetize your self-hosted API with USDC on Base (L2 Ethereum).
+
+```python
+from semanticapi.x402 import get_price_for_endpoint, get_payment_required_header
+
+# Check if endpoint requires payment
+price = get_price_for_endpoint("/api/query")  # "0.01" USDC
+if price:
+    header = get_payment_required_header(price)
+    # Return HTTP 402 with payment instructions
+```
+
+Configure via environment variables:
+- `X402_WALLET_ADDRESS` — your receiving wallet
+- `X402_NETWORK` — `eip155:8453` (mainnet) or `eip155:84532` (testnet)
+- `X402_REQUIRE_PAYMENT` — set to `true` to enforce payments
+
 ## Hosted Version
 
-Don't want to self-host? Use the managed version at **[semanticapi.dev](https://semanticapi.dev)** — includes auto-discovery of any API, OAuth flows, and a dashboard.
+Don't want to self-host? Use the managed version at **[semanticapi.dev](https://semanticapi.dev)** — includes auto-discovery of any API, OAuth flows, x402 payments, and a dashboard.
 
 ## Contributing
 

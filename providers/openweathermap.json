@@ -1,0 +1,165 @@
+{
+    "provider": "openweathermap",
+    "name": "OpenWeatherMap",
+    "description": "Weather data API for current conditions, forecasts, and historical data",
+    "base_url": "https://api.openweathermap.org",
+    "auth": {
+        "type": "api_key",
+        "header": "appid",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "current",
+            "name": "Current Weather",
+            "description": "Get current weather conditions for a location",
+            "semantic_tags": [
+                "weather",
+                "current",
+                "conditions",
+                "temperature",
+                "forecast"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/data/2.5/weather",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": false,
+                        "description": "City name"
+                    },
+                    "lat": {
+                        "type": "number",
+                        "required": false,
+                        "description": "Latitude"
+                    },
+                    "lon": {
+                        "type": "number",
+                        "required": false,
+                        "description": "Longitude"
+                    },
+                    "appid": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "units": {
+                        "type": "string",
+                        "required": false,
+                        "description": "metric, imperial, standard"
+                    }
+                }
+            }
+        },
+        {
+            "id": "forecast",
+            "name": "5-Day Forecast",
+            "description": "Get a 5-day weather forecast in 3-hour intervals",
+            "semantic_tags": [
+                "forecast",
+                "weather",
+                "future",
+                "prediction",
+                "5day"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/data/2.5/forecast",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": false,
+                        "description": "City name"
+                    },
+                    "lat": {
+                        "type": "number",
+                        "required": false,
+                        "description": "Latitude"
+                    },
+                    "lon": {
+                        "type": "number",
+                        "required": false,
+                        "description": "Longitude"
+                    },
+                    "appid": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "onecall",
+            "name": "One Call",
+            "description": "Get current, hourly, and daily forecast plus alerts in one call",
+            "semantic_tags": [
+                "onecall",
+                "comprehensive",
+                "hourly",
+                "daily",
+                "alerts"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/data/3.0/onecall",
+                "params": {
+                    "lat": {
+                        "type": "number",
+                        "required": true,
+                        "description": "Latitude"
+                    },
+                    "lon": {
+                        "type": "number",
+                        "required": true,
+                        "description": "Longitude"
+                    },
+                    "appid": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "exclude": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Parts to exclude"
+                    }
+                }
+            }
+        },
+        {
+            "id": "air_pollution",
+            "name": "Air Pollution",
+            "description": "Get air quality index and pollutant concentrations",
+            "semantic_tags": [
+                "air",
+                "pollution",
+                "quality",
+                "aqi",
+                "environment"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/data/2.5/air_pollution",
+                "params": {
+                    "lat": {
+                        "type": "number",
+                        "required": true,
+                        "description": "Latitude"
+                    },
+                    "lon": {
+                        "type": "number",
+                        "required": true,
+                        "description": "Longitude"
+                    },
+                    "appid": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        }
+    ]
+}

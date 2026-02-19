@@ -1,0 +1,135 @@
+{
+    "provider": "planetscale",
+    "name": "PlanetScale",
+    "description": "Serverless MySQL-compatible database platform with branching",
+    "base_url": "https://api.planetscale.com/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "list_databases",
+            "name": "List Databases",
+            "description": "List all databases in an organization",
+            "semantic_tags": [
+                "list",
+                "databases",
+                "organization",
+                "inventory",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/organizations/{orgName}/databases",
+                "params": {
+                    "orgName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Organization name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_branch",
+            "name": "Create Branch",
+            "description": "Create a database branch for safe schema changes",
+            "semantic_tags": [
+                "branch",
+                "create",
+                "schema",
+                "development",
+                "safe"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/organizations/{orgName}/databases/{dbName}/branches",
+                "params": {
+                    "orgName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Organization name"
+                    },
+                    "dbName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Branch name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_deploy_request",
+            "name": "Create Deploy Request",
+            "description": "Create a deploy request to merge branch schema changes to production",
+            "semantic_tags": [
+                "deploy",
+                "merge",
+                "schema",
+                "migration",
+                "request"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/organizations/{orgName}/databases/{dbName}/deploy-requests",
+                "params": {
+                    "orgName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Organization name"
+                    },
+                    "dbName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    },
+                    "branch": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Source branch"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_password",
+            "name": "Create Password",
+            "description": "Create connection credentials for a database branch",
+            "semantic_tags": [
+                "password",
+                "credentials",
+                "connect",
+                "access",
+                "auth"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/organizations/{orgName}/databases/{dbName}/branches/{branchName}/passwords",
+                "params": {
+                    "orgName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Organization name"
+                    },
+                    "dbName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Database name"
+                    },
+                    "branchName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Branch name"
+                    }
+                }
+            }
+        }
+    ]
+}

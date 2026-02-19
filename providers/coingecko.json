@@ -1,0 +1,120 @@
+{
+    "provider": "coingecko",
+    "name": "CoinGecko",
+    "description": "Cryptocurrency market data API for prices, charts, and exchange data",
+    "base_url": "https://api.coingecko.com/api/v3",
+    "auth": {
+        "type": "api_key",
+        "header": "x-cg-demo-api-key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "price",
+            "name": "Get Price",
+            "description": "Get current price for cryptocurrencies in any fiat currency",
+            "semantic_tags": [
+                "price",
+                "crypto",
+                "current",
+                "market",
+                "value"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/simple/price",
+                "params": {
+                    "ids": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Coin IDs comma-separated"
+                    },
+                    "vs_currencies": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Target currencies e.g. usd,eur"
+                    }
+                }
+            }
+        },
+        {
+            "id": "coin_details",
+            "name": "Coin Details",
+            "description": "Get comprehensive data about a specific cryptocurrency",
+            "semantic_tags": [
+                "coin",
+                "details",
+                "info",
+                "crypto",
+                "metadata"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/coins/{coinId}",
+                "params": {
+                    "coinId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Coin ID e.g. bitcoin"
+                    }
+                }
+            }
+        },
+        {
+            "id": "market_chart",
+            "name": "Market Chart",
+            "description": "Get historical price chart data for a cryptocurrency",
+            "semantic_tags": [
+                "chart",
+                "historical",
+                "price",
+                "market",
+                "timeseries"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/coins/{coinId}/market_chart",
+                "params": {
+                    "coinId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Coin ID"
+                    },
+                    "vs_currency": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Target currency"
+                    },
+                    "days": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Number of days"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search",
+            "name": "Search",
+            "description": "Search for coins, exchanges, and categories",
+            "semantic_tags": [
+                "search",
+                "find",
+                "coins",
+                "crypto",
+                "discover"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    }
+                }
+            }
+        }
+    ]
+}

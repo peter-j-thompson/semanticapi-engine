@@ -1,0 +1,115 @@
+{
+    "provider": "mastodon",
+    "name": "Mastodon",
+    "description": "Decentralized social network API compatible with ActivityPub",
+    "base_url": "https://mastodon.social/api/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "post_status",
+            "name": "Post Status",
+            "description": "Create a new toot/post on Mastodon",
+            "semantic_tags": [
+                "post",
+                "toot",
+                "status",
+                "publish",
+                "social"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/statuses",
+                "params": {
+                    "status": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Toot text content"
+                    },
+                    "visibility": {
+                        "type": "string",
+                        "required": false,
+                        "description": "public, unlisted, private, direct"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search",
+            "name": "Search",
+            "description": "Search for accounts, hashtags, and statuses",
+            "semantic_tags": [
+                "search",
+                "find",
+                "query",
+                "accounts",
+                "content"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v2/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": false,
+                        "description": "accounts, hashtags, statuses"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_timeline",
+            "name": "Get Timeline",
+            "description": "Get the public or home timeline feed",
+            "semantic_tags": [
+                "timeline",
+                "feed",
+                "posts",
+                "recent",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/timelines/home",
+                "params": {
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results limit"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_account",
+            "name": "Get Account",
+            "description": "Get profile info for a Mastodon account",
+            "semantic_tags": [
+                "account",
+                "profile",
+                "info",
+                "user",
+                "identity"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/accounts/{accountId}",
+                "params": {
+                    "accountId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Account ID"
+                    }
+                }
+            }
+        }
+    ]
+}

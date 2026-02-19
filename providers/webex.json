@@ -1,0 +1,130 @@
+{
+    "provider": "webex",
+    "name": "Webex",
+    "description": "Cisco Webex API for messaging, meetings, and team collaboration",
+    "base_url": "https://webexapis.com/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "send_message",
+            "name": "Send Message",
+            "description": "Send a message to a Webex space or person",
+            "semantic_tags": [
+                "send",
+                "message",
+                "chat",
+                "space",
+                "communicate"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/messages",
+                "params": {
+                    "roomId": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Space/room ID"
+                    },
+                    "toPersonEmail": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Recipient email"
+                    },
+                    "text": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Message text"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_meeting",
+            "name": "Create Meeting",
+            "description": "Schedule a Webex meeting",
+            "semantic_tags": [
+                "meeting",
+                "create",
+                "schedule",
+                "video",
+                "conference"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/meetings",
+                "params": {
+                    "title": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Meeting title"
+                    },
+                    "start": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Start time ISO 8601"
+                    },
+                    "end": {
+                        "type": "string",
+                        "required": true,
+                        "description": "End time ISO 8601"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_rooms",
+            "name": "List Spaces",
+            "description": "List all Webex spaces and rooms",
+            "semantic_tags": [
+                "list",
+                "spaces",
+                "rooms",
+                "teams",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/rooms",
+                "params": {
+                    "type": {
+                        "type": "string",
+                        "required": false,
+                        "description": "direct or group"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_messages",
+            "name": "List Messages",
+            "description": "List recent messages in a Webex space",
+            "semantic_tags": [
+                "list",
+                "messages",
+                "history",
+                "chat",
+                "read"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/messages",
+                "params": {
+                    "roomId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Room ID"
+                    },
+                    "max": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max messages"
+                    }
+                }
+            }
+        }
+    ]
+}

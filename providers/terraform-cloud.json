@@ -1,0 +1,110 @@
+{
+    "provider": "terraform-cloud",
+    "name": "Terraform Cloud",
+    "description": "Infrastructure as code platform for managing Terraform workspaces and runs",
+    "base_url": "https://app.terraform.io/api/v2",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_workspaces",
+            "name": "List Workspaces",
+            "description": "List all Terraform workspaces in an organization",
+            "semantic_tags": [
+                "list",
+                "workspaces",
+                "terraform",
+                "infrastructure",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/organizations/{orgName}/workspaces",
+                "params": {
+                    "orgName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Organization name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_run",
+            "name": "Create Run",
+            "description": "Trigger a Terraform plan and apply run",
+            "semantic_tags": [
+                "run",
+                "plan",
+                "apply",
+                "terraform",
+                "deploy"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/runs",
+                "params": {
+                    "data": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Run config with workspace ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_run",
+            "name": "Get Run",
+            "description": "Get the status and details of a Terraform run",
+            "semantic_tags": [
+                "status",
+                "run",
+                "progress",
+                "terraform",
+                "check"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/runs/{runId}",
+                "params": {
+                    "runId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Run ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "set_variables",
+            "name": "Set Variables",
+            "description": "Create or update workspace variables",
+            "semantic_tags": [
+                "variables",
+                "config",
+                "set",
+                "environment",
+                "terraform"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/workspaces/{workspaceId}/vars",
+                "params": {
+                    "workspaceId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Workspace ID"
+                    },
+                    "data": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Variable data"
+                    }
+                }
+            }
+        }
+    ]
+}

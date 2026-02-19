@@ -1,0 +1,134 @@
+{
+    "provider": "medium",
+    "name": "Medium",
+    "description": "Blogging platform API for publishing stories and managing publications",
+    "base_url": "https://api.medium.com/v1",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "get_user",
+            "name": "Get User",
+            "description": "Get the authenticated user's Medium profile",
+            "semantic_tags": [
+                "user",
+                "profile",
+                "info",
+                "medium",
+                "identity"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/me",
+                "params": {}
+            }
+        },
+        {
+            "id": "create_post",
+            "name": "Create Post",
+            "description": "Publish a new story on Medium",
+            "semantic_tags": [
+                "post",
+                "publish",
+                "story",
+                "blog",
+                "write"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/users/{userId}/posts",
+                "params": {
+                    "userId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User ID"
+                    },
+                    "title": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Post title"
+                    },
+                    "contentFormat": {
+                        "type": "string",
+                        "required": true,
+                        "description": "html or markdown"
+                    },
+                    "content": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Post content"
+                    },
+                    "publishStatus": {
+                        "type": "string",
+                        "required": false,
+                        "description": "public, draft, or unlisted"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_publications",
+            "name": "List Publications",
+            "description": "List publications the user contributes to",
+            "semantic_tags": [
+                "publications",
+                "list",
+                "magazines",
+                "blogs",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/users/{userId}/publications",
+                "params": {
+                    "userId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_post_in_pub",
+            "name": "Create Publication Post",
+            "description": "Publish a story under a publication",
+            "semantic_tags": [
+                "publish",
+                "publication",
+                "story",
+                "blog",
+                "contribute"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/publications/{publicationId}/posts",
+                "params": {
+                    "publicationId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Publication ID"
+                    },
+                    "title": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Post title"
+                    },
+                    "contentFormat": {
+                        "type": "string",
+                        "required": true,
+                        "description": "html or markdown"
+                    },
+                    "content": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Post content"
+                    }
+                }
+            }
+        }
+    ]
+}

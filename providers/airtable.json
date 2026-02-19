@@ -1,0 +1,155 @@
+{
+  "provider": "airtable",
+  "name": "Airtable",
+  "description": "Flexible database and spreadsheet hybrid for organizing any data",
+  "base_url": "https://api.airtable.com/v0",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_records",
+      "name": "List Records",
+      "description": "List records from a table.",
+      "semantic_tags": [
+        "records",
+        "list records",
+        "rows",
+        "data",
+        "table data",
+        "get records"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/{baseId}/{tableIdOrName}",
+        "params": {
+          "baseId": {
+            "type": "string",
+            "required": true,
+            "description": "Base ID"
+          },
+          "tableIdOrName": {
+            "type": "string",
+            "required": true,
+            "description": "Table ID or name"
+          },
+          "maxRecords": {
+            "type": "integer",
+            "required": false,
+            "description": "Max records to return"
+          },
+          "filterByFormula": {
+            "type": "string",
+            "required": false,
+            "description": "Airtable formula to filter records"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_records",
+      "name": "Create Records",
+      "description": "Create new records in a table.",
+      "semantic_tags": [
+        "create record",
+        "add row",
+        "new record",
+        "insert data"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/{baseId}/{tableIdOrName}",
+        "params": {
+          "baseId": {
+            "type": "string",
+            "required": true,
+            "description": "Base ID"
+          },
+          "tableIdOrName": {
+            "type": "string",
+            "required": true,
+            "description": "Table ID or name"
+          },
+          "records": {
+            "type": "array",
+            "required": true,
+            "description": "Array of record objects with fields"
+          }
+        }
+      }
+    },
+    {
+      "id": "update_records",
+      "name": "Update Records",
+      "description": "Update existing records in a table.",
+      "semantic_tags": [
+        "update record",
+        "edit row",
+        "modify data",
+        "update data"
+      ],
+      "endpoint": {
+        "method": "PATCH",
+        "path": "/{baseId}/{tableIdOrName}",
+        "params": {
+          "baseId": {
+            "type": "string",
+            "required": true,
+            "description": "Base ID"
+          },
+          "tableIdOrName": {
+            "type": "string",
+            "required": true,
+            "description": "Table ID or name"
+          },
+          "records": {
+            "type": "array",
+            "required": true,
+            "description": "Records with id and fields to update"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_bases",
+      "name": "List Bases",
+      "description": "List all bases accessible to the user.",
+      "semantic_tags": [
+        "bases",
+        "databases",
+        "list bases",
+        "my bases"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/meta/bases",
+        "params": {}
+      }
+    },
+    {
+      "id": "get_base_schema",
+      "name": "Get Base Schema",
+      "description": "Get the schema (tables and fields) of a base.",
+      "semantic_tags": [
+        "schema",
+        "tables",
+        "fields",
+        "structure",
+        "base schema"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/meta/bases/{baseId}/tables",
+        "params": {
+          "baseId": {
+            "type": "string",
+            "required": true,
+            "description": "Base ID"
+          }
+        }
+      }
+    }
+  ]
+}

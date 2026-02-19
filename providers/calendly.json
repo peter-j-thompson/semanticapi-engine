@@ -1,0 +1,120 @@
+{
+    "provider": "calendly",
+    "name": "Calendly",
+    "description": "Scheduling automation platform for booking meetings and appointments",
+    "base_url": "https://api.calendly.com",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_events",
+            "name": "List Events",
+            "description": "List all scheduled events with filtering options",
+            "semantic_tags": [
+                "events",
+                "list",
+                "scheduled",
+                "appointments",
+                "calendar"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/scheduled_events",
+                "params": {
+                    "user": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User URI"
+                    },
+                    "min_start_time": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Min start ISO 8601"
+                    },
+                    "max_start_time": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Max start"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_event",
+            "name": "Get Event",
+            "description": "Get details of a specific scheduled event",
+            "semantic_tags": [
+                "event",
+                "details",
+                "info",
+                "scheduled",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/scheduled_events/{eventId}",
+                "params": {
+                    "eventId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Event UUID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_event_types",
+            "name": "List Event Types",
+            "description": "List all configured event types (booking pages)",
+            "semantic_tags": [
+                "event-types",
+                "list",
+                "booking",
+                "pages",
+                "availability"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/event_types",
+                "params": {
+                    "user": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User URI"
+                    }
+                }
+            }
+        },
+        {
+            "id": "cancel_event",
+            "name": "Cancel Event",
+            "description": "Cancel a scheduled event with optional reason",
+            "semantic_tags": [
+                "cancel",
+                "event",
+                "scheduled",
+                "remove",
+                "appointment"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/scheduled_events/{eventId}/cancellation",
+                "params": {
+                    "eventId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Event UUID"
+                    },
+                    "reason": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Cancellation reason"
+                    }
+                }
+            }
+        }
+    ]
+}

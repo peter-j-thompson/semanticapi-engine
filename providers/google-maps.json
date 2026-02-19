@@ -1,0 +1,178 @@
+{
+    "provider": "google-maps",
+    "name": "Google Maps",
+    "description": "Google Maps Platform APIs for geocoding, directions, and places",
+    "base_url": "https://maps.googleapis.com/maps/api",
+    "auth": {
+        "type": "api_key",
+        "header": "key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "geocode",
+            "name": "Geocode Address",
+            "description": "Convert an address to geographic coordinates",
+            "semantic_tags": [
+                "geocode",
+                "address",
+                "coordinates",
+                "location",
+                "convert"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/geocode/json",
+                "params": {
+                    "address": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Address to geocode"
+                    },
+                    "key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "directions",
+            "name": "Get Directions",
+            "description": "Get driving, walking, or transit directions between locations",
+            "semantic_tags": [
+                "directions",
+                "route",
+                "navigation",
+                "travel",
+                "distance"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/directions/json",
+                "params": {
+                    "origin": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Starting address or coordinates"
+                    },
+                    "destination": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Destination"
+                    },
+                    "mode": {
+                        "type": "string",
+                        "required": false,
+                        "description": "driving, walking, bicycling, transit"
+                    },
+                    "key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "places_search",
+            "name": "Search Places",
+            "description": "Search for nearby places and businesses",
+            "semantic_tags": [
+                "places",
+                "search",
+                "nearby",
+                "business",
+                "local"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/place/nearbysearch/json",
+                "params": {
+                    "location": {
+                        "type": "string",
+                        "required": true,
+                        "description": "lat,lng coordinates"
+                    },
+                    "radius": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Search radius in meters"
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Place type filter"
+                    },
+                    "key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "place_details",
+            "name": "Get Place Details",
+            "description": "Get detailed information about a specific place",
+            "semantic_tags": [
+                "place",
+                "details",
+                "info",
+                "business",
+                "reviews"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/place/details/json",
+                "params": {
+                    "place_id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Google Place ID"
+                    },
+                    "key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "distance_matrix",
+            "name": "Distance Matrix",
+            "description": "Calculate travel distance and time between multiple origins and destinations",
+            "semantic_tags": [
+                "distance",
+                "matrix",
+                "time",
+                "travel",
+                "calculate"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/distancematrix/json",
+                "params": {
+                    "origins": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Origin addresses or coords"
+                    },
+                    "destinations": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Destination addresses or coords"
+                    },
+                    "key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        }
+    ]
+}

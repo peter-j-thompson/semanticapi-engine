@@ -1,0 +1,157 @@
+{
+  "provider": "asana",
+  "name": "Asana",
+  "description": "Work management platform for teams to organize projects and tasks",
+  "base_url": "https://app.asana.com/api/1.0",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_tasks",
+      "name": "List Tasks",
+      "description": "List tasks in a project or assigned to you.",
+      "semantic_tags": [
+        "tasks",
+        "to-dos",
+        "list tasks",
+        "my tasks",
+        "assignments"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/tasks",
+        "params": {
+          "project": {
+            "type": "string",
+            "required": false,
+            "description": "Project GID"
+          },
+          "assignee": {
+            "type": "string",
+            "required": false,
+            "description": "Assignee (me or user GID)"
+          },
+          "workspace": {
+            "type": "string",
+            "required": false,
+            "description": "Workspace GID"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_task",
+      "name": "Create Task",
+      "description": "Create a new task.",
+      "semantic_tags": [
+        "create task",
+        "new task",
+        "add task",
+        "to-do"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/tasks",
+        "params": {
+          "data": {
+            "type": "object",
+            "required": true,
+            "description": "Task data (name, projects, assignee, due_on, notes)"
+          }
+        }
+      }
+    },
+    {
+      "id": "update_task",
+      "name": "Update Task",
+      "description": "Update an existing task.",
+      "semantic_tags": [
+        "update task",
+        "edit task",
+        "complete task",
+        "change task"
+      ],
+      "endpoint": {
+        "method": "PUT",
+        "path": "/tasks/{task_gid}",
+        "params": {
+          "task_gid": {
+            "type": "string",
+            "required": true,
+            "description": "Task GID"
+          },
+          "data": {
+            "type": "object",
+            "required": true,
+            "description": "Fields to update"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_projects",
+      "name": "List Projects",
+      "description": "List projects in a workspace.",
+      "semantic_tags": [
+        "projects",
+        "list projects",
+        "all projects"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/projects",
+        "params": {
+          "workspace": {
+            "type": "string",
+            "required": true,
+            "description": "Workspace GID"
+          }
+        }
+      }
+    },
+    {
+      "id": "search_tasks",
+      "name": "Search Tasks",
+      "description": "Search for tasks in a workspace.",
+      "semantic_tags": [
+        "search",
+        "find task",
+        "search tasks"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/workspaces/{workspace_gid}/tasks/search",
+        "params": {
+          "workspace_gid": {
+            "type": "string",
+            "required": true,
+            "description": "Workspace GID"
+          },
+          "text": {
+            "type": "string",
+            "required": false,
+            "description": "Search text"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_workspaces",
+      "name": "List Workspaces",
+      "description": "List all workspaces.",
+      "semantic_tags": [
+        "workspaces",
+        "organizations",
+        "list workspaces"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/workspaces",
+        "params": {}
+      }
+    }
+  ]
+}

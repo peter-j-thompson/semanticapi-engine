@@ -7,7 +7,15 @@
     "type": "oauth2",
     "auth_url": "https://slack.com/oauth/v2/authorize",
     "token_url": "https://slack.com/api/oauth.v2.access",
-    "scopes": ["chat:write", "chat:write.public", "channels:read", "channels:history", "users:read", "groups:read", "im:read"],
+    "scopes": [
+      "chat:write",
+      "chat:write.public",
+      "channels:read",
+      "channels:history",
+      "users:read",
+      "groups:read",
+      "im:read"
+    ],
     "client_id_env": "SLACK_CLIENT_ID",
     "client_secret_env": "SLACK_CLIENT_SECRET",
     "token_field": "access_token"
@@ -17,14 +25,34 @@
       "id": "send_message",
       "name": "Send Message",
       "description": "Send a message to a Slack channel or direct message",
-      "semantic_tags": ["message", "send", "post", "chat", "notify", "channel", "dm"],
+      "semantic_tags": [
+        "message",
+        "send",
+        "post",
+        "chat",
+        "notify",
+        "channel",
+        "dm"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/chat.postMessage",
         "params": {
-          "channel": {"type": "string", "required": true, "description": "Channel ID or name"},
-          "text": {"type": "string", "required": true, "description": "Message text"},
-          "blocks": {"type": "array", "required": false, "description": "Block Kit blocks for rich formatting"}
+          "channel": {
+            "type": "string",
+            "required": true,
+            "description": "Channel ID or name"
+          },
+          "text": {
+            "type": "string",
+            "required": true,
+            "description": "Message text"
+          },
+          "blocks": {
+            "type": "array",
+            "required": false,
+            "description": "Block Kit blocks for rich formatting"
+          }
         }
       }
     },
@@ -32,13 +60,26 @@
       "id": "list_channels",
       "name": "List Channels",
       "description": "Get a list of all public channels in the workspace",
-      "semantic_tags": ["channels", "list", "workspace", "rooms"],
+      "semantic_tags": [
+        "channels",
+        "list",
+        "workspace",
+        "rooms"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/conversations.list",
         "params": {
-          "types": {"type": "string", "required": false, "description": "Channel types (public_channel, private_channel)"},
-          "limit": {"type": "integer", "required": false, "description": "Maximum results to return"}
+          "types": {
+            "type": "string",
+            "required": false,
+            "description": "Channel types (public_channel, private_channel)"
+          },
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Maximum results to return"
+          }
         }
       }
     },
@@ -46,13 +87,27 @@
       "id": "get_channel_history",
       "name": "Get Channel History",
       "description": "Fetch message history from a channel",
-      "semantic_tags": ["history", "messages", "chat", "conversation", "logs"],
+      "semantic_tags": [
+        "history",
+        "messages",
+        "chat",
+        "conversation",
+        "logs"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/conversations.history",
         "params": {
-          "channel": {"type": "string", "required": true, "description": "Channel ID"},
-          "limit": {"type": "integer", "required": false, "description": "Number of messages to fetch"}
+          "channel": {
+            "type": "string",
+            "required": true,
+            "description": "Channel ID"
+          },
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of messages to fetch"
+          }
         }
       }
     },
@@ -60,12 +115,22 @@
       "id": "list_users",
       "name": "List Users",
       "description": "Get a list of all users in the workspace",
-      "semantic_tags": ["users", "members", "team", "people", "workspace"],
+      "semantic_tags": [
+        "users",
+        "members",
+        "team",
+        "people",
+        "workspace"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/users.list",
         "params": {
-          "limit": {"type": "integer", "required": false, "description": "Maximum results"}
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Maximum results"
+          }
         }
       }
     },
@@ -73,12 +138,21 @@
       "id": "get_user_info",
       "name": "Get User Info",
       "description": "Get information about a specific user",
-      "semantic_tags": ["user", "profile", "info", "member"],
+      "semantic_tags": [
+        "user",
+        "profile",
+        "info",
+        "member"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/users.info",
         "params": {
-          "user": {"type": "string", "required": true, "description": "User ID"}
+          "user": {
+            "type": "string",
+            "required": true,
+            "description": "User ID"
+          }
         }
       }
     },
@@ -86,12 +160,21 @@
       "id": "search_messages",
       "name": "Search Messages",
       "description": "Search for messages across all channels",
-      "semantic_tags": ["search", "find", "messages", "query"],
+      "semantic_tags": [
+        "search",
+        "find",
+        "messages",
+        "query"
+      ],
       "endpoint": {
         "method": "GET",
         "path": "/search.messages",
         "params": {
-          "query": {"type": "string", "required": true, "description": "Search query"}
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "Search query"
+          }
         }
       }
     },
@@ -99,12 +182,21 @@
       "id": "set_status",
       "name": "Set User Status",
       "description": "Set your status emoji and text",
-      "semantic_tags": ["status", "presence", "emoji", "available"],
+      "semantic_tags": [
+        "status",
+        "presence",
+        "emoji",
+        "available"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/users.profile.set",
         "params": {
-          "profile": {"type": "object", "required": true, "description": "Profile object with status_text and status_emoji"}
+          "profile": {
+            "type": "object",
+            "required": true,
+            "description": "Profile object with status_text and status_emoji"
+          }
         }
       }
     },
@@ -112,13 +204,26 @@
       "id": "create_channel",
       "name": "Create Channel",
       "description": "Create a new public or private channel",
-      "semantic_tags": ["create", "new", "channel", "room"],
+      "semantic_tags": [
+        "create",
+        "new",
+        "channel",
+        "room"
+      ],
       "endpoint": {
         "method": "POST",
         "path": "/conversations.create",
         "params": {
-          "name": {"type": "string", "required": true, "description": "Channel name"},
-          "is_private": {"type": "boolean", "required": false, "description": "Create as private channel"}
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Channel name"
+          },
+          "is_private": {
+            "type": "boolean",
+            "required": false,
+            "description": "Create as private channel"
+          }
         }
       }
     }
@@ -144,5 +249,6 @@
       "data_field": "members",
       "error_field": "error"
     }
-  }
+  },
+  "auth_setup_url": "https://api.slack.com/apps"
 }

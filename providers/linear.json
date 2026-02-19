@@ -1,0 +1,154 @@
+{
+  "provider": "linear",
+  "name": "Linear",
+  "description": "Modern project management for software teams",
+  "base_url": "https://api.linear.app",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_issues",
+      "name": "List Issues",
+      "description": "Query issues with filters using GraphQL.",
+      "semantic_tags": [
+        "issues",
+        "tickets",
+        "tasks",
+        "list issues",
+        "my issues"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/graphql",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL query for issues"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_issue",
+      "name": "Create Issue",
+      "description": "Create a new issue in Linear.",
+      "semantic_tags": [
+        "create issue",
+        "new issue",
+        "new task",
+        "add ticket"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/graphql",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL mutation for issueCreate"
+          },
+          "variables": {
+            "type": "object",
+            "required": true,
+            "description": "Issue fields (title, teamId, etc.)"
+          }
+        }
+      }
+    },
+    {
+      "id": "update_issue",
+      "name": "Update Issue",
+      "description": "Update an existing issue.",
+      "semantic_tags": [
+        "update issue",
+        "edit issue",
+        "change status",
+        "assign"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/graphql",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL mutation for issueUpdate"
+          },
+          "variables": {
+            "type": "object",
+            "required": true,
+            "description": "Fields to update"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_teams",
+      "name": "List Teams",
+      "description": "List all teams in the workspace.",
+      "semantic_tags": [
+        "teams",
+        "list teams",
+        "workspace teams"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/graphql",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL query for teams"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_projects",
+      "name": "List Projects",
+      "description": "List all projects.",
+      "semantic_tags": [
+        "projects",
+        "list projects",
+        "all projects"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/graphql",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL query for projects"
+          }
+        }
+      }
+    },
+    {
+      "id": "search_issues",
+      "name": "Search Issues",
+      "description": "Search issues by text.",
+      "semantic_tags": [
+        "search",
+        "find issue",
+        "search issues"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/graphql",
+        "params": {
+          "query": {
+            "type": "string",
+            "required": true,
+            "description": "GraphQL query with search filter"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://linear.app/settings/api"
+}

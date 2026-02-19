@@ -1,0 +1,135 @@
+{
+    "provider": "scrapingbee",
+    "name": "ScrapingBee",
+    "description": "Web scraping API with headless browser, proxy rotation and CAPTCHA solving",
+    "base_url": "https://app.scrapingbee.com/api/v1",
+    "auth": {
+        "type": "api_key",
+        "header": "Spb-Api-Key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "scrape_url",
+            "name": "Scrape URL",
+            "description": "Extract HTML content from any URL with optional JavaScript rendering",
+            "semantic_tags": [
+                "scraping",
+                "web",
+                "html",
+                "extract",
+                "render"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to scrape"
+                    },
+                    "render_js": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Enable JavaScript rendering"
+                    },
+                    "premium_proxy": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Use premium residential proxies"
+                    }
+                }
+            }
+        },
+        {
+            "id": "extract_data",
+            "name": "Extract Structured Data",
+            "description": "Extract structured data using CSS selectors or AI extraction rules",
+            "semantic_tags": [
+                "extract",
+                "structured",
+                "css",
+                "selector",
+                "parse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to scrape"
+                    },
+                    "extract_rules": {
+                        "type": "object",
+                        "required": true,
+                        "description": "JSON extraction rules with CSS selectors"
+                    }
+                }
+            }
+        },
+        {
+            "id": "screenshot",
+            "name": "Take Screenshot",
+            "description": "Capture a full-page or viewport screenshot of any webpage",
+            "semantic_tags": [
+                "screenshot",
+                "capture",
+                "image",
+                "webpage",
+                "visual"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to screenshot"
+                    },
+                    "screenshot": {
+                        "type": "boolean",
+                        "required": true,
+                        "description": "Set to true"
+                    },
+                    "screenshot_full_page": {
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Capture full page"
+                    }
+                }
+            }
+        },
+        {
+            "id": "google_scrape",
+            "name": "Google Search Scrape",
+            "description": "Scrape Google search results for any query with structured output",
+            "semantic_tags": [
+                "google",
+                "search",
+                "serp",
+                "results",
+                "scrape"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Google search URL"
+                    },
+                    "custom_google": {
+                        "type": "boolean",
+                        "required": true,
+                        "description": "Enable Google SERP parsing"
+                    }
+                }
+            }
+        }
+    ]
+}

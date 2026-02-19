@@ -1,0 +1,99 @@
+{
+    "provider": "ipinfo",
+    "name": "IPinfo",
+    "description": "IP address geolocation and data enrichment API",
+    "base_url": "https://ipinfo.io",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "lookup",
+            "name": "IP Lookup",
+            "description": "Get geolocation and network info for an IP address",
+            "semantic_tags": [
+                "ip",
+                "geolocation",
+                "lookup",
+                "location",
+                "network"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/{ip}",
+                "params": {
+                    "ip": {
+                        "type": "string",
+                        "required": true,
+                        "description": "IP address to look up"
+                    }
+                }
+            }
+        },
+        {
+            "id": "batch",
+            "name": "Batch Lookup",
+            "description": "Look up multiple IP addresses in one request",
+            "semantic_tags": [
+                "batch",
+                "ip",
+                "bulk",
+                "lookup",
+                "multiple"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/batch",
+                "params": {
+                    "ips": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Array of IP addresses"
+                    }
+                }
+            }
+        },
+        {
+            "id": "my_ip",
+            "name": "My IP",
+            "description": "Get information about the requesting IP address",
+            "semantic_tags": [
+                "myip",
+                "self",
+                "current",
+                "location",
+                "identity"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/",
+                "params": {}
+            }
+        },
+        {
+            "id": "asn",
+            "name": "ASN Lookup",
+            "description": "Get details about an Autonomous System Number",
+            "semantic_tags": [
+                "asn",
+                "network",
+                "isp",
+                "routing",
+                "info"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/{asn}",
+                "params": {
+                    "asn": {
+                        "type": "string",
+                        "required": true,
+                        "description": "ASN e.g. AS13335"
+                    }
+                }
+            }
+        }
+    ]
+}

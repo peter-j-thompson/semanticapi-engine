@@ -1,0 +1,135 @@
+{
+    "provider": "posthog",
+    "name": "PostHog",
+    "description": "Open-source product analytics with feature flags and session replay",
+    "base_url": "https://app.posthog.com",
+    "auth": {
+        "type": "api_key",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "capture",
+            "name": "Capture Event",
+            "description": "Capture a user event with properties",
+            "semantic_tags": [
+                "capture",
+                "event",
+                "track",
+                "analytics",
+                "user"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/capture/",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Project API key"
+                    },
+                    "event": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Event name"
+                    },
+                    "distinct_id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User ID"
+                    },
+                    "properties": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Event properties"
+                    }
+                }
+            }
+        },
+        {
+            "id": "query",
+            "name": "HogQL Query",
+            "description": "Run analytics queries using HogQL",
+            "semantic_tags": [
+                "query",
+                "hogql",
+                "analytics",
+                "data",
+                "insights"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/api/projects/{projectId}/query",
+                "params": {
+                    "projectId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Project ID"
+                    },
+                    "query": {
+                        "type": "object",
+                        "required": true,
+                        "description": "HogQL query object"
+                    }
+                }
+            }
+        },
+        {
+            "id": "feature_flags",
+            "name": "Evaluate Feature Flags",
+            "description": "Evaluate feature flags for a specific user",
+            "semantic_tags": [
+                "feature-flags",
+                "flags",
+                "evaluate",
+                "toggle",
+                "experiment"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/decide/",
+                "params": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Project API key"
+                    },
+                    "distinct_id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "persons",
+            "name": "Get Person",
+            "description": "Get a person's profile and event history",
+            "semantic_tags": [
+                "person",
+                "profile",
+                "user",
+                "history",
+                "identity"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/api/projects/{projectId}/persons",
+                "params": {
+                    "projectId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Project ID"
+                    },
+                    "distinct_id": {
+                        "type": "string",
+                        "required": false,
+                        "description": "User ID filter"
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,128 @@
+{
+  "provider": "resend",
+  "name": "Resend",
+  "description": "Modern email API for developers",
+  "base_url": "https://api.resend.com",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "send_email",
+      "name": "Send Email",
+      "description": "Send a transactional email.",
+      "semantic_tags": [
+        "send email",
+        "email",
+        "mail",
+        "transactional email"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/emails",
+        "params": {
+          "from": {
+            "type": "string",
+            "required": true,
+            "description": "Sender email"
+          },
+          "to": {
+            "type": "array",
+            "required": true,
+            "description": "Recipient emails"
+          },
+          "subject": {
+            "type": "string",
+            "required": true,
+            "description": "Subject line"
+          },
+          "html": {
+            "type": "string",
+            "required": false,
+            "description": "HTML content"
+          },
+          "text": {
+            "type": "string",
+            "required": false,
+            "description": "Plain text content"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_email",
+      "name": "Get Email",
+      "description": "Retrieve details of a sent email.",
+      "semantic_tags": [
+        "email status",
+        "email details",
+        "check email"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/emails/{email_id}",
+        "params": {
+          "email_id": {
+            "type": "string",
+            "required": true,
+            "description": "Email ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_domains",
+      "name": "List Domains",
+      "description": "List verified sending domains.",
+      "semantic_tags": [
+        "domains",
+        "sending domains",
+        "verified domains"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/domains",
+        "params": {}
+      }
+    },
+    {
+      "id": "create_domain",
+      "name": "Add Domain",
+      "description": "Add a new sending domain.",
+      "semantic_tags": [
+        "add domain",
+        "new domain",
+        "verify domain"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/domains",
+        "params": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Domain name"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_api_keys",
+      "name": "List API Keys",
+      "description": "List all API keys.",
+      "semantic_tags": [
+        "api keys",
+        "keys",
+        "list keys"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/api-keys",
+        "params": {}
+      }
+    }
+  ],
+  "auth_setup_url": "https://resend.com/api-keys"
+}

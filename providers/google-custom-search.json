@@ -1,0 +1,165 @@
+{
+    "provider": "google-custom-search",
+    "name": "Google Custom Search",
+    "description": "Google's programmable search engine API for custom web search",
+    "base_url": "https://www.googleapis.com",
+    "auth": {
+        "type": "api_key",
+        "header": "key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "search",
+            "name": "Web Search",
+            "description": "Perform a Google Custom Search query and get structured results",
+            "semantic_tags": [
+                "google",
+                "search",
+                "web",
+                "query",
+                "results"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/customsearch/v1",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "cx": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search engine ID"
+                    },
+                    "num": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Number of results 1-10"
+                    }
+                }
+            }
+        },
+        {
+            "id": "image_search",
+            "name": "Image Search",
+            "description": "Search for images using Google Custom Search",
+            "semantic_tags": [
+                "image",
+                "search",
+                "google",
+                "visual",
+                "photos"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/customsearch/v1",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Image query"
+                    },
+                    "key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "cx": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search engine ID"
+                    },
+                    "searchType": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to image"
+                    }
+                }
+            }
+        },
+        {
+            "id": "site_search",
+            "name": "Site-Restricted Search",
+            "description": "Search within a specific website or domain only",
+            "semantic_tags": [
+                "site",
+                "restricted",
+                "domain",
+                "specific",
+                "search"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/customsearch/v1",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "cx": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search engine ID"
+                    },
+                    "siteSearch": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Domain to restrict to"
+                    }
+                }
+            }
+        },
+        {
+            "id": "date_search",
+            "name": "Date-Filtered Search",
+            "description": "Search with date range restrictions for recent content",
+            "semantic_tags": [
+                "date",
+                "filter",
+                "recent",
+                "time",
+                "search"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/customsearch/v1",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "key": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "cx": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search engine ID"
+                    },
+                    "dateRestrict": {
+                        "type": "string",
+                        "required": false,
+                        "description": "e.g. d5 for past 5 days"
+                    }
+                }
+            }
+        }
+    ]
+}

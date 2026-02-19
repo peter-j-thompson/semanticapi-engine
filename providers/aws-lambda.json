@@ -1,0 +1,125 @@
+{
+    "provider": "aws-lambda",
+    "name": "AWS Lambda",
+    "description": "Serverless compute service for running functions without managing servers",
+    "base_url": "https://lambda.us-east-1.amazonaws.com",
+    "auth": {
+        "type": "aws_v4",
+        "header": "Authorization",
+        "prefix": "AWS4-HMAC-SHA256"
+    },
+    "capabilities": [
+        {
+            "id": "invoke",
+            "name": "Invoke Function",
+            "description": "Invoke a Lambda function synchronously or asynchronously",
+            "semantic_tags": [
+                "invoke",
+                "execute",
+                "function",
+                "serverless",
+                "run"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/2015-03-31/functions/{functionName}/invocations",
+                "params": {
+                    "functionName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Function name or ARN"
+                    },
+                    "Payload": {
+                        "type": "string",
+                        "required": false,
+                        "description": "JSON payload"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_functions",
+            "name": "List Functions",
+            "description": "List all Lambda functions in the account",
+            "semantic_tags": [
+                "list",
+                "functions",
+                "inventory",
+                "serverless",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/2015-03-31/functions",
+                "params": {
+                    "MaxItems": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max to return"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_function",
+            "name": "Create Function",
+            "description": "Create a new Lambda function with code and configuration",
+            "semantic_tags": [
+                "create",
+                "function",
+                "new",
+                "serverless",
+                "deploy"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/2015-03-31/functions",
+                "params": {
+                    "FunctionName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Function name"
+                    },
+                    "Runtime": {
+                        "type": "string",
+                        "required": true,
+                        "description": "e.g. nodejs20.x, python3.12"
+                    },
+                    "Role": {
+                        "type": "string",
+                        "required": true,
+                        "description": "IAM role ARN"
+                    },
+                    "Code": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Code location"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_function",
+            "name": "Get Function",
+            "description": "Get configuration details for a Lambda function",
+            "semantic_tags": [
+                "get",
+                "function",
+                "details",
+                "config",
+                "info"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/2015-03-31/functions/{functionName}",
+                "params": {
+                    "functionName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Function name or ARN"
+                    }
+                }
+            }
+        }
+    ]
+}

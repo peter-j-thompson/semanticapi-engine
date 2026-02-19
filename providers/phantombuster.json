@@ -1,0 +1,104 @@
+{
+    "provider": "phantombuster",
+    "name": "PhantomBuster",
+    "description": "Cloud automation platform for lead generation and social media data extraction",
+    "base_url": "https://api.phantombuster.com/api/v2",
+    "auth": {
+        "type": "api_key",
+        "header": "X-Phantombuster-Key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "launch",
+            "name": "Launch Phantom",
+            "description": "Launch a phantom automation agent for data extraction or actions",
+            "semantic_tags": [
+                "launch",
+                "automation",
+                "phantom",
+                "scrape",
+                "extract"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/agents/launch",
+                "params": {
+                    "id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Phantom agent ID"
+                    },
+                    "argument": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Input arguments"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_output",
+            "name": "Get Output",
+            "description": "Retrieve the output and results from a phantom run",
+            "semantic_tags": [
+                "output",
+                "results",
+                "data",
+                "retrieve",
+                "phantom"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/agents/fetch-output",
+                "params": {
+                    "id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Phantom agent ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_agent",
+            "name": "Get Agent",
+            "description": "Get details and current status of a phantom agent",
+            "semantic_tags": [
+                "agent",
+                "status",
+                "details",
+                "info",
+                "phantom"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/agents/fetch",
+                "params": {
+                    "id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Phantom agent ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_agents",
+            "name": "List Agents",
+            "description": "List all phantom agents configured in the account",
+            "semantic_tags": [
+                "list",
+                "agents",
+                "phantoms",
+                "account",
+                "inventory"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/agents/fetch-all",
+                "params": {}
+            }
+        }
+    ]
+}

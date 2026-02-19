@@ -1,0 +1,109 @@
+{
+    "provider": "heroku",
+    "name": "Heroku",
+    "description": "Platform as a service for deploying, managing, and scaling applications",
+    "base_url": "https://api.heroku.com",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "list_apps",
+            "name": "List Apps",
+            "description": "List all Heroku applications in the account",
+            "semantic_tags": [
+                "list",
+                "apps",
+                "applications",
+                "inventory",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/apps",
+                "params": {}
+            }
+        },
+        {
+            "id": "create_app",
+            "name": "Create App",
+            "description": "Create a new Heroku application",
+            "semantic_tags": [
+                "create",
+                "app",
+                "new",
+                "deploy",
+                "provision"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/apps",
+                "params": {
+                    "name": {
+                        "type": "string",
+                        "required": false,
+                        "description": "App name"
+                    },
+                    "region": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Region us or eu"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_build",
+            "name": "Create Build",
+            "description": "Deploy code by creating a new build from a source tarball",
+            "semantic_tags": [
+                "deploy",
+                "build",
+                "release",
+                "push",
+                "update"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/apps/{appId}/builds",
+                "params": {
+                    "appId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "App name or ID"
+                    },
+                    "source_blob": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Source blob {url, version}"
+                    }
+                }
+            }
+        },
+        {
+            "id": "set_config",
+            "name": "Set Config Vars",
+            "description": "Set environment configuration variables for an app",
+            "semantic_tags": [
+                "config",
+                "environment",
+                "variables",
+                "settings",
+                "env"
+            ],
+            "endpoint": {
+                "method": "PATCH",
+                "path": "/apps/{appId}/config-vars",
+                "params": {
+                    "appId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "App name or ID"
+                    }
+                }
+            }
+        }
+    ]
+}

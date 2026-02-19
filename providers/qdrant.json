@@ -1,0 +1,130 @@
+{
+    "provider": "qdrant",
+    "name": "Qdrant",
+    "description": "High-performance open-source vector similarity search engine",
+    "base_url": "https://cloud.qdrant.io",
+    "auth": {
+        "type": "api_key",
+        "header": "api-key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "upsert",
+            "name": "Upsert Points",
+            "description": "Insert or update points with vectors and payloads in a collection",
+            "semantic_tags": [
+                "upsert",
+                "vectors",
+                "points",
+                "insert",
+                "store"
+            ],
+            "endpoint": {
+                "method": "PUT",
+                "path": "/collections/{collection_name}/points",
+                "params": {
+                    "collection_name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Collection name"
+                    },
+                    "points": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Array of {id, vector, payload}"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search",
+            "name": "Search Points",
+            "description": "Find nearest vectors by similarity in a collection",
+            "semantic_tags": [
+                "search",
+                "nearest",
+                "similarity",
+                "vector",
+                "query"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/collections/{collection_name}/points/search",
+                "params": {
+                    "collection_name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Collection name"
+                    },
+                    "vector": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Query vector"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Number of results"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_collection",
+            "name": "Create Collection",
+            "description": "Create a new vector collection with specified dimensions and distance",
+            "semantic_tags": [
+                "create",
+                "collection",
+                "setup",
+                "initialize",
+                "configure"
+            ],
+            "endpoint": {
+                "method": "PUT",
+                "path": "/collections/{collection_name}",
+                "params": {
+                    "collection_name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Collection name"
+                    },
+                    "vectors": {
+                        "type": "object",
+                        "required": true,
+                        "description": "Vector config {size, distance}"
+                    }
+                }
+            }
+        },
+        {
+            "id": "delete_points",
+            "name": "Delete Points",
+            "description": "Delete points from a collection by ID or filter",
+            "semantic_tags": [
+                "delete",
+                "remove",
+                "points",
+                "clean",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/collections/{collection_name}/points/delete",
+                "params": {
+                    "collection_name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Collection name"
+                    },
+                    "points": {
+                        "type": "array",
+                        "required": false,
+                        "description": "Point IDs to delete"
+                    }
+                }
+            }
+        }
+    ]
+}

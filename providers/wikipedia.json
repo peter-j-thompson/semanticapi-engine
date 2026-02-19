@@ -1,0 +1,170 @@
+{
+    "provider": "wikipedia",
+    "name": "Wikipedia",
+    "description": "Free encyclopedia API for searching and retrieving Wikipedia articles",
+    "base_url": "https://en.wikipedia.org/w",
+    "auth": {
+        "type": "none",
+        "header": "",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "search",
+            "name": "Search Articles",
+            "description": "Search Wikipedia for articles matching a query string",
+            "semantic_tags": [
+                "search",
+                "wikipedia",
+                "articles",
+                "encyclopedia",
+                "knowledge"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/api.php",
+                "params": {
+                    "action": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to query"
+                    },
+                    "list": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to search"
+                    },
+                    "srsearch": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "format": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to json"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_page",
+            "name": "Get Page Content",
+            "description": "Retrieve the full text content of a Wikipedia article",
+            "semantic_tags": [
+                "page",
+                "content",
+                "article",
+                "read",
+                "text"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/api.php",
+                "params": {
+                    "action": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to query"
+                    },
+                    "titles": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Article title"
+                    },
+                    "prop": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to extracts"
+                    },
+                    "format": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to json"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_summary",
+            "name": "Get Summary",
+            "description": "Get a concise summary/introduction of a Wikipedia article",
+            "semantic_tags": [
+                "summary",
+                "brief",
+                "overview",
+                "article",
+                "quick"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/api.php",
+                "params": {
+                    "action": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to query"
+                    },
+                    "titles": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Article title"
+                    },
+                    "prop": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to extracts"
+                    },
+                    "exintro": {
+                        "type": "boolean",
+                        "required": true,
+                        "description": "Set to true for intro only"
+                    },
+                    "format": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to json"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_links",
+            "name": "Get Page Links",
+            "description": "Get all internal links referenced in a Wikipedia article",
+            "semantic_tags": [
+                "links",
+                "references",
+                "related",
+                "connections",
+                "navigation"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/api.php",
+                "params": {
+                    "action": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to query"
+                    },
+                    "titles": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Article title"
+                    },
+                    "prop": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to links"
+                    },
+                    "format": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to json"
+                    }
+                }
+            }
+        }
+    ]
+}

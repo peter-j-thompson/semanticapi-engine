@@ -1,0 +1,120 @@
+{
+    "provider": "docker-hub",
+    "name": "Docker Hub",
+    "description": "Docker container registry for searching and managing container images",
+    "base_url": "https://hub.docker.com/v2",
+    "auth": {
+        "type": "bearer",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "search",
+            "name": "Search Images",
+            "description": "Search Docker Hub for container images",
+            "semantic_tags": [
+                "search",
+                "images",
+                "docker",
+                "containers",
+                "registry"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search/repositories",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "page_size": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results per page"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_tags",
+            "name": "List Tags",
+            "description": "List all tags/versions for a Docker image",
+            "semantic_tags": [
+                "tags",
+                "list",
+                "versions",
+                "image",
+                "repository"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/repositories/{namespace}/{repository}/tags",
+                "params": {
+                    "namespace": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Image namespace"
+                    },
+                    "repository": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Repository name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_repo",
+            "name": "Get Repository",
+            "description": "Get details about a Docker Hub repository",
+            "semantic_tags": [
+                "repository",
+                "details",
+                "info",
+                "image",
+                "docker"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/repositories/{namespace}/{repository}",
+                "params": {
+                    "namespace": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Namespace"
+                    },
+                    "repository": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Repository name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_repos",
+            "name": "List Repositories",
+            "description": "List all repositories for a user or organization",
+            "semantic_tags": [
+                "list",
+                "repositories",
+                "images",
+                "account",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/repositories/{namespace}",
+                "params": {
+                    "namespace": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Namespace"
+                    }
+                }
+            }
+        }
+    ]
+}

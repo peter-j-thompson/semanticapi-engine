@@ -1,0 +1,98 @@
+{
+  "provider": "infobip",
+  "name": "Infobip",
+  "description": "Omnichannel communication platform for SMS, email, voice, and chat apps",
+  "base_url": "https://{baseUrl}.api.infobip.com",
+  "auth": {
+    "type": "api_key",
+    "header": "Authorization",
+    "prefix": "App"
+  },
+  "capabilities": [
+    {
+      "id": "send_sms",
+      "name": "Send SMS",
+      "description": "Send an SMS message.",
+      "semantic_tags": ["send sms", "text message", "sms"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/sms/2/text/advanced",
+        "params": {
+          "messages": { "type": "array", "required": true, "description": "Array of message objects with destinations and text" }
+        }
+      }
+    },
+    {
+      "id": "send_whatsapp",
+      "name": "Send WhatsApp Message",
+      "description": "Send a WhatsApp message.",
+      "semantic_tags": ["whatsapp", "send whatsapp", "chat"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/whatsapp/1/message/text",
+        "params": {
+          "from": { "type": "string", "required": true, "description": "Sender number" },
+          "to": { "type": "string", "required": true, "description": "Recipient number" },
+          "content": { "type": "object", "required": true, "description": "Message content with text field" }
+        }
+      }
+    },
+    {
+      "id": "send_email",
+      "name": "Send Email",
+      "description": "Send an email message.",
+      "semantic_tags": ["send email", "email"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/email/3/send",
+        "params": {
+          "from": { "type": "string", "required": true, "description": "Sender email" },
+          "to": { "type": "string", "required": true, "description": "Recipient email" },
+          "subject": { "type": "string", "required": true, "description": "Email subject" },
+          "text": { "type": "string", "required": false, "description": "Plain text body" },
+          "html": { "type": "string", "required": false, "description": "HTML body" }
+        }
+      }
+    },
+    {
+      "id": "get_sms_delivery_reports",
+      "name": "Get SMS Delivery Reports",
+      "description": "Get delivery reports for sent SMS messages.",
+      "semantic_tags": ["delivery report", "sms status", "message status"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/sms/1/reports",
+        "params": {
+          "messageId": { "type": "string", "required": false, "description": "Filter by message ID" },
+          "limit": { "type": "integer", "required": false, "description": "Max results" }
+        }
+      }
+    },
+    {
+      "id": "make_voice_call",
+      "name": "Make Voice Call",
+      "description": "Initiate a voice call.",
+      "semantic_tags": ["voice call", "phone call", "tts call"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/tts/3/advanced",
+        "params": {
+          "messages": { "type": "array", "required": true, "description": "Array of voice message objects" }
+        }
+      }
+    },
+    {
+      "id": "number_lookup",
+      "name": "Number Lookup",
+      "description": "Look up phone number validity and carrier info.",
+      "semantic_tags": ["number lookup", "phone validation", "carrier lookup"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/number/1/notify/{number}",
+        "params": {
+          "number": { "type": "string", "required": true, "description": "Phone number in E.164 format" }
+        }
+      }
+    }
+  ]
+}

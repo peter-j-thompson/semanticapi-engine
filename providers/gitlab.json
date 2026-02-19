@@ -1,0 +1,170 @@
+{
+  "provider": "gitlab",
+  "name": "GitLab",
+  "description": "DevOps platform for source code management, CI/CD, and project management",
+  "base_url": "https://gitlab.com/api/v4",
+  "auth": {
+    "type": "bearer",
+    "header": "PRIVATE-TOKEN"
+  },
+  "capabilities": [
+    {
+      "id": "list_projects",
+      "name": "List Projects",
+      "description": "List projects accessible to the authenticated user.",
+      "semantic_tags": [
+        "projects",
+        "repos",
+        "repositories",
+        "list projects",
+        "my projects"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/projects",
+        "params": {
+          "owned": {
+            "type": "boolean",
+            "required": false,
+            "description": "Only owned projects"
+          },
+          "search": {
+            "type": "string",
+            "required": false,
+            "description": "Search by name"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_merge_requests",
+      "name": "List Merge Requests",
+      "description": "List merge requests for a project.",
+      "semantic_tags": [
+        "merge requests",
+        "MRs",
+        "pull requests",
+        "code review"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/projects/{id}/merge_requests",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Project ID or URL-encoded path"
+          },
+          "state": {
+            "type": "string",
+            "required": false,
+            "description": "State filter (opened, closed, merged, all)"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_issues",
+      "name": "List Issues",
+      "description": "List issues for a project.",
+      "semantic_tags": [
+        "issues",
+        "bugs",
+        "tickets",
+        "tasks",
+        "project issues"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/projects/{id}/issues",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Project ID"
+          },
+          "state": {
+            "type": "string",
+            "required": false,
+            "description": "State filter"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_issue",
+      "name": "Create Issue",
+      "description": "Create a new issue in a project.",
+      "semantic_tags": [
+        "create issue",
+        "new issue",
+        "report bug",
+        "new ticket"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/projects/{id}/issues",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Project ID"
+          },
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Issue title"
+          },
+          "description": {
+            "type": "string",
+            "required": false,
+            "description": "Issue description"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_pipelines",
+      "name": "List Pipelines",
+      "description": "List CI/CD pipelines for a project.",
+      "semantic_tags": [
+        "pipelines",
+        "CI/CD",
+        "builds",
+        "deployments"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/projects/{id}/pipelines",
+        "params": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Project ID"
+          },
+          "status": {
+            "type": "string",
+            "required": false,
+            "description": "Pipeline status filter"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_user",
+      "name": "Get Current User",
+      "description": "Get the authenticated user's profile.",
+      "semantic_tags": [
+        "profile",
+        "user info",
+        "my account",
+        "who am i"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/user",
+        "params": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+    "provider": "cloudinary",
+    "name": "Cloudinary",
+    "description": "Cloud media management for image and video upload, transformation, and delivery",
+    "base_url": "https://api.cloudinary.com/v1_1",
+    "auth": {
+        "type": "basic",
+        "header": "Authorization",
+        "prefix": "Bearer"
+    },
+    "capabilities": [
+        {
+            "id": "upload",
+            "name": "Upload Media",
+            "description": "Upload an image or video to Cloudinary",
+            "semantic_tags": [
+                "upload",
+                "image",
+                "video",
+                "media",
+                "store"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{cloudName}/image/upload",
+                "params": {
+                    "cloudName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cloud name"
+                    },
+                    "file": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File URL or base64"
+                    },
+                    "upload_preset": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Upload preset"
+                    }
+                }
+            }
+        },
+        {
+            "id": "transform",
+            "name": "Transform Image",
+            "description": "Apply transformations like resize, crop, and effects to images",
+            "semantic_tags": [
+                "transform",
+                "resize",
+                "crop",
+                "image",
+                "edit"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/{cloudName}/image/upload/{transformations}/{publicId}",
+                "params": {
+                    "cloudName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cloud name"
+                    },
+                    "transformations": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Transformation string"
+                    },
+                    "publicId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Image public ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "delete",
+            "name": "Delete Resource",
+            "description": "Delete an uploaded media asset by public ID",
+            "semantic_tags": [
+                "delete",
+                "remove",
+                "media",
+                "clean",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/{cloudName}/image/destroy",
+                "params": {
+                    "cloudName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cloud name"
+                    },
+                    "public_id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Public ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_resources",
+            "name": "List Resources",
+            "description": "List uploaded media resources with filtering",
+            "semantic_tags": [
+                "list",
+                "resources",
+                "media",
+                "browse",
+                "inventory"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/{cloudName}/resources/image",
+                "params": {
+                    "cloudName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Cloud name"
+                    },
+                    "max_results": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max results"
+                    }
+                }
+            }
+        }
+    ]
+}

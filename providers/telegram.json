@@ -1,0 +1,168 @@
+{
+  "provider": "telegram",
+  "name": "Telegram",
+  "description": "Telegram Bot API for messaging and bot interactions",
+  "base_url": "https://api.telegram.org/bot{token}",
+  "auth": {
+    "type": "api_key",
+    "config": {
+      "token_in_url": true
+    }
+  },
+  "capabilities": [
+    {
+      "id": "send_message",
+      "name": "Send Message",
+      "description": "Send a text message to a Telegram chat.",
+      "semantic_tags": [
+        "send message",
+        "text",
+        "chat",
+        "telegram message"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/sendMessage",
+        "params": {
+          "chat_id": {
+            "type": "string",
+            "required": true,
+            "description": "Chat ID or username"
+          },
+          "text": {
+            "type": "string",
+            "required": true,
+            "description": "Message text"
+          },
+          "parse_mode": {
+            "type": "string",
+            "required": false,
+            "description": "Parse mode (HTML, Markdown, MarkdownV2)"
+          }
+        }
+      }
+    },
+    {
+      "id": "send_photo",
+      "name": "Send Photo",
+      "description": "Send a photo to a chat.",
+      "semantic_tags": [
+        "send photo",
+        "image",
+        "picture",
+        "send image"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/sendPhoto",
+        "params": {
+          "chat_id": {
+            "type": "string",
+            "required": true,
+            "description": "Chat ID"
+          },
+          "photo": {
+            "type": "string",
+            "required": true,
+            "description": "Photo URL or file_id"
+          },
+          "caption": {
+            "type": "string",
+            "required": false,
+            "description": "Photo caption"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_updates",
+      "name": "Get Updates",
+      "description": "Get incoming updates (messages, callbacks, etc.).",
+      "semantic_tags": [
+        "updates",
+        "new messages",
+        "incoming",
+        "poll updates"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/getUpdates",
+        "params": {
+          "offset": {
+            "type": "integer",
+            "required": false,
+            "description": "Update offset"
+          },
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Max updates to return"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_me",
+      "name": "Get Bot Info",
+      "description": "Get information about the bot.",
+      "semantic_tags": [
+        "bot info",
+        "who am i",
+        "bot details"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/getMe",
+        "params": {}
+      }
+    },
+    {
+      "id": "set_webhook",
+      "name": "Set Webhook",
+      "description": "Set a webhook URL to receive updates.",
+      "semantic_tags": [
+        "webhook",
+        "set webhook",
+        "configure webhook"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/setWebhook",
+        "params": {
+          "url": {
+            "type": "string",
+            "required": true,
+            "description": "HTTPS webhook URL"
+          }
+        }
+      }
+    },
+    {
+      "id": "send_document",
+      "name": "Send Document",
+      "description": "Send a file/document to a chat.",
+      "semantic_tags": [
+        "send file",
+        "document",
+        "upload",
+        "send document"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/sendDocument",
+        "params": {
+          "chat_id": {
+            "type": "string",
+            "required": true,
+            "description": "Chat ID"
+          },
+          "document": {
+            "type": "string",
+            "required": true,
+            "description": "File URL or file_id"
+          }
+        }
+      }
+    }
+  ]
+}

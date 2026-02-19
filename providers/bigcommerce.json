@@ -1,0 +1,120 @@
+{
+    "provider": "bigcommerce",
+    "name": "BigCommerce",
+    "description": "E-commerce platform API for managing online stores",
+    "base_url": "https://api.bigcommerce.com/stores/{storeHash}/v3",
+    "auth": {
+        "type": "bearer",
+        "header": "X-Auth-Token",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "list_products",
+            "name": "List Products",
+            "description": "List all products in the store catalog",
+            "semantic_tags": [
+                "products",
+                "list",
+                "catalog",
+                "inventory",
+                "ecommerce"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/catalog/products",
+                "params": {
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results limit"
+                    },
+                    "keyword": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Search keyword"
+                    }
+                }
+            }
+        },
+        {
+            "id": "create_product",
+            "name": "Create Product",
+            "description": "Create a new product in the store",
+            "semantic_tags": [
+                "product",
+                "create",
+                "catalog",
+                "listing",
+                "add"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/catalog/products",
+                "params": {
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Product name"
+                    },
+                    "price": {
+                        "type": "number",
+                        "required": true,
+                        "description": "Product price"
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": true,
+                        "description": "physical or digital"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_orders",
+            "name": "List Orders",
+            "description": "List all orders with status filtering",
+            "semantic_tags": [
+                "orders",
+                "list",
+                "sales",
+                "transactions",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/orders",
+                "params": {
+                    "status_id": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Status ID filter"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_order",
+            "name": "Get Order",
+            "description": "Get details of a specific order",
+            "semantic_tags": [
+                "order",
+                "details",
+                "info",
+                "transaction",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/orders/{orderId}",
+                "params": {
+                    "orderId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Order ID"
+                    }
+                }
+            }
+        }
+    ]
+}

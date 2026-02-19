@@ -1,0 +1,175 @@
+{
+  "provider": "supabase",
+  "name": "Supabase",
+  "description": "Open-source Firebase alternative with Postgres database, auth, and storage",
+  "base_url": "https://{project_ref}.supabase.co",
+  "auth": {
+    "type": "bearer",
+    "header": "apikey"
+  },
+  "capabilities": [
+    {
+      "id": "query_table",
+      "name": "Query Table",
+      "description": "Query rows from a database table using PostgREST.",
+      "semantic_tags": [
+        "query",
+        "select",
+        "get data",
+        "database",
+        "table data",
+        "read"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/rest/v1/{table}",
+        "params": {
+          "table": {
+            "type": "string",
+            "required": true,
+            "description": "Table name"
+          },
+          "select": {
+            "type": "string",
+            "required": false,
+            "description": "Columns to select"
+          },
+          "order": {
+            "type": "string",
+            "required": false,
+            "description": "Order by column"
+          }
+        }
+      }
+    },
+    {
+      "id": "insert_rows",
+      "name": "Insert Rows",
+      "description": "Insert new rows into a table.",
+      "semantic_tags": [
+        "insert",
+        "add data",
+        "create row",
+        "new record"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/rest/v1/{table}",
+        "params": {
+          "table": {
+            "type": "string",
+            "required": true,
+            "description": "Table name"
+          },
+          "body": {
+            "type": "array",
+            "required": true,
+            "description": "Row data to insert"
+          }
+        }
+      }
+    },
+    {
+      "id": "update_rows",
+      "name": "Update Rows",
+      "description": "Update existing rows in a table.",
+      "semantic_tags": [
+        "update",
+        "edit data",
+        "modify row"
+      ],
+      "endpoint": {
+        "method": "PATCH",
+        "path": "/rest/v1/{table}",
+        "params": {
+          "table": {
+            "type": "string",
+            "required": true,
+            "description": "Table name"
+          },
+          "body": {
+            "type": "object",
+            "required": true,
+            "description": "Fields to update"
+          }
+        }
+      }
+    },
+    {
+      "id": "delete_rows",
+      "name": "Delete Rows",
+      "description": "Delete rows from a table.",
+      "semantic_tags": [
+        "delete",
+        "remove data",
+        "delete row"
+      ],
+      "endpoint": {
+        "method": "DELETE",
+        "path": "/rest/v1/{table}",
+        "params": {
+          "table": {
+            "type": "string",
+            "required": true,
+            "description": "Table name"
+          }
+        }
+      }
+    },
+    {
+      "id": "rpc",
+      "name": "Call Function",
+      "description": "Call a Postgres function via RPC.",
+      "semantic_tags": [
+        "function",
+        "RPC",
+        "stored procedure",
+        "call function"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/rest/v1/rpc/{function_name}",
+        "params": {
+          "function_name": {
+            "type": "string",
+            "required": true,
+            "description": "Function name"
+          },
+          "body": {
+            "type": "object",
+            "required": false,
+            "description": "Function parameters"
+          }
+        }
+      }
+    },
+    {
+      "id": "upload_file",
+      "name": "Upload File",
+      "description": "Upload a file to Supabase Storage.",
+      "semantic_tags": [
+        "upload",
+        "file",
+        "storage",
+        "upload file"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/storage/v1/object/{bucket}/{path}",
+        "params": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "description": "Storage bucket name"
+          },
+          "path": {
+            "type": "string",
+            "required": true,
+            "description": "File path in bucket"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://supabase.com/dashboard/project/_/settings/api"
+}

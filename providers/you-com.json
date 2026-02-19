@@ -1,0 +1,105 @@
+{
+    "provider": "you-com",
+    "name": "You.com",
+    "description": "AI search API with web search, news, and RAG-optimized results",
+    "base_url": "https://api.ydc-index.io",
+    "auth": {
+        "type": "api_key",
+        "header": "X-API-Key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "web_search",
+            "name": "Web Search",
+            "description": "Search the web and get AI-summarized results",
+            "semantic_tags": [
+                "search",
+                "web",
+                "ai",
+                "summary",
+                "results"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    }
+                }
+            }
+        },
+        {
+            "id": "news",
+            "name": "News Search",
+            "description": "Search for recent news articles with summaries",
+            "semantic_tags": [
+                "news",
+                "search",
+                "articles",
+                "recent",
+                "current"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/news",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "News query"
+                    }
+                }
+            }
+        },
+        {
+            "id": "rag",
+            "name": "RAG Search",
+            "description": "Retrieve web content optimized for RAG pipelines",
+            "semantic_tags": [
+                "rag",
+                "retrieval",
+                "context",
+                "augmented",
+                "generation"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/rag",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "RAG query"
+                    }
+                }
+            }
+        },
+        {
+            "id": "ai_search",
+            "name": "AI Search",
+            "description": "Get AI-generated answers with source citations",
+            "semantic_tags": [
+                "ai",
+                "answer",
+                "citations",
+                "smart",
+                "search"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/ai/search",
+                "params": {
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Question to answer"
+                    }
+                }
+            }
+        }
+    ]
+}

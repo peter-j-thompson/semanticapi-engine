@@ -1,0 +1,155 @@
+{
+    "provider": "alpha-vantage",
+    "name": "Alpha Vantage",
+    "description": "Financial market data API for stocks, forex, and crypto",
+    "base_url": "https://www.alphavantage.co",
+    "auth": {
+        "type": "api_key",
+        "header": "apikey",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "stock_quote",
+            "name": "Stock Quote",
+            "description": "Get real-time stock price and volume data",
+            "semantic_tags": [
+                "stock",
+                "quote",
+                "price",
+                "realtime",
+                "market"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/query",
+                "params": {
+                    "function": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to GLOBAL_QUOTE"
+                    },
+                    "symbol": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Stock ticker symbol"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "time_series",
+            "name": "Time Series Daily",
+            "description": "Get daily historical stock prices and volumes",
+            "semantic_tags": [
+                "timeseries",
+                "daily",
+                "historical",
+                "stock",
+                "ohlcv"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/query",
+                "params": {
+                    "function": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to TIME_SERIES_DAILY"
+                    },
+                    "symbol": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Stock ticker"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    },
+                    "outputsize": {
+                        "type": "string",
+                        "required": false,
+                        "description": "compact or full"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search",
+            "name": "Symbol Search",
+            "description": "Search for stock symbols and company names",
+            "semantic_tags": [
+                "search",
+                "symbol",
+                "stock",
+                "company",
+                "find"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/query",
+                "params": {
+                    "function": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to SYMBOL_SEARCH"
+                    },
+                    "keywords": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search keywords"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        },
+        {
+            "id": "forex",
+            "name": "Forex Rate",
+            "description": "Get real-time forex exchange rates between currencies",
+            "semantic_tags": [
+                "forex",
+                "exchange",
+                "rate",
+                "currency",
+                "convert"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/query",
+                "params": {
+                    "function": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to CURRENCY_EXCHANGE_RATE"
+                    },
+                    "from_currency": {
+                        "type": "string",
+                        "required": true,
+                        "description": "From currency code"
+                    },
+                    "to_currency": {
+                        "type": "string",
+                        "required": true,
+                        "description": "To currency code"
+                    },
+                    "apikey": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API key"
+                    }
+                }
+            }
+        }
+    ]
+}

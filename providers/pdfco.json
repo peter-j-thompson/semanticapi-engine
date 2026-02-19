@@ -1,0 +1,120 @@
+{
+    "provider": "pdfco",
+    "name": "PDF.co",
+    "description": "PDF processing API for text extraction, conversion, and document manipulation",
+    "base_url": "https://api.pdf.co/v1",
+    "auth": {
+        "type": "api_key",
+        "header": "x-api-key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "pdf_to_text",
+            "name": "PDF to Text",
+            "description": "Extract all text content from a PDF file",
+            "semantic_tags": [
+                "pdf",
+                "text",
+                "extract",
+                "convert",
+                "ocr"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/pdf/convert/to/text",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "PDF file URL"
+                    },
+                    "pages": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Page range e.g. 0-2"
+                    }
+                }
+            }
+        },
+        {
+            "id": "html_to_pdf",
+            "name": "HTML to PDF",
+            "description": "Convert HTML content or URL to a PDF document",
+            "semantic_tags": [
+                "html",
+                "pdf",
+                "convert",
+                "generate",
+                "document"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/pdf/convert/from/html",
+                "params": {
+                    "html": {
+                        "type": "string",
+                        "required": true,
+                        "description": "HTML content"
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Output filename"
+                    }
+                }
+            }
+        },
+        {
+            "id": "merge",
+            "name": "Merge PDFs",
+            "description": "Merge multiple PDF files into a single document",
+            "semantic_tags": [
+                "merge",
+                "combine",
+                "pdf",
+                "join",
+                "document"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/pdf/merge2",
+                "params": {
+                    "urls": {
+                        "type": "array",
+                        "required": true,
+                        "description": "PDF URLs to merge"
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Output filename"
+                    }
+                }
+            }
+        },
+        {
+            "id": "pdf_to_json",
+            "name": "PDF to JSON",
+            "description": "Extract structured data from PDF as JSON format",
+            "semantic_tags": [
+                "pdf",
+                "json",
+                "structured",
+                "extract",
+                "parse"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/pdf/convert/to/json",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "PDF file URL"
+                    }
+                }
+            }
+        }
+    ]
+}

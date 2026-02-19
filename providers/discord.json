@@ -1,0 +1,170 @@
+{
+  "provider": "discord",
+  "name": "Discord",
+  "description": "Chat and community platform for gaming and communities",
+  "base_url": "https://discord.com/api/v10",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bot"
+  },
+  "capabilities": [
+    {
+      "id": "send_message",
+      "name": "Send Message",
+      "description": "Send a message to a Discord channel.",
+      "semantic_tags": [
+        "send message",
+        "post",
+        "chat",
+        "channel message",
+        "discord message"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/channels/{channel_id}/messages",
+        "params": {
+          "channel_id": {
+            "type": "string",
+            "required": true,
+            "description": "Channel ID"
+          },
+          "content": {
+            "type": "string",
+            "required": false,
+            "description": "Message content"
+          },
+          "embeds": {
+            "type": "array",
+            "required": false,
+            "description": "Rich embed objects"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_messages",
+      "name": "Get Messages",
+      "description": "Retrieve messages from a channel.",
+      "semantic_tags": [
+        "messages",
+        "read messages",
+        "channel history",
+        "chat history"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/channels/{channel_id}/messages",
+        "params": {
+          "channel_id": {
+            "type": "string",
+            "required": true,
+            "description": "Channel ID"
+          },
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of messages (1-100)"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_guilds",
+      "name": "List Guilds",
+      "description": "List servers the bot is in.",
+      "semantic_tags": [
+        "servers",
+        "guilds",
+        "list servers",
+        "my servers"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/users/@me/guilds",
+        "params": {}
+      }
+    },
+    {
+      "id": "get_guild_channels",
+      "name": "Get Guild Channels",
+      "description": "List channels in a server.",
+      "semantic_tags": [
+        "channels",
+        "server channels",
+        "list channels"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/guilds/{guild_id}/channels",
+        "params": {
+          "guild_id": {
+            "type": "string",
+            "required": true,
+            "description": "Guild/server ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_reaction",
+      "name": "Add Reaction",
+      "description": "Add an emoji reaction to a message.",
+      "semantic_tags": [
+        "react",
+        "emoji",
+        "reaction",
+        "add reaction"
+      ],
+      "endpoint": {
+        "method": "PUT",
+        "path": "/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me",
+        "params": {
+          "channel_id": {
+            "type": "string",
+            "required": true,
+            "description": "Channel ID"
+          },
+          "message_id": {
+            "type": "string",
+            "required": true,
+            "description": "Message ID"
+          },
+          "emoji": {
+            "type": "string",
+            "required": true,
+            "description": "Emoji (URL encoded)"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_guild_members",
+      "name": "Get Guild Members",
+      "description": "List members of a server.",
+      "semantic_tags": [
+        "members",
+        "users",
+        "server members",
+        "who is in"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/guilds/{guild_id}/members",
+        "params": {
+          "guild_id": {
+            "type": "string",
+            "required": true,
+            "description": "Guild ID"
+          },
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Max members to return (1-1000)"
+          }
+        }
+      }
+    }
+  ],
+  "auth_setup_url": "https://discord.com/developers/applications"
+}

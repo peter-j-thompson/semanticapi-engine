@@ -1,0 +1,124 @@
+{
+    "provider": "elevenlabs",
+    "name": "ElevenLabs",
+    "description": "AI voice generation and text-to-speech API with voice cloning",
+    "base_url": "https://api.elevenlabs.io",
+    "auth": {
+        "type": "api_key",
+        "header": "xi-api-key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "text_to_speech",
+            "name": "Text to Speech",
+            "description": "Convert text to natural-sounding speech audio",
+            "semantic_tags": [
+                "tts",
+                "voice",
+                "speech",
+                "audio",
+                "generate"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/text-to-speech/{voiceId}",
+                "params": {
+                    "voiceId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Voice ID"
+                    },
+                    "text": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Text to convert"
+                    },
+                    "model_id": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Model ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_voices",
+            "name": "List Voices",
+            "description": "List all available and cloned voices",
+            "semantic_tags": [
+                "voices",
+                "list",
+                "available",
+                "catalog",
+                "browse"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v1/voices",
+                "params": {}
+            }
+        },
+        {
+            "id": "clone_voice",
+            "name": "Clone Voice",
+            "description": "Create a custom voice clone from audio samples",
+            "semantic_tags": [
+                "clone",
+                "voice",
+                "custom",
+                "create",
+                "train"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/voices/add",
+                "params": {
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Voice name"
+                    },
+                    "files": {
+                        "type": "array",
+                        "required": true,
+                        "description": "Audio sample files"
+                    },
+                    "description": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Voice description"
+                    }
+                }
+            }
+        },
+        {
+            "id": "speech_to_speech",
+            "name": "Speech to Speech",
+            "description": "Convert speech audio to a different voice",
+            "semantic_tags": [
+                "voice",
+                "convert",
+                "transform",
+                "audio",
+                "speech"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/v1/speech-to-speech/{voiceId}",
+                "params": {
+                    "voiceId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Target voice ID"
+                    },
+                    "audio": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Source audio file"
+                    }
+                }
+            }
+        }
+    ]
+}

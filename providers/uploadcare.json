@@ -1,0 +1,115 @@
+{
+    "provider": "uploadcare",
+    "name": "Uploadcare",
+    "description": "File uploading, processing, and CDN delivery API",
+    "base_url": "https://api.uploadcare.com",
+    "auth": {
+        "type": "api_key",
+        "header": "Authorization",
+        "prefix": "Uploadcare.Simple"
+    },
+    "capabilities": [
+        {
+            "id": "upload",
+            "name": "Upload File",
+            "description": "Upload a file from URL to Uploadcare",
+            "semantic_tags": [
+                "upload",
+                "file",
+                "store",
+                "cdn",
+                "cloud"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/from_url/",
+                "params": {
+                    "source_url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to upload from"
+                    },
+                    "store": {
+                        "type": "string",
+                        "required": false,
+                        "description": "auto, 0, or 1"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_file",
+            "name": "Get File Info",
+            "description": "Get metadata and CDN URL for an uploaded file",
+            "semantic_tags": [
+                "file",
+                "info",
+                "metadata",
+                "cdn",
+                "get"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/files/{fileId}/",
+                "params": {
+                    "fileId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File UUID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_files",
+            "name": "List Files",
+            "description": "List all uploaded files with pagination",
+            "semantic_tags": [
+                "list",
+                "files",
+                "browse",
+                "inventory",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/files/",
+                "params": {
+                    "limit": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Results limit"
+                    },
+                    "ordering": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Sort order"
+                    }
+                }
+            }
+        },
+        {
+            "id": "delete_file",
+            "name": "Delete File",
+            "description": "Delete an uploaded file from storage",
+            "semantic_tags": [
+                "delete",
+                "remove",
+                "file",
+                "clean",
+                "manage"
+            ],
+            "endpoint": {
+                "method": "DELETE",
+                "path": "/files/{fileId}/storage/",
+                "params": {
+                    "fileId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "File UUID"
+                    }
+                }
+            }
+        }
+    ]
+}

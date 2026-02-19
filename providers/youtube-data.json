@@ -1,0 +1,140 @@
+{
+    "provider": "youtube-data",
+    "name": "YouTube Data",
+    "description": "YouTube Data API for searching videos, channels, and managing content",
+    "base_url": "https://www.googleapis.com/youtube/v3",
+    "auth": {
+        "type": "api_key",
+        "header": "key",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "search",
+            "name": "Search Videos",
+            "description": "Search YouTube for videos, channels, and playlists",
+            "semantic_tags": [
+                "search",
+                "videos",
+                "youtube",
+                "find",
+                "content"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    },
+                    "part": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to snippet"
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": false,
+                        "description": "video, channel, playlist"
+                    },
+                    "maxResults": {
+                        "type": "integer",
+                        "required": false,
+                        "description": "Max results"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_video",
+            "name": "Get Video Details",
+            "description": "Get detailed information about specific videos",
+            "semantic_tags": [
+                "video",
+                "details",
+                "info",
+                "metadata",
+                "youtube"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/videos",
+                "params": {
+                    "id": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Video ID(s)"
+                    },
+                    "part": {
+                        "type": "string",
+                        "required": true,
+                        "description": "snippet,statistics,contentDetails"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_channel",
+            "name": "Get Channel",
+            "description": "Get information about a YouTube channel",
+            "semantic_tags": [
+                "channel",
+                "info",
+                "profile",
+                "youtube",
+                "creator"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/channels",
+                "params": {
+                    "id": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Channel ID"
+                    },
+                    "forUsername": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Channel username"
+                    },
+                    "part": {
+                        "type": "string",
+                        "required": true,
+                        "description": "snippet,statistics"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_captions",
+            "name": "List Captions",
+            "description": "List available caption tracks for a video",
+            "semantic_tags": [
+                "captions",
+                "subtitles",
+                "list",
+                "video",
+                "accessibility"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/captions",
+                "params": {
+                    "videoId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Video ID"
+                    },
+                    "part": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Set to snippet"
+                    }
+                }
+            }
+        }
+    ]
+}

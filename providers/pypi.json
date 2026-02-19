@@ -1,0 +1,110 @@
+{
+    "provider": "pypi",
+    "name": "PyPI",
+    "description": "Python Package Index API for retrieving Python package information",
+    "base_url": "https://pypi.org",
+    "auth": {
+        "type": "none",
+        "header": "",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "get_package",
+            "name": "Get Package",
+            "description": "Get metadata, description, and download URLs for a Python package",
+            "semantic_tags": [
+                "package",
+                "info",
+                "python",
+                "metadata",
+                "pypi"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/pypi/{packageName}/json",
+                "params": {
+                    "packageName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Package name"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_version",
+            "name": "Get Version",
+            "description": "Get metadata for a specific release version",
+            "semantic_tags": [
+                "version",
+                "package",
+                "specific",
+                "release",
+                "python"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/pypi/{packageName}/{version}/json",
+                "params": {
+                    "packageName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Package name"
+                    },
+                    "version": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Version number"
+                    }
+                }
+            }
+        },
+        {
+            "id": "search",
+            "name": "Search Packages",
+            "description": "Search for Python packages on PyPI",
+            "semantic_tags": [
+                "search",
+                "packages",
+                "python",
+                "find",
+                "discover"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/search/",
+                "params": {
+                    "q": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Search query"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_releases",
+            "name": "Get All Releases",
+            "description": "Get all release versions and their download URLs",
+            "semantic_tags": [
+                "releases",
+                "versions",
+                "history",
+                "package",
+                "changelog"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/pypi/{packageName}/json",
+                "params": {
+                    "packageName": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Package name"
+                    }
+                }
+            }
+        }
+    ]
+}

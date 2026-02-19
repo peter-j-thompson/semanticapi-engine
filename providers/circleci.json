@@ -1,0 +1,120 @@
+{
+    "provider": "circleci",
+    "name": "CircleCI",
+    "description": "Continuous integration and delivery platform for automated testing and deployment",
+    "base_url": "https://circleci.com/api/v2",
+    "auth": {
+        "type": "api_key",
+        "header": "Circle-Token",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "trigger_pipeline",
+            "name": "Trigger Pipeline",
+            "description": "Trigger a new CI/CD pipeline for a project",
+            "semantic_tags": [
+                "trigger",
+                "pipeline",
+                "ci",
+                "cd",
+                "build"
+            ],
+            "endpoint": {
+                "method": "POST",
+                "path": "/project/{projectSlug}/pipeline",
+                "params": {
+                    "projectSlug": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Project slug vcs/org/repo"
+                    },
+                    "branch": {
+                        "type": "string",
+                        "required": false,
+                        "description": "Branch to build"
+                    },
+                    "parameters": {
+                        "type": "object",
+                        "required": false,
+                        "description": "Pipeline parameters"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_pipeline",
+            "name": "Get Pipeline",
+            "description": "Get status and details of a pipeline",
+            "semantic_tags": [
+                "pipeline",
+                "details",
+                "status",
+                "info",
+                "ci"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/pipeline/{pipelineId}",
+                "params": {
+                    "pipelineId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Pipeline ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "list_workflows",
+            "name": "List Workflows",
+            "description": "List all workflows for a pipeline run",
+            "semantic_tags": [
+                "workflows",
+                "list",
+                "pipeline",
+                "jobs",
+                "progress"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/pipeline/{pipelineId}/workflow",
+                "params": {
+                    "pipelineId": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Pipeline ID"
+                    }
+                }
+            }
+        },
+        {
+            "id": "get_artifacts",
+            "name": "Get Artifacts",
+            "description": "List build artifacts produced by a job",
+            "semantic_tags": [
+                "artifacts",
+                "job",
+                "output",
+                "files",
+                "build"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/project/{projectSlug}/{jobNumber}/artifacts",
+                "params": {
+                    "projectSlug": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Project slug"
+                    },
+                    "jobNumber": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Job number"
+                    }
+                }
+            }
+        }
+    ]
+}

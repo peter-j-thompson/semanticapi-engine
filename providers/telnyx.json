@@ -1,0 +1,94 @@
+{
+  "provider": "telnyx",
+  "name": "Telnyx",
+  "description": "Cloud communications platform for voice, messaging, and networking",
+  "base_url": "https://api.telnyx.com/v2",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "send_message",
+      "name": "Send Message",
+      "description": "Send an SMS or MMS message.",
+      "semantic_tags": ["send sms", "text message", "sms", "mms"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/messages",
+        "params": {
+          "from": { "type": "string", "required": true, "description": "Sender phone number or messaging profile" },
+          "to": { "type": "string", "required": true, "description": "Recipient phone number" },
+          "text": { "type": "string", "required": true, "description": "Message text" }
+        }
+      }
+    },
+    {
+      "id": "create_call",
+      "name": "Create Call",
+      "description": "Initiate an outbound call.",
+      "semantic_tags": ["voice call", "phone call", "dial"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/calls",
+        "params": {
+          "connection_id": { "type": "string", "required": true, "description": "Connection ID" },
+          "to": { "type": "string", "required": true, "description": "Destination number" },
+          "from": { "type": "string", "required": true, "description": "Caller ID" }
+        }
+      }
+    },
+    {
+      "id": "list_phone_numbers",
+      "name": "List Phone Numbers",
+      "description": "List your phone numbers.",
+      "semantic_tags": ["phone numbers", "my numbers", "list numbers"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/phone_numbers",
+        "params": {
+          "page[size]": { "type": "integer", "required": false, "description": "Page size" }
+        }
+      }
+    },
+    {
+      "id": "search_available_numbers",
+      "name": "Search Available Numbers",
+      "description": "Search for available phone numbers to order.",
+      "semantic_tags": ["search numbers", "available numbers", "buy number"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/available_phone_numbers",
+        "params": {
+          "filter[country_code]": { "type": "string", "required": false, "description": "Country code (e.g., US)" },
+          "filter[city]": { "type": "string", "required": false, "description": "City name" }
+        }
+      }
+    },
+    {
+      "id": "list_messaging_profiles",
+      "name": "List Messaging Profiles",
+      "description": "List messaging profiles.",
+      "semantic_tags": ["messaging profiles", "sms profiles"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/messaging_profiles",
+        "params": {}
+      }
+    },
+    {
+      "id": "number_lookup",
+      "name": "Number Lookup",
+      "description": "Look up carrier and caller info for a number.",
+      "semantic_tags": ["number lookup", "caller id", "carrier lookup"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/number_lookup/{phone_number}",
+        "params": {
+          "phone_number": { "type": "string", "required": true, "description": "Phone number in E.164 format" }
+        }
+      }
+    }
+  ]
+}

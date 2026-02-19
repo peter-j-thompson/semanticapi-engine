@@ -1,0 +1,92 @@
+{
+  "provider": "messagebird",
+  "name": "MessageBird",
+  "description": "Omnichannel communication platform for SMS, voice, and chat",
+  "base_url": "https://rest.messagebird.com",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "AccessKey"
+  },
+  "capabilities": [
+    {
+      "id": "send_sms",
+      "name": "Send SMS",
+      "description": "Send an SMS message.",
+      "semantic_tags": ["send sms", "text message", "sms"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/messages",
+        "params": {
+          "originator": { "type": "string", "required": true, "description": "Sender name or number" },
+          "recipients": { "type": "array", "required": true, "description": "Array of recipient phone numbers" },
+          "body": { "type": "string", "required": true, "description": "Message text" }
+        }
+      }
+    },
+    {
+      "id": "get_balance",
+      "name": "Get Balance",
+      "description": "Get account balance.",
+      "semantic_tags": ["balance", "credits", "account balance"],
+      "endpoint": { "method": "GET", "path": "/balance", "params": {} }
+    },
+    {
+      "id": "list_messages",
+      "name": "List Messages",
+      "description": "List sent messages.",
+      "semantic_tags": ["messages", "sent messages", "message history"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/messages",
+        "params": {
+          "limit": { "type": "integer", "required": false, "description": "Number of results" },
+          "offset": { "type": "integer", "required": false, "description": "Offset for pagination" }
+        }
+      }
+    },
+    {
+      "id": "lookup_number",
+      "name": "Lookup Phone Number",
+      "description": "Look up information about a phone number.",
+      "semantic_tags": ["lookup", "phone lookup", "number info", "hlr"],
+      "endpoint": {
+        "method": "GET",
+        "path": "/lookup/{phoneNumber}",
+        "params": {
+          "phoneNumber": { "type": "string", "required": true, "description": "Phone number in E.164 format" }
+        }
+      }
+    },
+    {
+      "id": "create_voice_call",
+      "name": "Create Voice Call",
+      "description": "Initiate an outbound voice call.",
+      "semantic_tags": ["voice call", "call", "phone call", "outbound call"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/calls",
+        "params": {
+          "source": { "type": "string", "required": true, "description": "Caller ID number" },
+          "destination": { "type": "string", "required": true, "description": "Destination phone number" },
+          "callFlow": { "type": "object", "required": true, "description": "Call flow definition" }
+        }
+      }
+    },
+    {
+      "id": "send_conversation_message",
+      "name": "Send Conversation Message",
+      "description": "Send a message in a conversation (WhatsApp, SMS, etc).",
+      "semantic_tags": ["conversation", "whatsapp", "chat message", "omnichannel"],
+      "endpoint": {
+        "method": "POST",
+        "path": "/conversations/{conversationId}/messages",
+        "params": {
+          "conversationId": { "type": "string", "required": true, "description": "Conversation ID" },
+          "type": { "type": "string", "required": true, "description": "Message type (text, image, etc)" },
+          "content": { "type": "object", "required": true, "description": "Message content" }
+        }
+      }
+    }
+  ]
+}

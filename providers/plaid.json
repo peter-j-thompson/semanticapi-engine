@@ -1,0 +1,159 @@
+{
+  "provider": "plaid",
+  "name": "Plaid",
+  "description": "Financial data connectivity for bank accounts, transactions, and identity verification",
+  "base_url": "https://production.plaid.com",
+  "auth": {
+    "type": "api_key",
+    "header": "Content-Type",
+    "config": {
+      "client_id_field": "client_id",
+      "secret_field": "secret"
+    }
+  },
+  "capabilities": [
+    {
+      "id": "create_link_token",
+      "name": "Create Link Token",
+      "description": "Create a link token to initialize Plaid Link for connecting bank accounts.",
+      "semantic_tags": [
+        "link",
+        "connect bank",
+        "bank account",
+        "plaid link",
+        "onboard"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/link/token/create",
+        "params": {
+          "client_id": {
+            "type": "string",
+            "required": true,
+            "description": "Plaid client ID"
+          },
+          "secret": {
+            "type": "string",
+            "required": true,
+            "description": "Plaid secret"
+          },
+          "user": {
+            "type": "object",
+            "required": true,
+            "description": "User object with client_user_id"
+          },
+          "products": {
+            "type": "array",
+            "required": true,
+            "description": "Plaid products (transactions, auth, etc.)"
+          },
+          "country_codes": {
+            "type": "array",
+            "required": true,
+            "description": "Country codes"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_transactions",
+      "name": "Get Transactions",
+      "description": "Retrieve bank transactions for a connected account.",
+      "semantic_tags": [
+        "transactions",
+        "bank transactions",
+        "spending",
+        "purchases",
+        "transaction history"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/transactions/get",
+        "params": {
+          "access_token": {
+            "type": "string",
+            "required": true,
+            "description": "Access token for the account"
+          },
+          "start_date": {
+            "type": "string",
+            "required": true,
+            "description": "Start date (YYYY-MM-DD)"
+          },
+          "end_date": {
+            "type": "string",
+            "required": true,
+            "description": "End date (YYYY-MM-DD)"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_accounts",
+      "name": "Get Accounts",
+      "description": "Retrieve all connected bank accounts and balances.",
+      "semantic_tags": [
+        "accounts",
+        "bank accounts",
+        "balances",
+        "connected accounts"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/accounts/get",
+        "params": {
+          "access_token": {
+            "type": "string",
+            "required": true,
+            "description": "Access token"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_identity",
+      "name": "Get Identity",
+      "description": "Retrieve identity information from a connected bank account.",
+      "semantic_tags": [
+        "identity",
+        "account holder",
+        "bank identity",
+        "KYC"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/identity/get",
+        "params": {
+          "access_token": {
+            "type": "string",
+            "required": true,
+            "description": "Access token"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_balance",
+      "name": "Get Balance",
+      "description": "Get real-time balance for connected accounts.",
+      "semantic_tags": [
+        "balance",
+        "account balance",
+        "how much",
+        "bank balance",
+        "funds"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/accounts/balance/get",
+        "params": {
+          "access_token": {
+            "type": "string",
+            "required": true,
+            "description": "Access token"
+          }
+        }
+      }
+    }
+  ]
+}

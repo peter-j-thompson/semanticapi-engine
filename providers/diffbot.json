@@ -1,0 +1,130 @@
+{
+    "provider": "diffbot",
+    "name": "Diffbot",
+    "description": "AI-powered web data extraction and knowledge graph API",
+    "base_url": "https://api.diffbot.com",
+    "auth": {
+        "type": "api_key",
+        "header": "token",
+        "prefix": ""
+    },
+    "capabilities": [
+        {
+            "id": "analyze",
+            "name": "Analyze URL",
+            "description": "Automatically detect page type and extract structured data from any URL",
+            "semantic_tags": [
+                "analyze",
+                "extract",
+                "auto-detect",
+                "structured",
+                "data"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v3/analyze",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "URL to analyze"
+                    },
+                    "token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        },
+        {
+            "id": "article",
+            "name": "Extract Article",
+            "description": "Extract clean article text, images, and metadata from news and blog pages",
+            "semantic_tags": [
+                "article",
+                "text",
+                "extract",
+                "news",
+                "blog"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v3/article",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Article URL"
+                    },
+                    "token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        },
+        {
+            "id": "product",
+            "name": "Extract Product",
+            "description": "Extract product data including price, availability, and specs from e-commerce pages",
+            "semantic_tags": [
+                "product",
+                "ecommerce",
+                "price",
+                "extract",
+                "shopping"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/v3/product",
+                "params": {
+                    "url": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Product page URL"
+                    },
+                    "token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        },
+        {
+            "id": "knowledge_graph",
+            "name": "Knowledge Graph Search",
+            "description": "Search Diffbot's knowledge graph of over 10 billion web entities",
+            "semantic_tags": [
+                "knowledge",
+                "graph",
+                "search",
+                "entities",
+                "database"
+            ],
+            "endpoint": {
+                "method": "GET",
+                "path": "/kg/v3/dql",
+                "params": {
+                    "type": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Entity type to search"
+                    },
+                    "query": {
+                        "type": "string",
+                        "required": true,
+                        "description": "DQL query string"
+                    },
+                    "token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "API token"
+                    }
+                }
+            }
+        }
+    ]
+}

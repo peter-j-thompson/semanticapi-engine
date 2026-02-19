@@ -1,0 +1,181 @@
+{
+  "provider": "wise",
+  "name": "Wise",
+  "description": "International money transfers and multi-currency accounts",
+  "base_url": "https://api.transferwise.com/v1",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "get_profiles",
+      "name": "Get Profiles",
+      "description": "List your Wise personal and business profiles.",
+      "semantic_tags": [
+        "profiles",
+        "account",
+        "wise account",
+        "my profiles"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/profiles",
+        "params": {}
+      }
+    },
+    {
+      "id": "create_quote",
+      "name": "Create Quote",
+      "description": "Get a quote for an international money transfer with exchange rate and fees.",
+      "semantic_tags": [
+        "quote",
+        "exchange rate",
+        "transfer cost",
+        "how much to send",
+        "conversion rate"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/quotes",
+        "params": {
+          "profile": {
+            "type": "integer",
+            "required": true,
+            "description": "Profile ID"
+          },
+          "sourceCurrency": {
+            "type": "string",
+            "required": true,
+            "description": "Source currency (e.g. USD)"
+          },
+          "targetCurrency": {
+            "type": "string",
+            "required": true,
+            "description": "Target currency (e.g. EUR)"
+          },
+          "sourceAmount": {
+            "type": "number",
+            "required": false,
+            "description": "Amount to send"
+          },
+          "targetAmount": {
+            "type": "number",
+            "required": false,
+            "description": "Amount to receive"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_transfer",
+      "name": "Create Transfer",
+      "description": "Create an international money transfer.",
+      "semantic_tags": [
+        "transfer",
+        "send money",
+        "international transfer",
+        "wire",
+        "remittance"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/transfers",
+        "params": {
+          "targetAccount": {
+            "type": "integer",
+            "required": true,
+            "description": "Recipient account ID"
+          },
+          "quoteUuid": {
+            "type": "string",
+            "required": true,
+            "description": "Quote UUID"
+          },
+          "customerTransactionId": {
+            "type": "string",
+            "required": true,
+            "description": "Unique transaction ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_balance",
+      "name": "Get Balance",
+      "description": "Get multi-currency account balances.",
+      "semantic_tags": [
+        "balance",
+        "account balance",
+        "multi-currency",
+        "wallet"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/borderless-accounts/{profile_id}/balances",
+        "params": {
+          "profile_id": {
+            "type": "integer",
+            "required": true,
+            "description": "Profile ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_transfers",
+      "name": "List Transfers",
+      "description": "List your recent transfers.",
+      "semantic_tags": [
+        "transfers",
+        "transfer history",
+        "sent money",
+        "past transfers"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/transfers",
+        "params": {
+          "profile": {
+            "type": "integer",
+            "required": false,
+            "description": "Profile ID filter"
+          },
+          "limit": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of results"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_exchange_rates",
+      "name": "Get Exchange Rates",
+      "description": "Get current exchange rates.",
+      "semantic_tags": [
+        "exchange rate",
+        "currency rate",
+        "conversion rate",
+        "forex"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/rates",
+        "params": {
+          "source": {
+            "type": "string",
+            "required": false,
+            "description": "Source currency"
+          },
+          "target": {
+            "type": "string",
+            "required": false,
+            "description": "Target currency"
+          }
+        }
+      }
+    }
+  ]
+}

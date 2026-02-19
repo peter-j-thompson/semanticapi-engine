@@ -1,0 +1,165 @@
+{
+  "provider": "fly",
+  "name": "Fly.io",
+  "description": "Deploy and run applications close to users with edge computing",
+  "base_url": "https://api.machines.dev/v1",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_apps",
+      "name": "List Apps",
+      "description": "List all Fly.io applications.",
+      "semantic_tags": [
+        "apps",
+        "applications",
+        "list apps",
+        "my apps"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/apps",
+        "params": {
+          "org_slug": {
+            "type": "string",
+            "required": true,
+            "description": "Organization slug"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_machines",
+      "name": "List Machines",
+      "description": "List machines (instances) for an app.",
+      "semantic_tags": [
+        "machines",
+        "instances",
+        "VMs",
+        "list machines"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/apps/{app_name}/machines",
+        "params": {
+          "app_name": {
+            "type": "string",
+            "required": true,
+            "description": "App name"
+          }
+        }
+      }
+    },
+    {
+      "id": "create_machine",
+      "name": "Create Machine",
+      "description": "Create and start a new machine.",
+      "semantic_tags": [
+        "create machine",
+        "deploy",
+        "new instance",
+        "launch"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/apps/{app_name}/machines",
+        "params": {
+          "app_name": {
+            "type": "string",
+            "required": true,
+            "description": "App name"
+          },
+          "config": {
+            "type": "object",
+            "required": true,
+            "description": "Machine configuration (image, size, env, etc.)"
+          }
+        }
+      }
+    },
+    {
+      "id": "stop_machine",
+      "name": "Stop Machine",
+      "description": "Stop a running machine.",
+      "semantic_tags": [
+        "stop",
+        "shutdown",
+        "stop machine",
+        "halt"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/apps/{app_name}/machines/{machine_id}/stop",
+        "params": {
+          "app_name": {
+            "type": "string",
+            "required": true,
+            "description": "App name"
+          },
+          "machine_id": {
+            "type": "string",
+            "required": true,
+            "description": "Machine ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "start_machine",
+      "name": "Start Machine",
+      "description": "Start a stopped machine.",
+      "semantic_tags": [
+        "start",
+        "boot",
+        "start machine",
+        "resume"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/apps/{app_name}/machines/{machine_id}/start",
+        "params": {
+          "app_name": {
+            "type": "string",
+            "required": true,
+            "description": "App name"
+          },
+          "machine_id": {
+            "type": "string",
+            "required": true,
+            "description": "Machine ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "destroy_machine",
+      "name": "Destroy Machine",
+      "description": "Permanently delete a machine.",
+      "semantic_tags": [
+        "destroy",
+        "delete",
+        "remove machine",
+        "terminate"
+      ],
+      "endpoint": {
+        "method": "DELETE",
+        "path": "/apps/{app_name}/machines/{machine_id}",
+        "params": {
+          "app_name": {
+            "type": "string",
+            "required": true,
+            "description": "App name"
+          },
+          "machine_id": {
+            "type": "string",
+            "required": true,
+            "description": "Machine ID"
+          }
+        }
+      }
+    }
+  ]
+}

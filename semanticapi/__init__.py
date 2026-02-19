@@ -22,7 +22,7 @@ Or use the agentic processor for multi-step reasoning:
     result = processor.process("get my stripe balance and list recent payments")
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __author__ = "Semantic API Contributors"
 __license__ = "AGPL-3.0"
 

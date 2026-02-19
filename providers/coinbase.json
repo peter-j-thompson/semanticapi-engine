@@ -1,0 +1,161 @@
+{
+  "provider": "coinbase",
+  "name": "Coinbase",
+  "description": "Cryptocurrency exchange and wallet platform",
+  "base_url": "https://api.coinbase.com/v2",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "list_accounts",
+      "name": "List Accounts",
+      "description": "List your cryptocurrency wallets and balances.",
+      "semantic_tags": [
+        "accounts",
+        "wallets",
+        "crypto balances",
+        "portfolio",
+        "holdings"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/accounts",
+        "params": {}
+      }
+    },
+    {
+      "id": "get_spot_price",
+      "name": "Get Spot Price",
+      "description": "Get the current spot price for a cryptocurrency pair.",
+      "semantic_tags": [
+        "price",
+        "crypto price",
+        "bitcoin price",
+        "spot price",
+        "current price",
+        "how much is"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/prices/{currency_pair}/spot",
+        "params": {
+          "currency_pair": {
+            "type": "string",
+            "required": true,
+            "description": "Currency pair (e.g. BTC-USD)"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_buy_price",
+      "name": "Get Buy Price",
+      "description": "Get the total price to buy one unit of cryptocurrency.",
+      "semantic_tags": [
+        "buy price",
+        "purchase price",
+        "cost to buy"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/prices/{currency_pair}/buy",
+        "params": {
+          "currency_pair": {
+            "type": "string",
+            "required": true,
+            "description": "Currency pair (e.g. BTC-USD)"
+          }
+        }
+      }
+    },
+    {
+      "id": "list_transactions",
+      "name": "List Transactions",
+      "description": "List transactions for a specific account.",
+      "semantic_tags": [
+        "transactions",
+        "history",
+        "buys",
+        "sells",
+        "crypto transactions"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/accounts/{account_id}/transactions",
+        "params": {
+          "account_id": {
+            "type": "string",
+            "required": true,
+            "description": "Account ID"
+          }
+        }
+      }
+    },
+    {
+      "id": "send_money",
+      "name": "Send Money",
+      "description": "Send cryptocurrency to an address or email.",
+      "semantic_tags": [
+        "send crypto",
+        "transfer",
+        "send bitcoin",
+        "crypto payment"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/accounts/{account_id}/transactions",
+        "params": {
+          "account_id": {
+            "type": "string",
+            "required": true,
+            "description": "Source account ID"
+          },
+          "type": {
+            "type": "string",
+            "required": true,
+            "description": "Transaction type (send)"
+          },
+          "to": {
+            "type": "string",
+            "required": true,
+            "description": "Recipient address or email"
+          },
+          "amount": {
+            "type": "string",
+            "required": true,
+            "description": "Amount to send"
+          },
+          "currency": {
+            "type": "string",
+            "required": true,
+            "description": "Currency code"
+          }
+        }
+      }
+    },
+    {
+      "id": "get_exchange_rates",
+      "name": "Get Exchange Rates",
+      "description": "Get exchange rates for a currency.",
+      "semantic_tags": [
+        "exchange rates",
+        "conversion rates",
+        "crypto rates"
+      ],
+      "endpoint": {
+        "method": "GET",
+        "path": "/exchange-rates",
+        "params": {
+          "currency": {
+            "type": "string",
+            "required": false,
+            "description": "Base currency (default: USD)"
+          }
+        }
+      }
+    }
+  ]
+}

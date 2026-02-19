@@ -1,0 +1,185 @@
+{
+  "provider": "huggingface",
+  "name": "Hugging Face",
+  "description": "Access thousands of ML models for NLP, computer vision, and audio tasks",
+  "base_url": "https://api-inference.huggingface.co",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer"
+  },
+  "capabilities": [
+    {
+      "id": "text_generation",
+      "name": "Text Generation",
+      "description": "Generate text using any text generation model on Hugging Face.",
+      "semantic_tags": [
+        "generate text",
+        "completion",
+        "language model",
+        "text generation",
+        "write"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/models/{model_id}",
+        "params": {
+          "model_id": {
+            "type": "string",
+            "required": true,
+            "description": "Model ID (e.g. gpt2, meta-llama/Llama-2-7b)"
+          },
+          "inputs": {
+            "type": "string",
+            "required": true,
+            "description": "Input text prompt"
+          },
+          "parameters": {
+            "type": "object",
+            "required": false,
+            "description": "Generation parameters (max_new_tokens, temperature, etc.)"
+          }
+        }
+      }
+    },
+    {
+      "id": "text_classification",
+      "name": "Text Classification",
+      "description": "Classify text into categories using sentiment analysis or other classification models.",
+      "semantic_tags": [
+        "classify",
+        "sentiment",
+        "categorize",
+        "label",
+        "sentiment analysis"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/models/{model_id}",
+        "params": {
+          "model_id": {
+            "type": "string",
+            "required": true,
+            "description": "Classification model ID"
+          },
+          "inputs": {
+            "type": "string",
+            "required": true,
+            "description": "Text to classify"
+          }
+        }
+      }
+    },
+    {
+      "id": "image_classification",
+      "name": "Image Classification",
+      "description": "Classify images using computer vision models.",
+      "semantic_tags": [
+        "image",
+        "classify image",
+        "recognize",
+        "computer vision",
+        "what is this"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/models/{model_id}",
+        "params": {
+          "model_id": {
+            "type": "string",
+            "required": true,
+            "description": "Vision model ID"
+          },
+          "inputs": {
+            "type": "string",
+            "required": true,
+            "description": "Image URL or base64 data"
+          }
+        }
+      }
+    },
+    {
+      "id": "summarization",
+      "name": "Summarize Text",
+      "description": "Summarize long text into shorter versions.",
+      "semantic_tags": [
+        "summarize",
+        "summary",
+        "tldr",
+        "shorten",
+        "condense"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/models/{model_id}",
+        "params": {
+          "model_id": {
+            "type": "string",
+            "required": true,
+            "description": "Summarization model ID"
+          },
+          "inputs": {
+            "type": "string",
+            "required": true,
+            "description": "Text to summarize"
+          }
+        }
+      }
+    },
+    {
+      "id": "translation",
+      "name": "Translate Text",
+      "description": "Translate text between languages.",
+      "semantic_tags": [
+        "translate",
+        "translation",
+        "language",
+        "convert language"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/models/{model_id}",
+        "params": {
+          "model_id": {
+            "type": "string",
+            "required": true,
+            "description": "Translation model ID"
+          },
+          "inputs": {
+            "type": "string",
+            "required": true,
+            "description": "Text to translate"
+          }
+        }
+      }
+    },
+    {
+      "id": "text_to_image",
+      "name": "Text to Image",
+      "description": "Generate images from text descriptions using diffusion models.",
+      "semantic_tags": [
+        "generate image",
+        "text to image",
+        "create image",
+        "art",
+        "picture"
+      ],
+      "endpoint": {
+        "method": "POST",
+        "path": "/models/{model_id}",
+        "params": {
+          "model_id": {
+            "type": "string",
+            "required": true,
+            "description": "Image generation model ID (e.g. stabilityai/stable-diffusion-xl-base-1.0)"
+          },
+          "inputs": {
+            "type": "string",
+            "required": true,
+            "description": "Text description of desired image"
+          }
+        }
+      }
+    }
+  ]
+}
