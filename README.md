@@ -310,6 +310,20 @@ Add to Claude Desktop config (`~/Library/Application Support/Claude/claude_deskt
 Drop Semantic API into any agent framework as a tool:
 **[semantic-api-skill](https://github.com/peter-j-thompson/semantic-api-skill)** — ready-to-use skill package for agent frameworks.
 
+## CLI Tool
+
+Query APIs from your terminal with the official CLI:
+
+```bash
+pip install semanticapi-cli
+
+semanticapi config set-key sapi_your_key
+semanticapi query "send an SMS via twilio"
+semanticapi discover stripe
+```
+
+Stdlib only, zero dependencies. See **[semanticapi-cli](https://github.com/peter-j-thompson/semanticapi-cli)** for full docs.
+
 ## Hosted Version
 
 Don't want to self-host? Use the managed version at **[semanticapi.dev](https://semanticapi.dev)** — includes auto-discovery of any API, OAuth flows, x402 payments, and a dashboard.
